@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'Arsenal';
+  src: local('Arsenal Regular'), local('Arsenal-Regular'),
+    url('../assets/fonts/Arsenal-Regular.ttf'), url('../assets/fonts/Arsenal-Regular.woff2');
+}
+
+@font-face {
+  font-family: 'Arsenal Bold';
+  src: local('Arsenal Bold'), local('Arsenal-Bold'),
+    url('../assets/fonts/Arsenal-Bold.ttf'), url('../assets/fonts/Arsenal-Bold.woff2');
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: 'GoogleSans';
+  src: local('GoogleSans Regular'), local('GoogleSans-Regular'),
+    url('../assets/fonts/GoogleSans-Regular.ttf'), url('../assets/fonts/GoogleSans-Regular.woff2');
+}
+
+@font-face {
+  font-family: 'GoogleSans Bold';
+  src: local('GoogleSans Bold'), local('GoogleSans-Bold'),
+    url('../assets/fonts/GoogleSans-Bold.ttf'), url('../assets/fonts/GoogleSans-Bold.woff2');
+}
+
+@font-face {
+  font-family: 'RubikMonoOne';
+  src: local('RubikMonoOne Regular'), local('RubikMonoOne-Regular'),
+    url('../assets/fonts/RubikMonoOne-Regular.ttf'), url('../assets/fonts/RubikMonoOne-Regular.woff2');
+}
