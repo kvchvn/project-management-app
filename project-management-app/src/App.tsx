@@ -1,8 +1,27 @@
-import axios from 'axios';
 import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
+import { routerPaths } from './constants/common-constants';
+import Authorization from './pages/Authorization/Authorization';
+import Board from './pages/Board/Board';
+import Main from './pages/Main/Main';
+import NotFound from './pages/NotFound/NotFound';
+import Profile from './pages/Profile/Profile';
+import Welcome from './pages/Welcome/Welcome';
 
 function App() {
-  return <h1>Hello, World</h1>;
+  return (
+    <Routes>
+      <Route path={routerPaths.main} element={<Layout />}>
+        <Route index element={<Main />} />
+        <Route path={routerPaths.welcome} element={<Welcome />} />
+        <Route path={routerPaths.auth} element={<Authorization />} />
+        <Route path={routerPaths.board} element={<Board />} />
+        <Route path={routerPaths.profile} element={<Profile />} />
+        <Route path={routerPaths.default} element={<NotFound />} />
+      </Route>
+    </Routes>
+  );
 }
 
 export default App;
