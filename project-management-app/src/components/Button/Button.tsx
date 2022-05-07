@@ -6,6 +6,7 @@ min-width: 100px;
 border: none;
 border-radius: 5px;
 padding: 10px 15px;
+margin-right: 10px;
 background: #4676D7;
 font-size: 18px;
 cursor: pointer;
