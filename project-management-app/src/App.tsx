@@ -10,7 +10,6 @@ import Profile from './pages/Profile/Profile';
 import Welcome from './pages/Welcome/Welcome';
 
 function App() {
-  console.log('app');
   return (
     <Routes>
       <Route path={routerPaths.main} element={<Layout />}>
