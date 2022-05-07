@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 export const API_URL = 'https://gentle-fortress-75399.herokuapp.com/';
-
 export const API_PATHS = {
-  boards: 'boards',
-};
+  users: 'users/',
+  boards: 'boards/',
+}
 
 export const mockUser = {
   id: 'bbe89876-9967-4daa-87fc-3aeae99ac0ea',
