@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react';
 import { Wrapper } from '../../layouts/containers';
-import { createNewBoard, getAllBoards } from '../../utils/boards-api';
+import { getAllBoards } from '../../utils/boards-api';
 import './main-page.scss';
 
 function Main() {
-  console.log('render');
   useEffect(() => {
-    createNewBoard('wash the car');
     getAllBoards();
   }, []);
 
