@@ -1,4 +1,4 @@
-export type Theme = {
+export interface Theme {
   fontFamily: {
     primary: string;
   };
@@ -7,4 +7,4 @@ export type Theme = {
     bg: string;
     font: string;
   };
-};
+}
