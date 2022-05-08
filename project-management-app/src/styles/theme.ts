@@ -1,4 +1,4 @@
-import { Theme } from '../interfaces';
+import { Theme } from '../interfaces/common';
 
 export const baseTheme: Theme = {
   fontFamily: {
