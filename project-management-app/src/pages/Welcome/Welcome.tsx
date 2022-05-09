@@ -23,7 +23,7 @@ function Welcome() {
   return (
     <>
       <Navbar>
-      <Subtitle>Welcome page</Subtitle>
+        <Subtitle>Welcome page</Subtitle>
         <Button>Log in</Button>
         <Button>Sign up</Button>
       </Navbar>
@@ -35,7 +35,7 @@ function Welcome() {
         <StyledAbout>
           <Subtitle>О курсе</Subtitle>
           <StyledDescription>Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes. Курс для студентов, которые имеют знания и практический опыт использования следующих технологий и инструментов: JavaScript, TypeScript
-Git, GitHub, NPM, Webpack, CSS3 / HTML5, Chrome DevTools, Figma, Понимание концепции REST API</StyledDescription>
+            Git, GitHub, NPM, Webpack, CSS3 / HTML5, Chrome DevTools, Figma, Понимание концепции REST API</StyledDescription>
         </StyledAbout>
         <StyledAbout>
           <Subtitle>О команде</Subtitle>
