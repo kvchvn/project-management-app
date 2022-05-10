@@ -1,5 +1,8 @@
 import { useMutation } from 'react-query';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { onSignIn } from '../store/slices/user';
 import { URLS } from '../constants/api';
 import { routerPaths } from '../constants/common-constants';
 import { AuthorizedUser, UnauthorizedUser } from '../interfaces/user';
@@ -9,6 +12,7 @@ import { setToLocalStorage } from '../utils/common';
 type UserSignIn = Pick<UnauthorizedUser, 'login' | 'password'>;
 
 const useSignIn = () => {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const signIn = useMutation(
@@ -22,6 +26,7 @@ const useSignIn = () => {
     {
       onSuccess: (token) => {
         setToLocalStorage('token', token);
+        dispatch(onSignIn({ token }));
         navigate(routerPaths.main);
       },
     }
