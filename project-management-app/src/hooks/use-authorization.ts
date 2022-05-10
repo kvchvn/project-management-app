@@ -29,12 +29,18 @@ const useAuthorization = () => {
     await signIn.mutateAsync(values);
   };
 
-  const handlePageMode = () => setIsSignUpForm(!isSignUpForm);
+  const handlePageMode = () => {
+    setIsSignUpForm(!isSignUpForm);
+    signUp.reset();
+    signIn.reset();
+  };
 
   return {
     isSignUpForm,
     handleSubmit,
     handlePageMode,
+    signUp,
+    signIn,
   };
 };
 
