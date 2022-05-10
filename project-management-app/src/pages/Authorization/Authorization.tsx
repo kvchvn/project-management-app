@@ -1,64 +1,30 @@
 import React, { useState } from 'react';
-import { useSignIn, useSignOut, useSignUp } from '../../hooks';
-import { getFromLocalStorage } from '../../utils/common';
+import AuthForm from '../../components/AuthForm';
+import { useSignIn, useSignUp } from '../../hooks';
+import { UnauthorizedUser } from '../../interfaces/user';
 
 function Authorization() {
-  const name = 'John';
-  const login = 'john6112';
-  const password = '123456';
-  const [token, setToken] = useState(getFromLocalStorage<string>('token'));
+  const [isSignUpForm, setIsSignUpForm] = useState(true);
 
   const signUp = useSignUp();
   const signIn = useSignIn();
-  const signOut = useSignOut();
 
-  const handleSignUp = async () => {
-    await signUp.mutateAsync({ name, login, password });
-    await handleSignIn();
+  const handleSubmit = async (values: UnauthorizedUser) => {
+    if (isSignUpForm) await signUp.mutateAsync(values);
+
+    await signIn.mutateAsync(values);
   };
 
-  const handleSignIn = async () => {
-    const token = await signIn.mutateAsync({ login, password });
-    setToken(token);
-  };
-
-  const handleSignOut = () => {
-    signOut();
-    setToken('');
-  };
+  const handlePageStatus = () => setIsSignUpForm(!isSignUpForm);
 
   return (
     <>
       <h2>Authorization page</h2>
-      {token ? (
-        <>
-          <p>Your token: {token}</p>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </>
-      ) : (
-        <>
-          <p>
-            <strong>Name: </strong>
-            <span>{name}</span>
-          </p>
-          <p>
-            <strong>Login: </strong>
-            <span>{login}</span>
-          </p>
-          <p>
-            <strong>Password: </strong>
-            <span>{password}</span>
-          </p>
-          {signUp.isError ? (
-            <>
-              <span>It seems like you&apos;ve been already signed up. Try to sign in.</span>
-              <button onClick={handleSignIn}>Sign In</button>
-            </>
-          ) : (
-            <button onClick={handleSignUp}>Sign Up</button>
-          )}
-        </>
-      )}
+      <AuthForm isSignUpForm={isSignUpForm} onSubmit={handleSubmit} />
+      <div>
+        {isSignUpForm && <span>Have an account?</span>}
+        <button onClick={handlePageStatus}>{isSignUpForm ? 'Sign in' : 'Sign up'}</button>
+      </div>
     </>
   );
 }
