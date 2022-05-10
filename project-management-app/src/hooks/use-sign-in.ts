@@ -12,11 +12,11 @@ const useSignIn = () => {
   const navigate = useNavigate();
 
   const signIn = useMutation(
-    async (user: UserSignIn) => {
-      const { token } = await userSignIn<UserSignIn, Pick<AuthorizedUser, 'token'>>(
-        URLS.signin,
-        user
-      );
+    async ({ login, password }: UnauthorizedUser) => {
+      const { token } = await userSignIn<UserSignIn, Pick<AuthorizedUser, 'token'>>(URLS.signin, {
+        login,
+        password,
+      });
       return token;
     },
     {
