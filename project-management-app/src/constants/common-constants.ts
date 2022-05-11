@@ -10,7 +10,6 @@ export const routerPaths = {
 
 export const LOCAL_STORAGE_KEYS = {
   user: 'user',
-  token: 'token',
 };
 
 export const NAME_VALIDATOR = /^[a-zA-Z -]{2,30}$/;
