@@ -6,7 +6,7 @@ const useSignOut = () => {
   const navigate = useNavigate();
 
   const signOut = () => {
-    removeFromLocalStorage('token');
+    removeFromLocalStorage('user');
     navigate(`/${routerPaths.welcome}`);
   };
 
