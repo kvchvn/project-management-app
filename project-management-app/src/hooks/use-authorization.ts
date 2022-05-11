@@ -21,7 +21,7 @@ const useAuthorization = () => {
   }, [user, navigate]);
 
   const signUp = useSignUp();
-  const signIn = useSignIn();
+  const { signIn, usersQueryResult } = useSignIn();
 
   const handleSubmit = async (values: UnauthorizedUser) => {
     if (isSignUpForm) await signUp.mutateAsync(values);
@@ -39,6 +39,7 @@ const useAuthorization = () => {
     isSignUpForm,
     handleSubmit,
     handlePageMode,
+    isLoading: usersQueryResult.isLoading || signUp.isLoading || signIn.isLoading,
     signUp,
     signIn,
   };

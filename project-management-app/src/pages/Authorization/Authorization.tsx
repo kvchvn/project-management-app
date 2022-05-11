@@ -4,12 +4,13 @@ import AuthForm from '../../components/AuthForm';
 import { useAuthorization } from '../../hooks';
 
 function Authorization() {
-  const { isSignUpForm, handlePageMode, handleSubmit, signUp, signIn } = useAuthorization();
+  const { isSignUpForm, handlePageMode, handleSubmit, signUp, signIn, isLoading } =
+    useAuthorization();
 
   return (
     <>
       <h2>Authorization page</h2>
-      {signUp.isLoading || signIn.isLoading ? (
+      {isLoading ? (
         'Loading...'
       ) : (
         <>
