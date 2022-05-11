@@ -9,6 +9,11 @@ export const StyledListItem = styled.li`
   width: 200px;
   height: 100px;
   border: 2px solid black;
+  cursor: pointer;
+
+  &:hover {
+    background-color: grey;
+  }
 
   & > .${classnames.link} {
     border: 1px solid red;

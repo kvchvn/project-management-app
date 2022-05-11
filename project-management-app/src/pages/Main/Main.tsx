@@ -1,8 +1,8 @@
 import React from 'react';
 import BoardCard from '../../components/BoardCard/BoardCard';
 import useAllBoards from '../../hooks/use-all-boards';
-import { Wrapper } from '../../layouts/containers';
-import './main-page.scss';
+import { StyledWrapper } from '../../layouts/containers';
+import { StyledList } from './styles';
 
 function Main() {
   const { isLoading, isError, data: boards, error } = useAllBoards();
@@ -17,14 +17,14 @@ function Main() {
 
   return (
     <main>
-      <Wrapper>
+      <StyledWrapper>
         <h2>My boards</h2>
-        <ul>
+        <StyledList>
           {boards && boards.length
             ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
             : null}
-        </ul>
-      </Wrapper>
+        </StyledList>
+      </StyledWrapper>
     </main>
   );
 }
