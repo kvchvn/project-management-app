@@ -1,5 +1,5 @@
 import { AxiosResponse } from 'axios';
-import { Boards } from '../interfaces/board';
+import { BoardDetailed, Boards } from '../interfaces/board';
 import { API_PATHS, authAxios } from './common-api';
 
 export const getAllBoards = async () => {
@@ -8,8 +8,8 @@ export const getAllBoards = async () => {
 };
 
 export const getBoardById = async (id: string) => {
-  const response = await authAxios.get(`${API_PATHS.boards}/id`);
-  
+  const response: AxiosResponse<BoardDetailed> = await authAxios.get(`${API_PATHS.boards}/id`);
+  return response.data;
 }
 
 export const createNewBoard = async (title: string) =>
