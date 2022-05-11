@@ -4,7 +4,7 @@ import { getAllBoards } from '../utils/boards-api';
 
 const useAllBoards = () =>
   useQuery('all-boards', getAllBoards, {
-    onError: (error: AxiosError) => error.message,
+    onError: (error: AxiosError) => error,
   });
 
 export default useAllBoards;

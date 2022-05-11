@@ -3,7 +3,7 @@ import axios from 'axios';
 export const API_URL = 'https://gentle-fortress-75399.herokuapp.com/';
 
 export const API_PATHS = {
-  boards: 'boards',
+  boards: 'board',
 };
 
 export const mockUser = {
