@@ -7,12 +7,17 @@ export const URLS = {
   signup: `${BASE_URL}/signup`,
   signin: `${BASE_URL}/signin`,
   boards: `${BASE_URL}/boards`,
+  users: `${BASE_URL}/users`,
 };
 
 export const mockUser = {
   id: 'bbe89876-9967-4daa-87fc-3aeae99ac0ea',
   name: 'cool',
   login: 'cool',
+};
+
+export const QUERY_KEYS = {
+  users: 'users',
 };
 
 export const token =
