@@ -22,7 +22,7 @@ function Main() {
         <StyledList>
           {boards && boards.length
             ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
-            : null}
+            : 'You haven`t got any board'}
         </StyledList>
       </StyledWrapper>
     </main>

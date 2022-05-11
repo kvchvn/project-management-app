@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 
-export const classnames = {
-  link: 'board-card__link',
-  title: 'board-card__title',
-};
-
 export const StyledListItem = styled.li`
+  position: relative;
   width: 200px;
   height: 100px;
   border: 2px solid black;
@@ -15,14 +11,20 @@ export const StyledListItem = styled.li`
     background-color: grey;
   }
 
-  & > .${classnames.link} {
+  & > a {
     border: 1px solid red;
     padding: 20px;
     height: 100%;
   }
 
-  & .${classnames.title} {
+  & h4 {
     margin: auto 0;
     text-align: center;
+  }
+
+  & button {
+    position: absolute;
+    width: 30px;
+    height: 30px;
   }
 `;

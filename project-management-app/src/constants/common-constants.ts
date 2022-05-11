@@ -4,6 +4,6 @@ export const routerPaths = {
   profile: 'profile',
   auth: 'auth',
   board: 'board/',
-  boardById: 'board/:id',
+  boardById: 'board/:id/:title',
   default: '*',
 };
