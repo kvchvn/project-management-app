@@ -3,6 +3,7 @@ export const routerPaths = {
   welcome: 'welcome',
   profile: 'profile',
   auth: 'auth',
-  board: 'board',
+  board: 'board/',
+  boardById: 'board/:id',
   default: '*',
 };

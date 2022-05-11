@@ -1,4 +1,5 @@
 import React from 'react';
+import BoardCard from '../../components/BoardCard/BoardCard';
 import useAllBoards from '../../hooks/use-all-boards';
 import { Wrapper } from '../../layouts/containers';
 import './main-page.scss';
@@ -20,8 +21,8 @@ function Main() {
         <h2>My boards</h2>
         <ul>
           {boards && boards.length
-            ? boards.map((board) => <li key={board.id}>{board.title}</li>)
-            : 'Boards not found'}
+            ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
+            : null}
         </ul>
       </Wrapper>
     </main>
