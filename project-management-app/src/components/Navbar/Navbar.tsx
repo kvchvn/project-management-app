@@ -1,3 +1,4 @@
+import React from "react";
 import { ReactNode } from "react";
 import styled from 'styled-components';
 
@@ -8,7 +9,7 @@ padding: 1rem 2rem;
 background: #ebecf0;
 `
 
-type NavbarProps = {
+export type NavbarProps = {
   children: ReactNode;
 }
 

@@ -2,6 +2,8 @@ import Navbar from '../../components/Navbar/Navbar';
 import Button from '../../components/Button/Button';
 import styled from 'styled-components';
 import Subtitle from '../../components/Subtitle/Subtitle';
+import { Link } from 'react-router-dom';
+import { routerPaths } from '../../constants/common-constants';
 
 const StyledAbout = styled.div`
 max-width: 30%;
@@ -20,12 +22,19 @@ const StyledDescription = styled.p`
 padding: 30px 0;`
 
 function Welcome() {
+  const isUser = false;
   return (
     <>
       <Navbar>
         <Subtitle>Welcome page</Subtitle>
-        <Button>Log in</Button>
+        {!isUser?
+        <div>
+                  <Link to={`/${routerPaths.auth}`}>
+          <Button>Log in</Button>
+        </Link>
         <Button>Sign up</Button>
+        </div>
+: <Link to={routerPaths.main}>cndghjnhg</Link>}
       </Navbar>
       <StyledWrapper>
         <StyledAbout>
