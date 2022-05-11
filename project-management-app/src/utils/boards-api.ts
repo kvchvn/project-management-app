@@ -1,22 +1,21 @@
 import { AxiosResponse } from 'axios';
-import { Board, Boards } from '../pages/Main/types';
+import { Boards } from '../interfaces/board';
 import { API_PATHS, authAxios } from './common-api';
 
-export const getAllBoards = () =>
-  authAxios.get<Boards>(API_PATHS.boards).then((boards) => {
-    console.log(boards.data);
-    return boards.data;
-  });
-
-export const createNewBoard = (title: string) => {
-  authAxios.post<Board, string>(API_PATHS.boards, { title });
+export const getAllBoards = async () => {
+  const response: AxiosResponse<Boards> = await authAxios.get(API_PATHS.boards);
+  return response.data;
 };
 
-export const deleteBoard = (id: string) => {
-  authAxios.delete(`${API_PATHS.boards}/${id}`);
-};
+export const getBoardById = async (id: string) => {
+  const response = await authAxios.get
+}
 
-export const updateBoard = (id: string, title: string) =>
-  authAxios
-    .patch<Board, AxiosResponse<Board>, Partial<Board>>(`${API_PATHS.boards}/${id}`, { title })
-    .then((board) => board.data);
+export const createNewBoard = async (title: string) =>
+  await authAxios.post(API_PATHS.boards, { title });
+
+export const deleteBoard = async (id: string) =>
+  await authAxios.delete(`${API_PATHS.boards}/${id}`);
+
+export const updateBoard = async (id: string, title: string) =>
+  await authAxios.put(`${API_PATHS.boards}/${id}`, { title });
