@@ -1,4 +1,4 @@
-import { ColumnDetailed } from "./column";
+import { ColumnDetailed } from './column';
 
 export interface Board {
   id: string;

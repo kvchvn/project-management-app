@@ -8,9 +8,9 @@ export const getAllBoards = async () => {
 };
 
 export const getBoardById = async (id: string) => {
-  const response: AxiosResponse<BoardDetailed> = await authAxios.get(`${API_PATHS.boards}/id`);
+  const response: AxiosResponse<BoardDetailed> = await authAxios.get(`${API_PATHS.boards}/${id}`);
   return response.data;
-}
+};
 
 export const createNewBoard = async (title: string) =>
   await authAxios.post(API_PATHS.boards, { title });

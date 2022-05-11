@@ -13,7 +13,7 @@ export const mockUser = {
 };
 
 export const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiYmU4OTg3Ni05OTY3LTRkYWEtODdmYy0zYWVhZTk5YWMwZWEiLCJsb2dpbiI6ImNvb2wiLCJpYXQiOjE2NTE5MTM3MDR9.s4ktuPn9RrygfHsNUZXstBVnzWF2t_azSQ-7R8KjNuk';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiYmU4OTg3Ni05OTY3LTRkYWEtODdmYy0zYWVhZTk5YWMwZWEiLCJsb2dpbiI6ImNvb2wiLCJpYXQiOjE2NTIyNjQwMDJ9.QYNzQQ3pjxXZziPgKbSRONwTtBMKY76gXPpqvTlPa3s';
 
 export const authAxios = axios.create({
   baseURL: API_URL,

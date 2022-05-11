@@ -1,4 +1,4 @@
-import { Task, TaskFiles } from "./task";
+import { Task, TaskFiles } from './task';
 
 export interface Column {
   id: string;
