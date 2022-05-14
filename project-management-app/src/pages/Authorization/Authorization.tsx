@@ -21,7 +21,7 @@ function Authorization() {
         <>
           <AuthForm isSignUpForm={isSignUpForm} onSubmit={handleSubmit} />
           <div>
-            {signUp.isError && <span>It seems like user already exists. Try to sign in</span>}
+            {signUp.isError && <span>It seems like user already exists. Try to sign in</span> && toast.error('bad user')}
             {signIn.isError && <span>Login and password do not match</span>}
             <div>
               {isSignUpForm && <span>Have an account?</span>}
