@@ -21,7 +21,6 @@ export const QUERY_KEYS = {
 };
 
 export const token =
-<<<<<<< HEAD
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiYmU4OTg3Ni05OTY3LTRkYWEtODdmYy0zYWVhZTk5YWMwZWEiLCJsb2dpbiI6ImNvb2wiLCJpYXQiOjE2NTIzMTI4MDZ9.JdflwnZd_gUaZ4Rdfk8J1-OYLIIjrvgukdTiT-snGWo';
 
 export const authAxios = axios.create({
@@ -30,11 +29,3 @@ export const authAxios = axios.create({
     Authorization: `Bearer ${token}`,
   },
 });
-=======
-<<<<<<<< HEAD:project-management-app/src/constants/api.ts
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiYmU4OTg3Ni05OTY3LTRkYWEtODdmYy0zYWVhZTk5YWMwZWEiLCJsb2dpbiI6ImNvb2wiLCJpYXQiOjE2NTIzMTI4MDZ9.JdflwnZd_gUaZ4Rdfk8J1-OYLIIjrvgukdTiT-snGWo';
-========
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiYmU4OTg3Ni05OTY3LTRkYWEtODdmYy0zYWVhZTk5YWMwZWEiLCJsb2dpbiI6ImNvb2wiLCJpYXQiOjE2NTE5MTM3MDR9.s4ktuPn9RrygfHsNUZXstBVnzWF2t_azSQ-7R8KjNuk';
->>>>>>>> d8a801b (refactor: move api-constants into another folder):project-management-app/src/utils/common-api.ts
-
->>>>>>> d8a801b (refactor: move api-constants into another folder)
