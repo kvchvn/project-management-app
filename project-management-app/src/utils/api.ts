@@ -5,8 +5,8 @@ export const getAll = async <T>(url: string, config: AxiosRequestConfig = {}) =>
   return response.data;
 };
 
-export const create = async <T, P>(url: string, body: T) => {
-  const response = await axios.post<P>(url, body);
+export const create = async <T, P>(url: string, body: T, config: AxiosRequestConfig = {}) => {
+  const response = await axios.post<P>(url, body, config);
   return response.data;
 };
 
