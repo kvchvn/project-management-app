@@ -31,7 +31,7 @@ function Board() {
       {columnsQueryResult.isLoading ? (
         <span>Loading...</span>
       ) : (
-        columns && <ColumnsContainer columns={columns} onNewColumnCreate={handleNewColumnCreate} />
+        columns && <ColumnsContainer items={columns} onNewColumnCreate={handleNewColumnCreate} />
       )}
     </DndProvider>
   );
