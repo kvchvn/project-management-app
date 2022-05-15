@@ -1,4 +1,6 @@
 import useAuthorization from './use-authorization';
+import useColumnsQuery from './use-columns-query';
+import useCreateColumn from './use-create-column';
 import useForm from './use-form';
 import useSignIn from './use-sign-in';
 import useSignOut from './use-sign-out';
@@ -8,6 +10,8 @@ import useRemovingBoard from './use-removing-board';
 
 export {
   useAuthorization,
+  useColumnsQuery,
+  useCreateColumn,
   useForm,
   useSignIn,
   useSignOut,
