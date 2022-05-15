@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common-constants';
 import { StyledWrapper } from '../../layouts/containers';
+import Dropdown from '../Dropdown/Dropdown';
 import { StyledHeader, Nav, NavButton } from './styles';
 
 function Header() {
@@ -15,6 +16,7 @@ function Header() {
           </NavButton>
           <NavButton>Create board</NavButton>
           <NavButton>Log out</NavButton>
+          <Dropdown />
         </Nav>
       </StyledWrapper>
     </StyledHeader>
