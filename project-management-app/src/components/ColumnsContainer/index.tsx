@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useRef, useState } from 'react';
+import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { useDrop } from 'react-dnd';
 
 import Column from '../Column';
@@ -19,6 +19,8 @@ function ColumnsContainer({
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
   const [columns, setColumns] = useState(items);
+
+  useEffect(() => setColumns(items), [items]);
 
   const handleIsOpenModal = () => {
     setIsOpenModal(!isOpenModal);
