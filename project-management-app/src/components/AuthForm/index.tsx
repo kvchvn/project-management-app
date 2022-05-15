@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+import React, { useEffect } from 'react';
+>>>>>>> 9959c86 (feat: add useeffect for server errors toast, change place toastcontainer, delete form errors toat in authform)
 import { FormikConfig } from 'formik';
 import { useForm } from '../../hooks';
 import { UnauthorizedUser } from '../../interfaces/user';
@@ -19,7 +23,7 @@ function AuthForm({
     login: '',
     password: '',
   };
-  
+
   const { handleSubmit, handleChange, values, errors, isValid } = useForm({
     initialValues,
     validationSchema: isSignUpForm ? signUpValidationSchema : signInValidationSchema,
@@ -28,18 +32,6 @@ function AuthForm({
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-                <ToastContainer
-        limit={1}
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       {isSignUpForm && (
         <StyledInputContainer>
           <input id="name" onChange={handleChange} value={values.name} placeholder=" " />
@@ -68,15 +60,8 @@ function AuthForm({
           type="password"
         />
         <label htmlFor="password">Password</label>
-        {errors.password && <span>{errors.password}</span> && toast.error(`Must be at least ${MIN_PASSWORD_LENGTH} characters`, {
-position: "top-center",
-autoClose: 5000,
-hideProgressBar: false,
-closeOnClick: true,
-pauseOnHover: true,
-draggable: true,
-progress: undefined,
-})}
+        {errors.password && 
+        <span>{errors.password}</span>}
       </StyledInputContainer>
       <button type="submit" disabled={!isValid}>
         {isSignUpForm ? 'Sign up' : 'Sign in'}
