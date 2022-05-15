@@ -8,7 +8,6 @@ export const URLS = {
   signin: `${BASE_URL}/signin`,
   boards: `${BASE_URL}/boards`,
   users: `${BASE_URL}/users`,
-  boards: `${BASE_URL}/boards`,
 };
 
 export const mockUser = {
