@@ -8,6 +8,7 @@ export const URLS = {
   signin: `${BASE_URL}/signin`,
   boards: `${BASE_URL}/boards`,
   users: `${BASE_URL}/users`,
+  boards: `${BASE_URL}/boards`,
 };
 
 export const mockUser = {
@@ -18,6 +19,12 @@ export const mockUser = {
 
 export const QUERY_KEYS = {
   users: 'users',
+  columns: 'columns',
+};
+
+export const MOCKED_BOARD = {
+  title: 'Homework tasks',
+  id: '29783289-f1ac-45d6-8f4b-bc0c9dceb4ec',
 };
 
 export const token =
