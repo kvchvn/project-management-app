@@ -1,17 +1,9 @@
-<<<<<<< HEAD
-=======
-import React, { useEffect } from 'react';
->>>>>>> 9959c86 (feat: add useeffect for server errors toast, change place toastcontainer, delete form errors toat in authform)
+import React from 'react';
 import { FormikConfig } from 'formik';
 import { useForm } from '../../hooks';
 import { UnauthorizedUser } from '../../interfaces/user';
 import { signInValidationSchema, signUpValidationSchema } from './validation-schemas';
 import { StyledForm, StyledInputContainer } from './styles';
-<<<<<<< HEAD
-=======
-import { toast, ToastContainer } from 'react-toastify';
-import { MIN_PASSWORD_LENGTH } from '../../constants/common-constants';
->>>>>>> 4dea381 (install react-toasting, add ToastContainer to AutForm index.tsx, add toast.error to password)
 import 'react-toastify/dist/ReactToastify.css';
 
 function AuthForm({
@@ -60,8 +52,7 @@ function AuthForm({
           type="password"
         />
         <label htmlFor="password">Password</label>
-        {errors.password && 
-        <span>{errors.password}</span>}
+        {errors.password && <span>{errors.password}</span>}
       </StyledInputContainer>
       <button type="submit" disabled={!isValid}>
         {isSignUpForm ? 'Sign up' : 'Sign in'}
