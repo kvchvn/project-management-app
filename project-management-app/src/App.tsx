@@ -16,7 +16,7 @@ function App() {
         <Route index element={<Main />} />
         <Route path={routerPaths.welcome} element={<Welcome />} />
         <Route path={routerPaths.auth} element={<Authorization />} />
-        <Route path={routerPaths.board} element={<Board />} />
+        <Route path={routerPaths.boardById} element={<Board />} />
         <Route path={routerPaths.profile} element={<Profile />} />
         <Route path={routerPaths.default} element={<NotFound />} />
       </Route>

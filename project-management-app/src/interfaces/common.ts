@@ -8,3 +8,8 @@ export interface Theme {
     font: string;
   };
 }
+
+export interface ServerError {
+  statusCode: number;
+  message: string;
+}
