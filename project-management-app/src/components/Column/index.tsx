@@ -1,99 +1,54 @@
-import React, { useRef } from 'react';
-import { useDrag, useDrop, XYCoord } from 'react-dnd';
+import React, { memo } from 'react';
+import { useDrag, useDrop } from 'react-dnd';
 
 import { DND_ITEM_TYPES } from '../../constants/common-constants';
 import { Column as IColumn } from '../../interfaces/column';
 
 import { StyledColumn } from './styles';
 
-function Column({
-  id,
-  title,
-  order,
-  moveColumns,
-}: IColumn & {
-  moveColumns: (
-    dragItem: { id: string; order: number },
-    hoverItem: { id: string; order: number }
-  ) => void;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
+interface ColumnProps extends IColumn {
+  moveColumn: (id: string, to: number) => void;
+  findColumn: (id: string) => { index: number };
+}
 
-  const [{ isOver }, drop] = useDrop<{ id: string; order: number }, void, { isOver: boolean }>(
+function Column({ id, title, moveColumn, findColumn }: ColumnProps) {
+  const originalIndex = findColumn(id).index;
+
+  // REFERENCE: https://react-dnd.github.io/react-dnd/examples/sortable/cancel-on-drop-outside
+  const [{ isDragging }, drag] = useDrag(
     () => ({
-      accept: DND_ITEM_TYPES.column,
+      type: DND_ITEM_TYPES.column,
+      item: { id, originalIndex },
       collect: (monitor) => ({
-        isOver: monitor.isOver(),
-        handlerId: monitor.getHandlerId(),
+        isDragging: monitor.isDragging(),
       }),
-      hover: (item: { id: string; order: number }, monitor) => {
-        if (!ref.current) return;
-
-        const dragItem = item;
-        const hoverItem = { id, order };
-        if (dragItem.order === hoverItem.order) return;
-
-        const hoverBoundingRect = ref.current.getBoundingClientRect();
-        // console.log(hoverBoundingRect);
-        const hoverMiddleX = (hoverBoundingRect.right - hoverBoundingRect.left) / 2;
-        console.log('middle', hoverMiddleX);
-
-        const clientOffset = monitor.getClientOffset() as XYCoord;
-        console.log('offset', clientOffset);
-
-        const hoverClientX = hoverBoundingRect.right - clientOffset.x;
-        console.log('client', hoverClientX);
-
-        // if (dragItem.order < hoverItem.order && hoverClientX < hoverMiddleX) return;
-        // if (dragItem.order > hoverItem.order && hoverClientX > hoverMiddleX) return;
-
-        moveColumns(dragItem, hoverItem);
-        item.order = hoverItem.order;
+      end: (item, monitor) => {
+        const { id: droppedId, originalIndex } = item;
+        if (!monitor.didDrop()) moveColumn(droppedId, originalIndex);
       },
-      // drop: (item: { id: string; order: number }) => {
-      //   // const dragItem = item;
-      //   // const hoverItem = { id, order };
-      //   // if (dragItem.id === hoverItem.id) return;
-      //   // moveColumns(dragItem, hoverItem);
-      //   console.log('drop');
-      //   console.log('from', item);
-      //   console.log('to', { id, order });
-      // },
     }),
-    [order]
+    [id, originalIndex, moveColumn]
   );
 
-  const [{ isDragging }, drag] = useDrag(() => ({
-    type: DND_ITEM_TYPES.column,
-    item: () => ({ id, order }),
-    collect: (monitor) => {
-      return {
-        isDragging: monitor.isDragging(),
-      };
-    },
-  }));
+  const [, drop] = useDrop(
+    () => ({
+      accept: DND_ITEM_TYPES.column,
+      hover: ({ id: draggedId }: { id: string }) => {
+        if (draggedId !== id) {
+          const { index: overIndex } = findColumn(id);
+          moveColumn(draggedId, overIndex);
+        }
+      },
+    }),
+    [findColumn, moveColumn]
+  );
 
   const opacity = isDragging ? 0 : 1;
-  drag(drop(ref));
   return (
-    <StyledColumn ref={ref} style={{ opacity }} order={order}>
+    <StyledColumn ref={(node) => drag(drop(node))} style={{ opacity }}>
       <h3>{title}</h3>
-      {isOver && (
-        <div
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            height: '100%',
-            width: '100%',
-            zIndex: 1,
-            opacity: 0.5,
-            backgroundColor: 'yellow',
-          }}
-        />
-      )}
     </StyledColumn>
   );
 }
 
-export default Column;
+export default memo(Column);

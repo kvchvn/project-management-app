@@ -1,21 +1,24 @@
-import React, { useCallback, useRef, useState } from 'react';
-import { Column as IColumn } from '../../interfaces/column';
+import React, { memo, useCallback, useRef, useState } from 'react';
+import { useDrop } from 'react-dnd';
+
 import Column from '../Column';
 import Modal from '../Modal';
+import { Column as IColumn } from '../../interfaces/column';
+import { DND_ITEM_TYPES } from '../../constants/common-constants';
 
-import { StyledColumnCreateButtonContainer, StyledColumnsContainer } from './styles';
+import { StyledColumnsContainer } from './styles';
 
 function ColumnsContainer({
-  columns,
+  items,
   onNewColumnCreate,
 }: {
-  columns: IColumn[];
+  items: IColumn[];
   onNewColumnCreate: (title: string) => Promise<void>;
 }) {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
-  const [localColumns, setColumns] = useState(columns);
+  const [columns, setColumns] = useState(items);
 
   const handleIsOpenModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -30,32 +33,34 @@ function ColumnsContainer({
     setIsOpenModal(false);
   };
 
-  const moveColumns = useCallback(
-    (dragItem: { id: string; order: number }, hoverItem: { id: string; order: number }) => {
-      console.log(dragItem.order, hoverItem.order);
+  const findColumn = useCallback(
+    (id: string) => {
+      const index = columns.findIndex((c) => c.id === id);
+      return { column: columns[index], index };
+    },
+    [columns]
+  );
+
+  const moveColumn = useCallback(
+    (droppedId: string, hoverIndex: number) => {
+      const droppedIndex = findColumn(droppedId).index;
       setColumns((prevColumns) => {
         const copy = prevColumns.slice();
-        [copy[dragItem.order], copy[hoverItem.order]] = [
-          copy[hoverItem.order],
-          copy[dragItem.order],
-        ];
+        [copy[droppedIndex], copy[hoverIndex]] = [copy[hoverIndex], copy[droppedIndex]];
         return copy;
       });
     },
-    []
+    [findColumn, setColumns]
   );
 
-  const renderColumn = useCallback(
-    (column: IColumn, index: number) => {
-      return <Column key={column.id} {...column} order={index} moveColumns={moveColumns} />;
-    },
-    [moveColumns]
-  );
+  const [, drop] = useDrop(() => ({ accept: DND_ITEM_TYPES.column }));
 
   return (
-    <StyledColumnsContainer>
-      {localColumns.map(renderColumn)}
-      <StyledColumnCreateButtonContainer ref={modalRef} order={columns.length + 1}>
+    <StyledColumnsContainer ref={drop}>
+      {columns.map((column) => (
+        <Column key={column.id} {...column} moveColumn={moveColumn} findColumn={findColumn} />
+      ))}
+      <div ref={modalRef}>
         {isOpenModal ? (
           modalRef.current && (
             <Modal parent={modalRef.current}>
@@ -69,9 +74,9 @@ function ColumnsContainer({
             {columns?.length ? 'Add another column' : 'Add a column'}{' '}
           </button>
         )}
-      </StyledColumnCreateButtonContainer>
+      </div>
     </StyledColumnsContainer>
   );
 }
 
-export default ColumnsContainer;
+export default memo(ColumnsContainer);
