@@ -1,4 +1,4 @@
-import { DropdownOption } from '../interfaces';
+import { DropdownOption } from '../interfaces/common';
 
 export const routerPaths = {
   main: '/',

@@ -1,5 +1,5 @@
 import { StylesConfig } from 'react-select';
-import { DropdownOption } from '../../interfaces';
+import { DropdownOption } from '../../interfaces/common';
 
 export const customStyles: StylesConfig<DropdownOption> = {
   control: (base) => ({
