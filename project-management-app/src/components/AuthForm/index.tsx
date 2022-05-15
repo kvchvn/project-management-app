@@ -1,13 +1,8 @@
-import React, { useEffect } from 'react';
 import { FormikConfig } from 'formik';
-
 import { useForm } from '../../hooks';
 import { UnauthorizedUser } from '../../interfaces/user';
 import { signInValidationSchema, signUpValidationSchema } from './validation-schemas';
-
 import { StyledForm, StyledInputContainer } from './styles';
-import { toast, ToastContainer } from 'react-toastify';
-import { MIN_PASSWORD_LENGTH } from '../../constants/common-constants';
 import 'react-toastify/dist/ReactToastify.css';
 
 function AuthForm({
