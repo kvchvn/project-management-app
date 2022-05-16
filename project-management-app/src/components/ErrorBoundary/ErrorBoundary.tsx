@@ -1,6 +1,5 @@
-import { Component, ErrorInfo, ReactNode } from "react";
+import { Component, ReactNode } from 'react';
 import ErrorMessage from './ErrorMessage';
-
 
 interface ErrorProps {
   children: ReactNode;
@@ -12,27 +11,28 @@ interface ErrorState {
 
 class ErrorBoundary extends Component<ErrorProps, ErrorState> {
   state = {
-    hasError: false
+    hasError: false,
   };
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-    console.log(error, errorInfo);
+  componentDidCatch() {
     this.setState({
-      hasError: true
-    })
+      hasError: true,
+    });
   }
 
   render() {
     return (
       <div>
-        {this.state.hasError ?
+        {this.state.hasError ? (
           <>
             <h2>Something went wrong</h2>
             <ErrorMessage />
-          </> : this.props.children}
+          </>
+        ) : (
+          this.props.children
+        )}
       </div>
-    )
+    );
   }
 }
 export default ErrorBoundary;
-
