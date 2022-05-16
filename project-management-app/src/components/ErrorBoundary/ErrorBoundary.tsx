@@ -23,17 +23,16 @@ class ErrorBoundary extends Component<ErrorProps, ErrorState> {
   }
 
   render() {
-    if (this.state.hasError) {
-      return (
-        <>
-          <h2>Something went wrong</h2>
-          <ErrorMessage />
-        </>
-      )
-    }
-    return this.props.children;
+    return (
+      <div>
+        {this.state.hasError ?
+          <>
+            <h2>Something went wrong</h2>
+            <ErrorMessage />
+          </> : this.props.children}
+      </div>
+    )
   }
 }
-
 export default ErrorBoundary;
 
