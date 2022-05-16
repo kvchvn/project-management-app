@@ -11,6 +11,7 @@ import App from './App';
 import GlobalStyles from './styles/global';
 import { baseTheme } from './styles/theme';
 import './styles/index.scss';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const queryClient = new QueryClient();
 
@@ -21,7 +22,9 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ThemeProvider theme={baseTheme}>
-            <App />
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
             <GlobalStyles />
           </ThemeProvider>
         </BrowserRouter>
