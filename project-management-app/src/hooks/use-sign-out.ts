@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { routerPaths } from '../constants/common-constants';
+import { routerPaths } from '../constants/common';
 import { removeFromLocalStorage } from '../utils/common';
 
 const useSignOut = () => {

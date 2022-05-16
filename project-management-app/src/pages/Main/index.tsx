@@ -1,5 +1,5 @@
 import React from 'react';
-import BoardCard from '../../components/BoardCard/BoardCard';
+import BoardCard from '../../components/BoardCard';
 import useAllBoards from '../../hooks/use-all-boards';
 import { StyledWrapper } from '../../layouts/containers';
 import { StyledList } from './styles';

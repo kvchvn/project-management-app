@@ -1,6 +1,6 @@
 import React from 'react';
 import Select from 'react-select';
-import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE } from '../../constants/common-constants';
+import { AVAILABLE_LANGUAGES, DEFAULT_LANGUAGE } from '../../constants/common';
 import { customStyles } from './styles';
 
 function Dropdown() {

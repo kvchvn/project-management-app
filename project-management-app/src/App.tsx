@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout/Layout';
-import { routerPaths } from './constants/common-constants';
-import Authorization from './pages/Authorization/Authorization';
-import Board from './pages/Board/Board';
-import Main from './pages/Main/Main';
-import NotFound from './pages/NotFound/NotFound';
-import Profile from './pages/Profile/Profile';
-import Welcome from './pages/Welcome/Welcome';
+import Layout from './components/Layout';
+import { routerPaths } from './constants/common';
+import Authorization from './pages/Authorization';
+import Board from './pages/Board';
+import Main from './pages/Main';
+import NotFound from './pages/NotFound';
+import Profile from './pages/Profile';
+import Welcome from './pages/Welcome';
 import ToastyContainer from './components/ToastyContainer/ToastyContainer';
 import 'react-toastify/dist/ReactToastify.css';
 

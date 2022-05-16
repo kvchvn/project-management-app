@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { routerPaths } from '../../constants/common-constants';
+import { routerPaths } from '../../constants/common';
+import { useSignOut } from '../../hooks';
 import { StyledWrapper } from '../../layouts/containers';
-import Dropdown from '../Dropdown/Dropdown';
+import Dropdown from '../Dropdown';
 import { StyledHeader, Nav, NavButton, HeaderTitle } from './styles';
 
 function Header() {
   const [sticky, setSticky] = useState(false);
+  const signOut = useSignOut();
+
+  const handleSignOut = () => {
+    signOut();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,7 +38,7 @@ function Header() {
             Edit profile
           </NavButton>
           <NavButton>Create board</NavButton>
-          <NavButton>Log out</NavButton>
+          <NavButton onClick={handleSignOut}>Sign out</NavButton>
           <Dropdown />
         </Nav>
       </StyledWrapper>
