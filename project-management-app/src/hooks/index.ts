@@ -1,4 +1,5 @@
 import useAuthorization from './use-authorization';
+import useColumnDragAndDrop from './use-column-drag-n-drop';
 import useColumnsQuery from './use-columns-query';
 import useCreateColumn from './use-create-column';
 import useForm from './use-form';
@@ -10,6 +11,7 @@ import useRemovingBoard from './use-removing-board';
 
 export {
   useAuthorization,
+  useColumnDragAndDrop,
   useColumnsQuery,
   useCreateColumn,
   useForm,
