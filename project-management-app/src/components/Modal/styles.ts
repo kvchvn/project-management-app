@@ -1,38 +1,14 @@
 import styled, { keyframes } from 'styled-components';
 
-const appearing = keyframes`
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-`;
-
 const scaleUpAppearing = keyframes`
   from {
     opacity: 0;
-    transform: scale(0.5);
+    transform: translateX(-100vw);
   }
   to {
     opacity: 1;
-    transform: scale(1);
+    transform: translateX(0);
   }
-`;
-
-export const StyledModalOverlay = styled.div`
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgb(0, 0, 0, 0.93);
-  z-index: 1000;
-  overflow-y: hidden;
-  animation: ${appearing} 0.5s ease-out;
 `;
 
 export const StyledModalContainer = styled.div`
@@ -44,4 +20,18 @@ export const StyledModalContainer = styled.div`
   background-color: #ffffff;
   overflow: hidden;
   animation: ${scaleUpAppearing} 0.5s ease-out;
+`;
+
+export const StyledButtonClose = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+`;
+
+export const StyledModalContent = styled.section`
+  width: 100%;
+  height: 100%;
 `;

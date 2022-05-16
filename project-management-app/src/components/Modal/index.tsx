@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { StyledModalContainer, StyledModalOverlay } from './styles';
+import { StyledButtonClose, StyledModalContainer, StyledModalContent } from './styles';
+import './styles.scss';
 
 type ModalProps = {
   closeBoardForm: () => void;
@@ -23,9 +24,10 @@ function Modal({ closeBoardForm, children }: ModalProps) {
   });
 
   return ReactDOM.createPortal(
-    <StyledModalOverlay>
-      <StyledModalContainer>{children}</StyledModalContainer>
-    </StyledModalOverlay>,
+    <StyledModalContainer>
+      <StyledButtonClose>x</StyledButtonClose>
+      <StyledModalContent>{children}</StyledModalContent>
+    </StyledModalContainer>,
     rootModal
   );
 }
