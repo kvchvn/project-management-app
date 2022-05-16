@@ -2,12 +2,12 @@ import React from 'react';
 import Modal from '../Modal';
 
 type BoardFormProps = {
-  closeModal: () => void;
+  closeBoardForm: () => void;
 };
 
-function BoardForm({ closeModal }: BoardFormProps) {
+function BoardForm({ closeBoardForm }: BoardFormProps) {
   return (
-    <Modal closeModal={closeModal}>
+    <Modal closeBoardForm={closeBoardForm}>
       <h2>Modal</h2>
     </Modal>
   );

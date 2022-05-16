@@ -54,7 +54,7 @@ function Header() {
           </Nav>
         </StyledWrapper>
       </StyledHeader>
-      {isBoardFormOpen ? <BoardForm closeModal={closeBoardForm} /> : null}
+      {isBoardFormOpen ? <BoardForm closeBoardForm={closeBoardForm} /> : null}
     </>
   );
 }

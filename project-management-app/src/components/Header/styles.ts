@@ -26,7 +26,6 @@ export const Nav = styled.nav`
 `;
 
 export const NavButton = styled.button`
-  border: 2px solid black;
   background-color: white;
   width: 70px;
   text-align: center;
