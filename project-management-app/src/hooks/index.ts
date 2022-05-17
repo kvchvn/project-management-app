@@ -1,4 +1,5 @@
 import useAuthorization from './use-authorization';
+import useClickOutside from './use-click-outside';
 import useColumnDragAndDrop from './use-column-drag-n-drop';
 import useColumnsQuery from './use-columns-query';
 import useColumnMutation from './use-column-mutation';
@@ -11,6 +12,7 @@ import useRemovingBoard from './use-removing-board';
 
 export {
   useAuthorization,
+  useClickOutside,
   useColumnDragAndDrop,
   useColumnsQuery,
   useColumnMutation,
