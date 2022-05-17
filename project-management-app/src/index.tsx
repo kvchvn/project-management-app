@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider as StoreProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
+
+import { store } from './store';
 import App from './App';
 
 import GlobalStyles from './styles/global';
@@ -14,13 +17,15 @@ const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <ThemeProvider theme={baseTheme}>
-          <App />
-          <GlobalStyles />
-        </ThemeProvider>
-      </BrowserRouter>
-    </QueryClientProvider>
+    <StoreProvider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <BrowserRouter>
+          <ThemeProvider theme={baseTheme}>
+            <App />
+            <GlobalStyles />
+          </ThemeProvider>
+        </BrowserRouter>
+      </QueryClientProvider>
+    </StoreProvider>
   </React.StrictMode>
 );

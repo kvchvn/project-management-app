@@ -1,62 +1,28 @@
-import React, { useState } from 'react';
-import { useSignIn, useSignOut, useSignUp } from '../../hooks';
-import { getFromLocalStorage } from '../../utils/common';
+import React from 'react';
+
+import AuthForm from '../../components/AuthForm';
+import { useAuthorization } from '../../hooks';
 
 function Authorization() {
-  const name = 'John';
-  const login = 'john6112';
-  const password = '123456';
-  const [token, setToken] = useState(getFromLocalStorage<string>('token'));
-
-  const signUp = useSignUp();
-  const signIn = useSignIn();
-  const signOut = useSignOut();
-
-  const handleSignUp = async () => {
-    await signUp.mutateAsync({ name, login, password });
-    await handleSignIn();
-  };
-
-  const handleSignIn = async () => {
-    const token = await signIn.mutateAsync({ login, password });
-    setToken(token);
-  };
-
-  const handleSignOut = () => {
-    signOut();
-    setToken('');
-  };
+  const { isSignUpForm, handlePageMode, handleSubmit, signUp, signIn, isLoading } =
+    useAuthorization();
 
   return (
     <>
       <h2>Authorization page</h2>
-      {token ? (
-        <>
-          <p>Your token: {token}</p>
-          <button onClick={handleSignOut}>Sign Out</button>
-        </>
+      {isLoading ? (
+        'Loading...'
       ) : (
         <>
-          <p>
-            <strong>Name: </strong>
-            <span>{name}</span>
-          </p>
-          <p>
-            <strong>Login: </strong>
-            <span>{login}</span>
-          </p>
-          <p>
-            <strong>Password: </strong>
-            <span>{password}</span>
-          </p>
-          {signUp.isError ? (
-            <>
-              <span>It seems like you&apos;ve been already signed up. Try to sign in.</span>
-              <button onClick={handleSignIn}>Sign In</button>
-            </>
-          ) : (
-            <button onClick={handleSignUp}>Sign Up</button>
-          )}
+          <AuthForm isSignUpForm={isSignUpForm} onSubmit={handleSubmit} />
+          <div>
+            {signUp.isError && <span>It seems like user already exists. Try to sign in</span>}
+            {signIn.isError && <span>Login and password do not match</span>}
+            <div>
+              {isSignUpForm && <span>Have an account?</span>}
+              <button onClick={handlePageMode}>{isSignUpForm ? 'Sign in' : 'Sign up'}</button>
+            </div>
+          </div>
         </>
       )}
     </>
