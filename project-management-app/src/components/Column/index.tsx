@@ -18,6 +18,7 @@ function Column({ id, title, order, moveColumn, findColumn }: ColumnProps) {
   const [newTitle, setNewTitle] = useState(title);
 
   const { mutateAsync: update } = useColumnMutation({ method: 'update', columnId: id });
+  const { mutateAsync: remove } = useColumnMutation({ method: 'delete', columnId: id });
 
   useClickOutside(titleRef, () => {
     setIsEditingTitle(false);
@@ -37,8 +38,13 @@ function Column({ id, title, order, moveColumn, findColumn }: ColumnProps) {
 
   const handleTitleEditCancel = () => setNewTitle(title);
 
+  const handleDeleteColumn = async () => {
+    await remove({ title, order });
+  };
+
   return (
     <StyledColumn ref={(node) => !isEditingTitle && drag(drop(node))} isDragging={isDragging}>
+      <button onClick={handleDeleteColumn}>x</button>
       <StyledTitle ref={titleRef} isEditing={isEditingTitle}>
         <h2>{title}</h2>
         <textarea

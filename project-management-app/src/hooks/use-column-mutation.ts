@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { MOCKED_BOARD, QUERY_KEYS, URLS } from '../constants/api';
 import { Column } from '../interfaces/column';
 import { TStore } from '../store';
-import { create, update } from '../utils/api';
+import { create, remove, update } from '../utils/api';
 
 const useColumnMutation = ({
   method,
@@ -29,6 +29,9 @@ const useColumnMutation = ({
         }
         if (method === 'update' && columnId) {
           return update<Omit<Column, 'id'>, Column>(`${url}/${columnId}`, column, config);
+        }
+        if (method === 'delete' && columnId) {
+          return remove(`${url}/${columnId}`, config);
         }
       }
     },
