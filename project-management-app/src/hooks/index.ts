@@ -1,7 +1,7 @@
 import useAuthorization from './use-authorization';
 import useColumnDragAndDrop from './use-column-drag-n-drop';
 import useColumnsQuery from './use-columns-query';
-import useCreateColumn from './use-create-column';
+import useColumnMutation from './use-column-mutation';
 import useForm from './use-form';
 import useSignIn from './use-sign-in';
 import useSignOut from './use-sign-out';
@@ -13,7 +13,7 @@ export {
   useAuthorization,
   useColumnDragAndDrop,
   useColumnsQuery,
-  useCreateColumn,
+  useColumnMutation,
   useForm,
   useSignIn,
   useSignOut,
