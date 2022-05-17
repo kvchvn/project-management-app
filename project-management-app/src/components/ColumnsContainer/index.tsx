@@ -30,13 +30,13 @@ function ColumnsContainer({
   const moveColumn = useCallback(
     (droppedId: string, hoverIndex: number) => {
       const droppedIndex = findColumn(droppedId).index;
-      setColumns((prevColumns) => {
-        const copy = prevColumns.slice();
-        [copy[droppedIndex], copy[hoverIndex]] = [copy[hoverIndex], copy[droppedIndex]];
-        return copy;
-      });
+      const columnsCopy = [...columns];
+      const droppedColumn = columnsCopy.splice(droppedIndex, 1)[0];
+      columnsCopy.splice(hoverIndex, 0, droppedColumn);
+
+      setColumns(columnsCopy);
     },
-    [findColumn, setColumns]
+    [findColumn, columns, setColumns]
   );
 
   const [, drop] = useDrop(() => ({ accept: DND_ITEM_TYPES.column }));
