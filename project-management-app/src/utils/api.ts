@@ -15,6 +15,10 @@ export const update = async <T, P>(url: string, body: T, config: AxiosRequestCon
   return response.data;
 };
 
+export const remove = async (url: string, config: AxiosRequestConfig = {}) => {
+  await axios.delete(url, config);
+};
+
 export const signIn = async <T, P>(url: string, user: T) => {
   const response = await axios.post<P>(url, user);
   return response.data;
