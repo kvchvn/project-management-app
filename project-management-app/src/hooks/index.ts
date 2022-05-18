@@ -6,4 +6,12 @@ import useSignUp from './use-sign-up';
 import useUsersQuery from './use-users-query';
 import useRemovingBoard from './use-removing-board';
 
-export { useAuthorization, useForm, useSignIn, useSignOut, useSignUp, useUsersQuery, useRemovingBoard };
+export {
+  useAuthorization,
+  useForm,
+  useSignIn,
+  useSignOut,
+  useSignUp,
+  useUsersQuery,
+  useRemovingBoard,
+};

@@ -17,8 +17,6 @@ export const getFromLocalStorage = <T>(
 export const removeFromLocalStorage = (key: keyof typeof LOCAL_STORAGE_KEYS) =>
   localStorage.removeItem(key);
 
-export const removeFromLocalStorage = (key: string) => localStorage.removeItem(key);
-
 export const disableScrolling = () => {
   document.body.style.overflow = 'hidden';
 };
