@@ -4,14 +4,14 @@ import { Provider as StoreProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
-
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { store } from './store';
 import App from './App';
 
 import GlobalStyles from './styles/global';
 import { baseTheme } from './styles/theme';
 import './styles/index.scss';
-import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
+
 
 const queryClient = new QueryClient();
 
