@@ -22,8 +22,8 @@ type ButtonProps = {
   children: string;
 };
 
-function Button(props: ButtonProps) {
+function WelcomeButton(props: ButtonProps) {
   return <StyledButton>{props.children}</StyledButton>;
 }
 
-export default Button;
+export default WelcomeButton;

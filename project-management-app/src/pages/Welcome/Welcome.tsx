@@ -1,5 +1,5 @@
 import Navbar from '../../components/Navbar/Navbar';
-import Button from '../../components/Button/Button';
+import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
 import styled from 'styled-components';
 import Subtitle from '../../components/Subtitle/Subtitle';
 import { Link } from 'react-router-dom';
@@ -32,13 +32,13 @@ function Welcome() {
         {!user ? (
           <div>
             <Link to={`/${routerPaths.auth}`}>
-              <Button>Log in</Button>
-              <Button>Sign up</Button>
+              <WelcomeButton>Log in</WelcomeButton>
+              <WelcomeButton>Sign up</WelcomeButton>
             </Link>
           </div>
         ) : (
           <Link to={routerPaths.main}>
-            <Button>Go to Main page</Button>
+            <WelcomeButton>Go to Main page</WelcomeButton>
           </Link>
         )}
       </Navbar>
