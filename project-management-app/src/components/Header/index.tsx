@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
 import { StyledWrapper } from '../../layouts/containers';
-import BoardFormModal from '../BoardFormModal';
+import BoardForm from '../BoardForm';
 import Dropdown from '../Dropdown';
 import Modal from '../Modal';
 import { StyledHeader, Nav, NavButton, HeaderTitle } from './styles';
@@ -12,7 +12,7 @@ function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [isBoardFormOpen, setIsBoardFormOpen] = useState(false);
   const signOut = useSignOut();
-  console.log('HEADER');
+
   const handleSignOut = () => {
     signOut();
   };
@@ -57,7 +57,7 @@ function Header() {
       </StyledHeader>
       {isBoardFormOpen ? (
         <Modal closeModal={closeBoardFormModal}>
-          <BoardFormModal closeModal={closeBoardFormModal} />
+          <BoardForm closeModal={closeBoardFormModal} />
         </Modal>
       ) : null}
     </>

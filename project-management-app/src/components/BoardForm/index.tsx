@@ -4,11 +4,11 @@ import useCreatingBoard from '../../hooks/use-creating-board';
 import validationSchema from './validationSchema';
 import { StyledInput, StyledForm, StyledButtonCreate } from './styles';
 
-type BoardFormModalProps = {
+type BoardFormProps = {
   closeModal: () => void;
 };
 
-function BoardFormModal({ closeModal }: BoardFormModalProps) {
+function BoardForm({ closeModal }: BoardFormProps) {
   const createBoard = useCreatingBoard();
   const initialValues = {
     boardName: '',
@@ -38,4 +38,4 @@ function BoardFormModal({ closeModal }: BoardFormModalProps) {
   );
 }
 
-export default BoardFormModal;
+export default BoardForm;

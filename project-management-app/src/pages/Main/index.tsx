@@ -14,7 +14,7 @@ function Main() {
   if (isError) {
     return <h3>{error.message}</h3>;
   }
-  console.log('MAIN');
+
   return (
     <main>
       <StyledWrapper>

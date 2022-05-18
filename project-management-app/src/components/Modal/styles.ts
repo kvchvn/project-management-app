@@ -1,10 +1,22 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const comingFromLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-100vw);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+`;
 
 export const StyledModalContainer = styled.div`
   position: relative;
   padding: 30px;
   background-color: #ffffff;
   overflow: hidden;
+  animation: ${comingFromLeft} 0.5s ease-out;
 `;
 
 export const StyledButtonClose = styled.button`
