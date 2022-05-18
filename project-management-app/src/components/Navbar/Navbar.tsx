@@ -1,20 +1,13 @@
 import React from 'react';
 import { ReactNode } from 'react';
-import styled from 'styled-components';
-
-const StyledNav = styled.nav`
-  display: flex;
-  justify-content: flex-end;
-  padding: 1rem 2rem;
-  background: #ebecf0;
-`;
+import { StyledNavbar } from './StyledNavbar';
 
 export type NavbarProps = {
   children: ReactNode;
 };
 
 function Navbar(props: NavbarProps) {
-  return <StyledNav>{props.children}</StyledNav>;
+  return <StyledNavbar>{props.children}</StyledNavbar>;
 }
 
 export default Navbar;

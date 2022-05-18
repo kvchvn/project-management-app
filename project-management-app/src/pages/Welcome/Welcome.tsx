@@ -1,28 +1,11 @@
 import Navbar from '../../components/Navbar/Navbar';
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
-import styled from 'styled-components';
 import WelcomeSubtitle from '../../components/WelcomeSubtitle/WelcomeSubtitle';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common-constants';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../store/index';
-
-const StyledAbout = styled.div`
-  max-width: 30%;
-  min-width: 320px;
-  background: #ebecf0;
-  padding: 1rem;
-`;
-const StyledWrapper = styled.div`
-  background: #ebecf0;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-`;
-const StyledDescription = styled.p`
-  padding: 30px 0;
-`;
+import { StyledAbout, StyledWrapper, StyledDescription } from './StyledWelcome';
 
 function Welcome() {
   const { user } = useSelector((store: TStore) => store.userReducer);
