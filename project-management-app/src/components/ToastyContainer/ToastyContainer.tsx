@@ -1,12 +1,13 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
+import { AUTO_CLOSE_DELAY, COUNT_SHOW } from '../../constants/common-constants';
 
 function ToastyContainer() {
   return (
     <ToastContainer
-      limit={1}
+      limit={COUNT_SHOW}
       position="top-center"
-      autoClose={2000}
+      autoClose={AUTO_CLOSE_DELAY}
       hideProgressBar={false}
       newestOnTop={false}
       closeOnClick
