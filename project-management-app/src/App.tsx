@@ -12,6 +12,7 @@ import ToastyContainer from './components/ToastyContainer/ToastyContainer';
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
+  console.log('APP');
   return (
     <>
       <Routes>

@@ -1,25 +1,10 @@
-import styled, { keyframes } from 'styled-components';
-
-const scaleUpAppearing = keyframes`
-  from {
-    opacity: 0;
-    transform: translateX(-100vw);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-`;
+import styled from 'styled-components';
 
 export const StyledModalContainer = styled.div`
   position: relative;
-  width: 90vw;
-  max-width: 600px;
-  min-height: 500px;
-  height: 50vh;
+  padding: 30px;
   background-color: #ffffff;
   overflow: hidden;
-  animation: ${scaleUpAppearing} 0.5s ease-out;
 `;
 
 export const StyledButtonClose = styled.button`
@@ -29,6 +14,11 @@ export const StyledButtonClose = styled.button`
   width: 50px;
   height: 50px;
   background-color: lightgray;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: gray;
+  }
 `;
 
 export const StyledModalContent = styled.section`

@@ -1,4 +1,4 @@
-import { LOCAL_STORAGE_KEYS } from '../constants/common-constants';
+import { LOCAL_STORAGE_KEYS } from '../constants/common';
 
 export const setToLocalStorage = <T>(
   key: keyof typeof LOCAL_STORAGE_KEYS,
@@ -16,3 +16,13 @@ export const getFromLocalStorage = <T>(
 
 export const removeFromLocalStorage = (key: keyof typeof LOCAL_STORAGE_KEYS) =>
   localStorage.removeItem(key);
+
+export const removeFromLocalStorage = (key: string) => localStorage.removeItem(key);
+
+export const disableScrolling = () => {
+  document.body.style.overflow = 'hidden';
+};
+
+export const enableScrolling = () => {
+  document.body.style.overflow = 'unset';
+};

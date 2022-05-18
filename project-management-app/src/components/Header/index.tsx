@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
 import { StyledWrapper } from '../../layouts/containers';
-import BoardForm from '../BoardForm';
+import BoardFormModal from '../BoardFormModal';
 import Dropdown from '../Dropdown';
+import Modal from '../Modal';
 import { StyledHeader, Nav, NavButton, HeaderTitle } from './styles';
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [isBoardFormOpen, setIsBoardFormOpen] = useState(false);
   const signOut = useSignOut();
-
+  console.log('HEADER');
   const handleSignOut = () => {
     signOut();
   };
@@ -20,9 +21,9 @@ function Header() {
     setIsBoardFormOpen(true);
   };
 
-  const closeBoardForm = () => {
+  const closeBoardFormModal = useCallback(() => {
     setIsBoardFormOpen(false);
-  };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +55,11 @@ function Header() {
           </Nav>
         </StyledWrapper>
       </StyledHeader>
-      {isBoardFormOpen ? <BoardForm closeBoardForm={closeBoardForm} /> : null}
+      {isBoardFormOpen ? (
+        <Modal closeModal={closeBoardFormModal}>
+          <BoardFormModal closeModal={closeBoardFormModal} />
+        </Modal>
+      ) : null}
     </>
   );
 }

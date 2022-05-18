@@ -1,32 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import ReactDOM from 'react-dom';
+import { disableScrolling, enableScrolling } from '../../utils/common';
 import { StyledButtonClose, StyledModalContainer, StyledModalContent } from './styles';
 import './styles.scss';
 
 type ModalProps = {
-  closeBoardForm: () => void;
+  closeModal: () => void;
   children: React.ReactNode;
 };
 
-function Modal({ closeBoardForm, children }: ModalProps) {
-  const [rootModal] = useState(() => document.createElement('div'));
-  const modalId = 'modal';
+function Modal({ closeModal, children }: ModalProps) {
+  const rootModal = document.createElement('div');
+  rootModal.id = 'modal';
 
   useEffect(() => {
-    rootModal.id = modalId;
     document.body.appendChild(rootModal);
-    rootModal.addEventListener('click', closeBoardForm);
+    rootModal.addEventListener('click', closeModal);
+    disableScrolling();
 
     return () => {
       document.body.removeChild(rootModal);
-      rootModal.removeEventListener('click', closeBoardForm);
+      rootModal.removeEventListener('click', closeModal);
+      enableScrolling();
     };
   });
 
   return ReactDOM.createPortal(
     <StyledModalContainer>
-      <StyledButtonClose>x</StyledButtonClose>
-      <StyledModalContent>{children}</StyledModalContent>
+      <StyledButtonClose onClick={closeModal}>x</StyledButtonClose>
+      <StyledModalContent onClickCapture={(e) => e.stopPropagation()}>
+        {children}
+      </StyledModalContent>
     </StyledModalContainer>,
     rootModal
   );
