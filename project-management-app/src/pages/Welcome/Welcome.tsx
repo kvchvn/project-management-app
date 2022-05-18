@@ -1,7 +1,7 @@
 import Navbar from '../../components/Navbar/Navbar';
 import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
 import styled from 'styled-components';
-import Subtitle from '../../components/Subtitle/Subtitle';
+import WelcomeSubtitle from '../../components/WelcomeSubtitle/WelcomeSubtitle';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common-constants';
 import { useSelector } from 'react-redux';
@@ -44,14 +44,14 @@ function Welcome() {
       </Navbar>
       <StyledWrapper>
         <StyledAbout>
-          <Subtitle>О проекте</Subtitle>
+          <WelcomeSubtitle>О проекте</WelcomeSubtitle>
           <StyledDescription>
             Система управления проектами – приложение помогающее достичь поставленные задачи
             отдельному человеку в команде или группе разработчиков.
           </StyledDescription>
         </StyledAbout>
         <StyledAbout>
-          <Subtitle>О курсе</Subtitle>
+          <WelcomeSubtitle>О курсе</WelcomeSubtitle>
           <StyledDescription>
             Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes.
             Курс для студентов, которые имеют знания и практический опыт использования следующих
@@ -60,7 +60,7 @@ function Welcome() {
           </StyledDescription>
         </StyledAbout>
         <StyledAbout>
-          <Subtitle>О команде</Subtitle>
+          <WelcomeSubtitle>О команде</WelcomeSubtitle>
           <StyledDescription>
             Приложение разрабатывают Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya
           </StyledDescription>

@@ -3,8 +3,8 @@ type SubtitleProps = {
   children: string;
 };
 
-function Subtitle(props: SubtitleProps) {
+function WelcomeSubtitle(props: SubtitleProps) {
   return <h2>{props.children}</h2>;
 }
 
-export default Subtitle;
+export default WelcomeSubtitle;
