@@ -36,7 +36,10 @@ function Column({ id, title, order, moveColumn, findColumn }: ColumnProps) {
     await update({ title: newTitle, order });
   };
 
-  const handleTitleEditCancel = () => setNewTitle(title);
+  const handleTitleEditCancel = () => {
+    setIsEditingTitle(false);
+    setNewTitle(title);
+  };
 
   const handleDeleteColumn = async () => {
     await remove({ title, order });
