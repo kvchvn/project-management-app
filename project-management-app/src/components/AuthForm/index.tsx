@@ -1,11 +1,9 @@
-import React from 'react';
 import { FormikConfig } from 'formik';
-
 import { useForm } from '../../hooks';
 import { UnauthorizedUser } from '../../interfaces/user';
 import { signInValidationSchema, signUpValidationSchema } from './validation-schemas';
-
 import { StyledForm, StyledInputContainer } from './styles';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AuthForm({
   isSignUpForm,

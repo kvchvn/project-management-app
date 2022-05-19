@@ -1,11 +1,16 @@
-import React from 'react';
-
+import { useEffect } from 'react';
 import AuthForm from '../../components/AuthForm';
 import { useAuthorization } from '../../hooks';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Authorization() {
   const { isSignUpForm, handlePageMode, handleSubmit, signUp, signIn, isLoading } =
     useAuthorization();
+  useEffect(() => {
+    if (signUp.isError) toast.error('It seems like user already exists. Try to sign in');
+    if (signIn.isError) toast.error('Login and password do not match');
+  });
 
   return (
     <>

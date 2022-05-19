@@ -41,6 +41,7 @@ export const StyledInputContainer = styled.div`
   }
 
   span {
+    color: red;
     position: absolute;
     right: calc(-100% - 5px);
     top: 50%;
