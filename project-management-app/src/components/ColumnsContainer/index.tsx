@@ -2,20 +2,18 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 
 import Column from '../Column';
+import ColumnCreatorModal from '../ColumnCreator';
+import { useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 import { DND_ITEM_TYPES } from '../../constants/common-constants';
+import { calculateUpdatedColumnOrder } from '../../utils/common';
 
 import { StyledColumnsContainer } from './styles';
-import ColumnCreatorModal from '../ColumnCreator';
 
-function ColumnsContainer({
-  items,
-  onNewColumnCreate,
-}: {
-  items: IColumn[];
-  onNewColumnCreate: (title: string) => Promise<void>;
-}) {
+function ColumnsContainer({ items }: { items: IColumn[] }) {
   const [columns, setColumns] = useState(items);
+
+  const { mutateAsync: update } = useUpdateColumn();
 
   useEffect(() => setColumns(items), [items]);
 
@@ -39,14 +37,43 @@ function ColumnsContainer({
     [findColumn, columns, setColumns]
   );
 
+  const updateColumnOrder = useCallback(
+    async (droppedId: string, hoverIndex: number) => {
+      const { index: droppedIndex, column: droppedColumn } = findColumn(droppedId);
+      if (droppedIndex === hoverIndex) return;
+
+      const direction = droppedIndex > hoverIndex ? 'forward' : 'backward';
+      const hoverColumn = columns[hoverIndex];
+      const nextToDroppedColumn =
+        columns[droppedIndex > hoverIndex ? droppedIndex + 1 : droppedIndex - 1];
+
+      await update({
+        id: droppedId,
+        title: droppedColumn.title,
+        order: calculateUpdatedColumnOrder(
+          hoverColumn.order,
+          nextToDroppedColumn?.order,
+          direction
+        ),
+      });
+    },
+    [findColumn, columns, update]
+  );
+
   const [, drop] = useDrop(() => ({ accept: DND_ITEM_TYPES.column }));
 
   return (
     <StyledColumnsContainer ref={drop}>
       {columns.map((column) => (
-        <Column key={column.id} {...column} moveColumn={moveColumn} findColumn={findColumn} />
+        <Column
+          key={column.id}
+          {...column}
+          moveColumn={moveColumn}
+          findColumn={findColumn}
+          updateColumn={updateColumnOrder}
+        />
       ))}
-      <ColumnCreatorModal hasColumn={!!columns.length} onNewColumnCreate={onNewColumnCreate} />
+      <ColumnCreatorModal columnsLength={columns.length} />
     </StyledColumnsContainer>
   );
 }

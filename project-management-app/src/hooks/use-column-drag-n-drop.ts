@@ -5,10 +5,12 @@ const useColumnDragAndDrop = ({
   id,
   moveColumn,
   findColumn,
+  updateColumn,
 }: {
   id: string;
   moveColumn: (id: string, to: number) => void;
   findColumn: (id: string) => { index: number };
+  updateColumn: (id: string, to: number) => void;
 }) => {
   const originalIndex = findColumn(id).index;
 
@@ -22,7 +24,7 @@ const useColumnDragAndDrop = ({
       }),
       end: (item, monitor) => {
         const { id: droppedId, originalIndex } = item;
-        if (!monitor.didDrop()) moveColumn(droppedId, originalIndex);
+        if (monitor.didDrop()) updateColumn(droppedId, originalIndex);
       },
     }),
     [id, originalIndex, moveColumn]
