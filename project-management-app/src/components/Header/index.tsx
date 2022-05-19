@@ -4,7 +4,7 @@ import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
 import { StyledWrapper } from '../../layouts/containers';
 import BoardForm from '../BoardForm';
-import Dropdown from '../Dropdown';
+import LangDropdown from '../LangDropdown';
 import Modal from '../Modal';
 import { StyledHeader, Nav, NavButton, HeaderTitle } from './styles';
 
@@ -51,7 +51,7 @@ function Header() {
             </NavButton>
             <NavButton onClick={openBoardForm}>Create board</NavButton>
             <NavButton onClick={handleSignOut}>Sign out</NavButton>
-            <Dropdown />
+            <LangDropdown />
           </Nav>
         </StyledWrapper>
       </StyledHeader>
