@@ -24,3 +24,19 @@ export const disableScrolling = () => {
 export const enableScrolling = () => {
   document.body.style.overflow = 'unset';
 };
+
+const INITIAL_ORDER_STEP = 2 ** 16;
+
+export const setColumnOrder = (columnsLength: number) =>
+  (columnsLength + 1) * INITIAL_ORDER_STEP - 1;
+
+export const calculateUpdatedColumnOrder = (
+  prevColumnOrder: number,
+  nextColumnOrder: number | undefined,
+  direction: 'backward' | 'forward'
+) => {
+  if (nextColumnOrder) return Math.floor((prevColumnOrder + nextColumnOrder) / 2);
+  return direction === 'forward'
+    ? prevColumnOrder + INITIAL_ORDER_STEP
+    : Math.floor(prevColumnOrder / 2);
+};
