@@ -1,11 +1,9 @@
 import Navbar from '../../components/Navbar/Navbar';
-import WelcomeButton from '../../components/WelcomeButton/WelcomeButton';
-import WelcomeSubtitle from '../../components/WelcomeSubtitle/WelcomeSubtitle';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common-constants';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../store/index';
-import { StyledAbout, StyledWrapper, StyledDescription } from './StyledWelcome';
+import { StyledAbout, StyledWrapper, StyledDescription, StyledWelcomeButton } from './styles';
 
 function Welcome() {
   const { user } = useSelector((store: TStore) => store.userReducer);
@@ -15,26 +13,26 @@ function Welcome() {
         {!user ? (
           <div>
             <Link to={`/${routerPaths.auth}`}>
-              <WelcomeButton>Log in</WelcomeButton>
-              <WelcomeButton>Sign up</WelcomeButton>
+              <StyledWelcomeButton>Log in</StyledWelcomeButton>
+              <StyledWelcomeButton>Sign up</StyledWelcomeButton>
             </Link>
           </div>
         ) : (
           <Link to={routerPaths.main}>
-            <WelcomeButton>Go to Main page</WelcomeButton>
+            <StyledWelcomeButton>Go to Main page</StyledWelcomeButton>
           </Link>
         )}
       </Navbar>
       <StyledWrapper>
         <StyledAbout>
-          <WelcomeSubtitle>О проекте</WelcomeSubtitle>
+          <h2>О проекте</h2>
           <StyledDescription>
             Система управления проектами – приложение помогающее достичь поставленные задачи
             отдельному человеку в команде или группе разработчиков.
           </StyledDescription>
         </StyledAbout>
         <StyledAbout>
-          <WelcomeSubtitle>О курсе</WelcomeSubtitle>
+          <h2>О курсе</h2>
           <StyledDescription>
             Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes.
             Курс для студентов, которые имеют знания и практический опыт использования следующих
@@ -43,7 +41,7 @@ function Welcome() {
           </StyledDescription>
         </StyledAbout>
         <StyledAbout>
-          <WelcomeSubtitle>О команде</WelcomeSubtitle>
+          <h2>О команде</h2>
           <StyledDescription>
             Приложение разрабатывают Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya
           </StyledDescription>
