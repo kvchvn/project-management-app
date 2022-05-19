@@ -1,26 +1,21 @@
 import React, { useRef, useState } from 'react';
-import { UseMutateAsyncFunction } from 'react-query';
-import { TITLE_ROWS } from '../../constants/common-constants';
-import { useClickOutside } from '../../hooks';
+
+import { useClickOutside, useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
+import { TITLE_ROWS } from '../../constants/common-constants';
 
 import { StyledTitle } from './styles';
 
-interface ColumnTitleProps extends Omit<IColumn, 'id'> {
+interface ColumnTitleProps extends IColumn {
   isEditingTitle: boolean;
   setIsEditingTitle: (val: boolean) => void;
-  update: UseMutateAsyncFunction<void | IColumn, unknown, Omit<IColumn, 'id'>, unknown>;
 }
 
-function ColumnTitle({
-  title,
-  order,
-  isEditingTitle,
-  setIsEditingTitle,
-  update,
-}: ColumnTitleProps) {
+function ColumnTitle({ id, title, order, isEditingTitle, setIsEditingTitle }: ColumnTitleProps) {
   const titleRef = useRef<HTMLDivElement>(null);
   const [newTitle, setNewTitle] = useState(title);
+
+  const { mutateAsync: update } = useUpdateColumn();
 
   useClickOutside(titleRef, () => {
     setIsEditingTitle(false);
@@ -35,7 +30,7 @@ function ColumnTitle({
 
   const handleTitleSubmit = async () => {
     setIsEditingTitle(false);
-    await update({ title: newTitle, order });
+    await update({ id, title: newTitle, order });
   };
 
   const handleTitleEditCancel = () => {
