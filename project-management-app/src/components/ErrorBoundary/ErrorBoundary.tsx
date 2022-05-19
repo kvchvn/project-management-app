@@ -1,4 +1,6 @@
 import { Component, ReactNode } from 'react';
+import { Link } from 'react-router-dom';
+import { routerPaths } from '../../constants/common-constants';
 import ErrorMessage from './ErrorMessage';
 
 interface ErrorProps {
@@ -24,6 +26,9 @@ class ErrorBoundary extends Component<ErrorProps, ErrorState> {
         {this.state.hasError ? (
           <>
             <h2>Something went wrong</h2>
+            <Link to={`/${routerPaths.main}`}>
+              <h3>Go to Main page</h3>
+            </Link>
             <ErrorMessage />
           </>
         ) : (
