@@ -3,7 +3,7 @@ import { useCreateColumn } from '../../hooks';
 import { setColumnOrder } from '../../utils/common';
 import Modal from '../Modal';
 
-function ColumnCreator({ columnsLength }: { columnsLength: number }) {
+function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
@@ -18,8 +18,8 @@ function ColumnCreator({ columnsLength }: { columnsLength: number }) {
     setNewColumnTitle(e.target.value);
   };
 
-  const handleNewColumnTitleCreate = async () => {
-    await create({ title: newColumnTitle, order: setColumnOrder(columnsLength) });
+  const handleColumnCreate = async () => {
+    await create({ title: newColumnTitle, order: setColumnOrder(lastColumnOrder) });
     setIsOpenModal(false);
   };
 
@@ -29,13 +29,13 @@ function ColumnCreator({ columnsLength }: { columnsLength: number }) {
         modalRef.current && (
           <Modal parent={modalRef.current}>
             <input placeholder="Enter list title..." onChange={handleNewColumnTitleChange} />
-            <button onClick={handleNewColumnTitleCreate}>Add list</button>
+            <button onClick={handleColumnCreate}>Add list</button>
             <button onClick={handleIsOpenModal}>X</button>
           </Modal>
         )
       ) : (
         <button onClick={handleIsOpenModal}>
-          {columnsLength ? 'Add another list' : 'Add a list'}
+          {lastColumnOrder ? 'Add another list' : 'Add a list'}
         </button>
       )}
     </div>

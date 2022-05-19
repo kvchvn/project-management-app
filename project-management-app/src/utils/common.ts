@@ -27,8 +27,8 @@ export const enableScrolling = () => {
 
 const INITIAL_ORDER_STEP = 2 ** 16;
 
-export const setColumnOrder = (columnsLength: number) =>
-  (columnsLength + 1) * INITIAL_ORDER_STEP - 1;
+export const setColumnOrder = (lastColumnOrder?: number) =>
+  lastColumnOrder ? lastColumnOrder + INITIAL_ORDER_STEP : INITIAL_ORDER_STEP - 1;
 
 export const calculateUpdatedColumnOrder = (
   prevColumnOrder: number,

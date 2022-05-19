@@ -73,7 +73,7 @@ function ColumnsContainer({ items }: { items: IColumn[] }) {
           updateColumn={updateColumnOrder}
         />
       ))}
-      <ColumnCreator columnsLength={columns.length} />
+      <ColumnCreator lastColumnOrder={columns[columns.length - 1]?.order} />
     </StyledColumnsContainer>
   );
 }
