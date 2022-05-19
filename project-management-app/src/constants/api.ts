@@ -21,11 +21,6 @@ export const QUERY_KEYS = {
   columns: 'columns',
 };
 
-export const MOCKED_BOARD = {
-  title: 'Homework tasks',
-  id: '29783289-f1ac-45d6-8f4b-bc0c9dceb4ec',
-};
-
 export const token =
   'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJiYmU4OTg3Ni05OTY3LTRkYWEtODdmYy0zYWVhZTk5YWMwZWEiLCJsb2dpbiI6ImNvb2wiLCJpYXQiOjE2NTIzMTI4MDZ9.JdflwnZd_gUaZ4Rdfk8J1-OYLIIjrvgukdTiT-snGWo';
 
