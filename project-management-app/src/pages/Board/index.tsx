@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { useColumnsQuery, useColumnMutation } from '../../hooks';
+import { useColumnsQuery } from '../../hooks';
 
 import ColumnsContainer from '../../components/ColumnsContainer';
+import { Column } from '../../interfaces/column';
 
 function Board() {
-  const { data: columns, ...columnsQueryResult } = useColumnsQuery();
+  const [columns, setColumns] = useState<Column[]>([]);
+  const { data, ...columnsQueryResult } = useColumnsQuery();
 
-  const { mutateAsync: create } = useColumnMutation({ method: 'create' });
+  const sortColumns = useCallback(() => {
+    if (data) setColumns(data.sort((a, b) => a.order - b.order));
+  }, [data]);
 
-  const handleNewColumnCreate = async (title: string) => {
-    if (columnsQueryResult.isSuccess && columns) {
-      await create({ title, order: columns.length + 1 });
-    }
-  };
+  useEffect(() => {
+    sortColumns();
+  }, [sortColumns]);
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -23,7 +25,7 @@ function Board() {
       {columnsQueryResult.isLoading ? (
         <span>Loading...</span>
       ) : (
-        columns && <ColumnsContainer items={columns} onNewColumnCreate={handleNewColumnCreate} />
+        columns && <ColumnsContainer items={columns} />
       )}
     </DndProvider>
   );
