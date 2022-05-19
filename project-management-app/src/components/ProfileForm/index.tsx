@@ -1,24 +1,25 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { AuthorizedUser } from '../../interfaces/user';
-import validationSchema from './validationSchema';
 import { StyledForm, StyledInputContainer } from './styles';
 import { useUserSelector } from '../../store/slices/user';
+import validationSchema from './validationSchema';
+
+type EditableFields = Pick<AuthorizedUser, 'name' | 'login'>;
 
 function ProfileForm() {
-  const user = useUserSelector();
-  const defaultUser: AuthorizedUser = {
-    id: '',
+  const user = useUserSelector() as EditableFields;
+
+  const defaultUser: EditableFields = {
     name: '',
     login: '',
-    token: '',
   };
 
   const initialValues = user || defaultUser;
   const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => alert(values.name + '__' + values.login + '__' + values.password),
+    onSubmit: (values) => alert(values.name + '__' + values.login),
   });
 
   return (
@@ -38,17 +39,6 @@ function ProfileForm() {
         />
         <label htmlFor="login">Login</label>
         {errors ? <span>{errors.login}</span> : null}
-      </StyledInputContainer>
-      <StyledInputContainer>
-        <input
-          id="password"
-          name="password"
-          value={values.password}
-          onChange={handleChange}
-          placeholder=" "
-        />
-        <label htmlFor="password">Password</label>
-        {errors ? <span>{errors.password}</span> : null}
       </StyledInputContainer>
       <button type="submit">Update form</button>
     </StyledForm>
