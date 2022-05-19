@@ -1,16 +1,14 @@
 import { useRef, useState } from 'react';
+import { useCreateColumn } from '../../hooks';
+import { setColumnOrder } from '../../utils/common';
 import Modal from '../Modal';
 
-function ColumnCreator({
-  hasColumn,
-  onNewColumnCreate,
-}: {
-  hasColumn: boolean;
-  onNewColumnCreate: (title: string) => Promise<void>;
-}) {
+function ColumnCreator({ columnsLength }: { columnsLength: number }) {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
+
+  const { mutateAsync: create } = useCreateColumn();
 
   const handleIsOpenModal = () => {
     setIsOpenModal(!isOpenModal);
@@ -21,7 +19,7 @@ function ColumnCreator({
   };
 
   const handleNewColumnTitleCreate = async () => {
-    await onNewColumnCreate(newColumnTitle);
+    await create({ title: newColumnTitle, order: setColumnOrder(columnsLength) });
     setIsOpenModal(false);
   };
 
@@ -36,7 +34,9 @@ function ColumnCreator({
           </Modal>
         )
       ) : (
-        <button onClick={handleIsOpenModal}>{hasColumn ? 'Add another list' : 'Add a list'}</button>
+        <button onClick={handleIsOpenModal}>
+          {columnsLength ? 'Add another list' : 'Add a list'}
+        </button>
       )}
     </div>
   );
