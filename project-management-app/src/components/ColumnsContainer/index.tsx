@@ -2,7 +2,7 @@ import React, { memo, useCallback, useEffect, useState } from 'react';
 import { useDrop } from 'react-dnd';
 
 import Column from '../Column';
-import ColumnCreatorModal from '../ColumnCreator';
+import ColumnCreator from '../ColumnCreator';
 import { useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 import { DND_ITEM_TYPES } from '../../constants/common-constants';
@@ -73,7 +73,7 @@ function ColumnsContainer({ items }: { items: IColumn[] }) {
           updateColumn={updateColumnOrder}
         />
       ))}
-      <ColumnCreatorModal columnsLength={columns.length} />
+      <ColumnCreator columnsLength={columns.length} />
     </StyledColumnsContainer>
   );
 }
