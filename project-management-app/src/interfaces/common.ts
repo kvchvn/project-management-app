@@ -14,7 +14,7 @@ export interface ServerError {
   message: string;
 }
 
-export type DropdownOption = {
+export type LanguageOption = {
   value: string;
   label: string;
 };

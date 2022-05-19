@@ -1,7 +1,7 @@
 import { StylesConfig } from 'react-select';
-import { DropdownOption } from '../../interfaces/common';
+import { LanguageOption } from '../../interfaces/common';
 
-export const customStyles: StylesConfig<DropdownOption> = {
+export const customStyles: StylesConfig<LanguageOption> = {
   control: (base) => ({
     ...base,
     width: '120px',
