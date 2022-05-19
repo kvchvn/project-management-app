@@ -14,7 +14,7 @@ const useRemoveColumn = () => {
   const queryClient = useQueryClient();
 
   const removeColumn = useMutation(
-    async (id: Pick<Column, 'id'>) => {
+    async ({ id }: Pick<Column, 'id'>) => {
       if (token && boardId) {
         const url = `${URLS.boards}/${boardId}/columns/${id}`;
         const config = { headers: { Authorization: `Bearer ${token}` } };
