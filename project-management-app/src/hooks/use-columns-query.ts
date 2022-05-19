@@ -1,6 +1,7 @@
 import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
 import { useSelector } from 'react-redux';
-import { MOCKED_BOARD, QUERY_KEYS, URLS } from '../constants/api';
+import { useParams } from 'react-router-dom';
+import { QUERY_KEYS, URLS } from '../constants/api';
 import { Column } from '../interfaces/column';
 import { TStore } from '../store';
 import { getAll } from '../utils/api';
@@ -20,7 +21,7 @@ const useColumnsQuery = (
   options: UseQueryOptions<Column[] | undefined, unknown, Column[] | undefined, QueryKey> = {}
 ) => {
   const { user } = useSelector((store: TStore) => store.userReducer);
-  const { id: boardId } = MOCKED_BOARD;
+  const { id: boardId } = useParams();
   const token = user?.token;
 
   const queryResult = useQuery<Column[] | undefined, unknown, Column[] | undefined>(
