@@ -56,7 +56,7 @@ function Header() {
         </StyledWrapper>
       </StyledHeader>
       {isBoardFormOpen ? (
-        <Modal closeModal={closeBoardFormModal}>
+        <Modal onClose={closeBoardFormModal}>
           <BoardForm closeModal={closeBoardFormModal} />
         </Modal>
       ) : null}

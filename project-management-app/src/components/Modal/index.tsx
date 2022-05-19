@@ -1,36 +1,40 @@
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { disableScrolling, enableScrolling } from '../../utils/common';
 import { StyledButtonClose, StyledModalContainer, StyledModalContent } from './styles';
 import './styles.scss';
 
 type ModalProps = {
-  closeModal: () => void;
   children: React.ReactNode;
   parent?: HTMLElement;
+  className?: string;
+  onClose?: () => void;
 };
 
-function Modal({ closeModal, children, parent }: ModalProps) {
+function Modal({ children, parent, className, onClose }: ModalProps) {
   const rootModal = useMemo(() => document.createElement('div'), []);
-  rootModal.id = 'modal';
+  if (!parent) rootModal.id = 'modal';
+  if (className) rootModal.classList.add(className);
+
+  const handleClose = useCallback(() => onClose && onClose(), [onClose]);
 
   useEffect(() => {
     const target = parent ?? document.body;
 
     target.appendChild(rootModal);
-    rootModal.addEventListener('click', closeModal);
+    rootModal.addEventListener('click', handleClose);
     disableScrolling();
 
     return () => {
       target.removeChild(rootModal);
-      rootModal.removeEventListener('click', closeModal);
+      rootModal.removeEventListener('click', handleClose);
       enableScrolling();
     };
-  }, [rootModal, parent, closeModal]);
+  }, [rootModal, parent, handleClose]);
 
   return ReactDOM.createPortal(
     <StyledModalContainer>
-      <StyledButtonClose onClick={closeModal}>x</StyledButtonClose>
+      <StyledButtonClose onClick={onClose}>x</StyledButtonClose>
       <StyledModalContent onClickCapture={(e) => e.stopPropagation()}>
         {children}
       </StyledModalContent>
