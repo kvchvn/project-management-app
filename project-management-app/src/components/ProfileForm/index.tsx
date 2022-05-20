@@ -12,17 +12,17 @@ import {
 import { useUserSelector } from '../../store/slices/user';
 import validationSchema from './validationSchema';
 
-type EditableFields = Pick<AuthorizedUser, 'name' | 'login'>;
-
 function ProfileForm() {
-  const user = useUserSelector() as EditableFields;
+  const user = useUserSelector() as AuthorizedUser;
 
-  const defaultUser: EditableFields = {
-    name: '',
-    login: '',
+  const initialValues = {
+    name: user.name,
+    login: user.login,
+    password: '',
+    repeatPassword: '',
+    confirmPassword: '',
   };
 
-  const initialValues = user || defaultUser;
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     validationSchema,
@@ -42,6 +42,35 @@ function ProfileForm() {
           <label htmlFor="login">Login</label>
           <input id="login" name="login" value={values.login} onChange={handleChange} />
           {touched.login && errors.login ? <span>{errors.login}</span> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <label htmlFor="password">Password</label>
+          <input id="password" name="password" value={values.password} onChange={handleChange} />
+          {touched.password && errors.password ? <span>{errors.password}</span> : null}
+        </StyledInputContainer>
+        <StyledInputContainer>
+          <label htmlFor="repeatPassword">Repeat password</label>
+          <input
+            id="repeatPassword"
+            name="repeatPassword"
+            value={values.repeatPassword}
+            onChange={handleChange}
+          />
+          {touched.repeatPassword && errors.repeatPassword ? (
+            <span>{errors.repeatPassword}</span>
+          ) : null}
+        </StyledInputContainer>
+        <p>Confirm changes with your current password</p>
+        <StyledInputContainer>
+          <input
+            id="confirmPassword"
+            name="confirmPassword"
+            value={values.confirmPassword}
+            onChange={handleChange}
+          />
+          {touched.confirmPassword && errors.confirmPassword ? (
+            <span>{errors.confirmPassword}</span>
+          ) : null}
         </StyledInputContainer>
         <StyledButton type="submit">Update form</StyledButton>
       </StyledForm>

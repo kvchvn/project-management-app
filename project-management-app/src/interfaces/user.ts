@@ -10,3 +10,7 @@ export interface AuthorizedUser {
   login: string;
   token: string;
 }
+
+export interface UserEditableFields extends UnauthorizedUser {
+  confirmPassword: string;
+}
