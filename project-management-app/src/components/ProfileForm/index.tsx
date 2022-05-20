@@ -2,6 +2,7 @@ import React from 'react';
 import { useFormik } from 'formik';
 import { AuthorizedUser } from '../../interfaces/user';
 import {
+  StyledButton,
   StyledButtonDelete,
   StyledContainer,
   StyledDangerBox,
@@ -31,35 +32,23 @@ function ProfileForm() {
   return (
     <StyledContainer>
       <StyledForm onSubmit={handleSubmit}>
-        <p>You can change the fields below.</p>
+        <h4>You can change the fields below</h4>
         <StyledInputContainer>
-          <input
-            id="name"
-            name="name"
-            value={values.name}
-            onChange={handleChange}
-            placeholder=" "
-          />
           <label htmlFor="name">Name</label>
+          <input id="name" name="name" value={values.name} onChange={handleChange} />
           {touched.name && errors.name ? <span>{errors.name}</span> : null}
         </StyledInputContainer>
         <StyledInputContainer>
-          <input
-            id="login"
-            name="login"
-            value={values.login}
-            onChange={handleChange}
-            placeholder=" "
-          />
           <label htmlFor="login">Login</label>
+          <input id="login" name="login" value={values.login} onChange={handleChange} />
           {touched.login && errors.login ? <span>{errors.login}</span> : null}
         </StyledInputContainer>
-        <button type="submit">Update form</button>
+        <StyledButton type="submit">Update form</StyledButton>
       </StyledForm>
       <StyledDangerBox>
         <p>
-          This button will remove your profile forever.
-          <strong> Be carefully.</strong>
+          Click the button if you want to remove your profile forever.
+          <span> Be carefully.</span>
         </p>
         <StyledButtonDelete type="button">Delete profile</StyledButtonDelete>
       </StyledDangerBox>
