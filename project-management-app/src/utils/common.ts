@@ -27,16 +27,14 @@ export const enableScrolling = () => {
 
 const INITIAL_ORDER_STEP = 2 ** 16;
 
-export const setColumnOrder = (lastColumnOrder?: number) =>
-  lastColumnOrder ? lastColumnOrder + INITIAL_ORDER_STEP : INITIAL_ORDER_STEP - 1;
+export const setOrder = (lastOrder?: number) =>
+  lastOrder ? lastOrder + INITIAL_ORDER_STEP : INITIAL_ORDER_STEP - 1;
 
-export const calculateUpdatedColumnOrder = (
-  prevColumnOrder: number,
-  nextColumnOrder: number | undefined,
+export const calculateUpdatedOrder = (
+  prevOrder: number,
+  nextOrder: number | undefined,
   direction: 'backward' | 'forward'
 ) => {
-  if (nextColumnOrder) return Math.floor((prevColumnOrder + nextColumnOrder) / 2);
-  return direction === 'forward'
-    ? prevColumnOrder + INITIAL_ORDER_STEP
-    : Math.floor(prevColumnOrder / 2);
+  if (nextOrder) return Math.floor((prevOrder + nextOrder) / 2);
+  return direction === 'forward' ? prevOrder + INITIAL_ORDER_STEP : Math.floor(prevOrder / 2);
 };

@@ -6,7 +6,7 @@ import ColumnCreator from '../ColumnCreator';
 import { useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 import { DND_ITEM_TYPES } from '../../constants/common';
-import { calculateUpdatedColumnOrder } from '../../utils/common';
+import { calculateUpdatedOrder } from '../../utils/common';
 
 import { StyledColumnsContainer } from './styles';
 
@@ -50,11 +50,7 @@ function ColumnsContainer({ items }: { items: IColumn[] }) {
       await update({
         id: droppedId,
         title: droppedColumn.title,
-        order: calculateUpdatedColumnOrder(
-          hoverColumn.order,
-          nextToDroppedColumn?.order,
-          direction
-        ),
+        order: calculateUpdatedOrder(hoverColumn.order, nextToDroppedColumn?.order, direction),
       });
     },
     [findColumn, columns, update]
