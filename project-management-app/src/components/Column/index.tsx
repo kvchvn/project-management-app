@@ -1,11 +1,12 @@
 import React, { memo, useRef, useState } from 'react';
 
 import ColumnTitle from '../ColumnTitle';
-import { useColumnDragAndDrop, useRemoveColumn } from '../../hooks';
+import Modal from '../Modal';
+import TaskCreator from '../TaskCreator';
+import { useColumnDragAndDrop, useRemoveColumn, useTasksQuery } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 
-import { StyledColumn, StyledConfirmationModal } from './styles';
-import Modal from '../Modal';
+import { StyledColumn, StyledColumnHeader, StyledConfirmationModal } from './styles';
 
 interface ColumnProps extends IColumn {
   moveColumn: (id: string, to: number) => void;
@@ -18,6 +19,7 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
+  const { data: tasks } = useTasksQuery({ columnId: id });
   const { mutateAsync: removeColumn } = useRemoveColumn();
 
   const { isDragging, drag, drop } = useColumnDragAndDrop({
@@ -35,14 +37,20 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
 
   return (
     <StyledColumn ref={(node) => !isEditingTitle && drag(drop(node))} isDragging={isDragging}>
-      <button onClick={handleDeleteColumn}>x</button>
-      <ColumnTitle
-        id={id}
-        title={title}
-        order={order}
-        isEditingTitle={isEditingTitle}
-        setIsEditingTitle={setIsEditingTitle}
-      />
+      <StyledColumnHeader>
+        <button onClick={handleDeleteColumn}>x</button>
+        <ColumnTitle
+          id={id}
+          title={title}
+          order={order}
+          isEditingTitle={isEditingTitle}
+          setIsEditingTitle={setIsEditingTitle}
+        />
+      </StyledColumnHeader>
+      {tasks?.map((task) => (
+        <div key={task.id}>{task.title}</div>
+      ))}
+      <TaskCreator columnId={id} lastTaskOrder={tasks && tasks[tasks.length - 1]?.order} />
       {isGoingToRemove && (
         <Modal onClose={handleCancelDeletion}>
           <StyledConfirmationModal ref={modalRef}>
