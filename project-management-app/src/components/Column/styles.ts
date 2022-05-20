@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const StyledColumn = styled.div<{ isDragging: boolean }>`
-  display: flex;
-  column-gap: 4px;
   min-width: 200px;
   max-width: 200px;
   height: 200px;
@@ -10,6 +8,11 @@ export const StyledColumn = styled.div<{ isDragging: boolean }>`
   border: 1px solid black;
   cursor: pointer;
   opacity: ${({ isDragging }) => (isDragging ? 0 : 1)};
+`;
+
+export const StyledColumnHeader = styled.div`
+  display: flex;
+  column-gap: 4px;
 
   & > button {
     height: fit-content;
