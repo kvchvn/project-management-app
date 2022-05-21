@@ -43,6 +43,7 @@ function ProfileForm() {
           <input id="login" name="login" value={values.login} onChange={handleChange} />
           {touched.login && errors.login ? <span>{errors.login}</span> : null}
         </StyledInputContainer>
+        <p>If you don`t want to change password leave this fields empty</p>
         <StyledInputContainer>
           <label htmlFor="password">Password</label>
           <input id="password" name="password" value={values.password} onChange={handleChange} />

@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { queryKeys } from '../constants/queries';
+import { QUERY_KEYS } from '../constants/api';
 import { deleteBoard } from '../utils/boards-api';
 
 const useRemovingBoard = () => {
@@ -7,7 +7,7 @@ const useRemovingBoard = () => {
 
   return useMutation(async (id: string) => {
     await deleteBoard(id);
-    await queryClient.refetchQueries(queryKeys.allBoards);
+    await queryClient.refetchQueries(QUERY_KEYS.allBoards);
   });
 };
 

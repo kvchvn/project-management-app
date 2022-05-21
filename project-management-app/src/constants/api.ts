@@ -15,6 +15,7 @@ export const URLS = {
 export const QUERY_KEYS = {
   users: 'users',
   columns: 'columns',
+  allBoards: 'all-boards',
 };
 
 const USER: AuthorizedUser | undefined = getFromLocalStorage('user');
