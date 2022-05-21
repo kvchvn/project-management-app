@@ -26,7 +26,7 @@ function ProfileForm() {
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => alert(values.name + '__' + values.login),
+    onSubmit: (values) => alert(JSON.stringify(values)),
   });
 
   return (
@@ -46,7 +46,13 @@ function ProfileForm() {
         <p>If you don`t want to change password leave this fields empty</p>
         <StyledInputContainer>
           <label htmlFor="password">Password</label>
-          <input id="password" name="password" value={values.password} onChange={handleChange} />
+          <input
+            id="password"
+            name="password"
+            type="password"
+            value={values.password}
+            onChange={handleChange}
+          />
           {touched.password && errors.password ? <span>{errors.password}</span> : null}
         </StyledInputContainer>
         <StyledInputContainer>
@@ -54,6 +60,7 @@ function ProfileForm() {
           <input
             id="repeatPassword"
             name="repeatPassword"
+            type="password"
             value={values.repeatPassword}
             onChange={handleChange}
           />
@@ -66,6 +73,7 @@ function ProfileForm() {
           <input
             id="confirmPassword"
             name="confirmPassword"
+            type="password"
             value={values.confirmPassword}
             onChange={handleChange}
           />
