@@ -1,6 +1,6 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { AuthorizedUser } from '../../interfaces/user';
+import { AuthorizedUser, UnauthorizedUser } from '../../interfaces/user';
 import {
   StyledButton,
   StyledButtonDelete,
@@ -11,6 +11,8 @@ import {
 } from './styles';
 import { useUserSelector } from '../../store/slices/user';
 import validationSchema from './validationSchema';
+import { signIn as checkPassword } from '../../utils/api';
+import { URLS } from '../../constants/api';
 
 function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
@@ -26,7 +28,22 @@ function ProfileForm() {
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => alert(JSON.stringify(values)),
+    onSubmit: async (values) => {
+      alert(JSON.stringify(values));
+      const { token } = await checkPassword<
+        Pick<UnauthorizedUser, 'login' | 'password'>,
+        Pick<AuthorizedUser, 'token'>
+      >(URLS.signin, {
+        login: values.login,
+        password: values.confirmPassword,
+      });
+      alert(token);
+      if (token) {
+        alert('OK');
+      } else {
+        alert('BADLY');
+      }
+    },
   });
 
   return (
