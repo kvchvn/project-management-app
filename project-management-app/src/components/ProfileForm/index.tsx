@@ -19,6 +19,7 @@ import {
 function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
   const dispatch = useDispatch();
+
   const initialValues: EditableUserData = {
     name: user.name,
     login: user.login,
@@ -27,47 +28,69 @@ function ProfileForm() {
     confirmationPassword: '',
   };
 
-  const { handleSubmit, handleChange, values, errors, touched, resetForm, setFieldError } =
-    useFormik({
-      initialValues,
-      validationSchema,
-      onSubmit: async (values) => {
-        const { token } = await checkPassword({
-          login: user.login,
-          password: values.confirmationPassword,
-        });
+  const initialStatus = {
+    success: false,
+  };
 
-        if (token) {
-          const newUserData: UnauthorizedUser = {
-            name: values.name,
-            login: values.login,
-            password: values.password || values.confirmationPassword,
-          };
+  const {
+    handleSubmit,
+    handleChange,
+    values,
+    errors,
+    touched,
+    resetForm,
+    setFieldError,
+    status,
+    setStatus,
+  } = useFormik({
+    initialValues,
+    initialStatus,
+    validationSchema,
+    onSubmit: async (values) => {
+      const { token } = await checkPassword({
+        login: user.login,
+        password: values.confirmationPassword,
+      });
 
-          const { id, name, login } = await updateUser(user.id, newUserData);
-          const updatedUserData: AuthorizedUser = {
-            id,
+      if (token) {
+        const newUserData: UnauthorizedUser = {
+          name: values.name,
+          login: values.login,
+          password: values.password || values.confirmationPassword,
+        };
+
+        const { id, name, login } = await updateUser(user.id, newUserData);
+        const updatedUserData: AuthorizedUser = {
+          id,
+          name,
+          login,
+          token,
+        };
+
+        setToLocalStorage('user', updatedUserData);
+        dispatch(onSignIn(updatedUserData));
+        resetForm({
+          values: {
             name,
             login,
-            token,
-          };
+            password: '',
+            repeatedPassword: '',
+            confirmationPassword: '',
+          },
+        });
+        setStatus({ success: true });
+      } else {
+        setFieldError('confirmationPassword', 'Wrong password. Try again');
+      }
+    },
+  });
 
-          setToLocalStorage('user', updatedUserData);
-          dispatch(onSignIn(updatedUserData));
-          resetForm({
-            values: {
-              name,
-              login,
-              password: '',
-              repeatedPassword: '',
-              confirmationPassword: '',
-            },
-          });
-        } else {
-          setFieldError('confirmationPassword', 'Wrong password. Try again');
-        }
-      },
-    });
+  const customHandleChange = (e: React.ChangeEvent) => {
+    handleChange(e);
+    if (status.success) {
+      setStatus({ success: false });
+    }
+  };
 
   return (
     <StyledContainer>
@@ -75,12 +98,12 @@ function ProfileForm() {
         <h4>You can change the fields below</h4>
         <StyledInputContainer>
           <label htmlFor="name">Name</label>
-          <input id="name" name="name" value={values.name} onChange={handleChange} />
+          <input id="name" name="name" value={values.name} onChange={customHandleChange} />
           {touched.name && errors.name ? <span>{errors.name}</span> : null}
         </StyledInputContainer>
         <StyledInputContainer>
           <label htmlFor="login">Login</label>
-          <input id="login" name="login" value={values.login} onChange={handleChange} />
+          <input id="login" name="login" value={values.login} onChange={customHandleChange} />
           {touched.login && errors.login ? <span>{errors.login}</span> : null}
         </StyledInputContainer>
         <p>If you don`t want to change password leave this fields empty</p>
@@ -91,7 +114,7 @@ function ProfileForm() {
             name="password"
             type="password"
             value={values.password}
-            onChange={handleChange}
+            onChange={customHandleChange}
           />
           {touched.password && errors.password ? <span>{errors.password}</span> : null}
         </StyledInputContainer>
@@ -102,7 +125,7 @@ function ProfileForm() {
             name="repeatedPassword"
             type="password"
             value={values.repeatedPassword}
-            onChange={handleChange}
+            onChange={customHandleChange}
           />
           {touched.repeatedPassword && errors.repeatedPassword ? (
             <span>{errors.repeatedPassword}</span>
@@ -115,13 +138,16 @@ function ProfileForm() {
             name="confirmationPassword"
             type="password"
             value={values.confirmationPassword}
-            onChange={handleChange}
+            onChange={customHandleChange}
           />
           {touched.confirmationPassword && errors.confirmationPassword ? (
             <span>{errors.confirmationPassword}</span>
           ) : null}
         </StyledInputContainer>
-        <StyledButton type="submit">Update form</StyledButton>
+        <div>
+          <StyledButton type="submit">Update form</StyledButton>
+          {status.success ? <p>Changes saved!</p> : null}
+        </div>
       </StyledForm>
       <StyledDangerBox>
         <p>
