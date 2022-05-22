@@ -32,18 +32,18 @@ function ProfileForm() {
       initialValues,
       validationSchema,
       onSubmit: async (values) => {
-        alert(JSON.stringify(values));
         const { token } = await checkPassword({
           login: user.login,
           password: values.confirmationPassword,
         });
-        alert(token);
+
         if (token) {
           const newUserData: UnauthorizedUser = {
             name: values.name,
             login: values.login,
             password: values.password || values.confirmationPassword,
           };
+
           const { id, name, login } = await updateUser(user.id, newUserData);
           const updatedUserData: AuthorizedUser = {
             id,
@@ -51,6 +51,7 @@ function ProfileForm() {
             login,
             token,
           };
+
           setToLocalStorage('user', updatedUserData);
           dispatch(onSignIn(updatedUserData));
           resetForm({
@@ -63,8 +64,7 @@ function ProfileForm() {
             },
           });
         } else {
-          alert('BADLY');
-          setFieldError('confirmationPassword', 'Wrong password!');
+          setFieldError('confirmationPassword', 'Wrong password. Try again');
         }
       },
     });
