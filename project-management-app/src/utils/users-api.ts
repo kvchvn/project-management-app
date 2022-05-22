@@ -1,6 +1,7 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 import { authAxios, URLS } from '../constants/api';
 import { AuthorizedUser, UnauthorizedUser } from '../interfaces/user';
+import { ServerError } from '../interfaces/common';
 
 export const checkPassword = async (userData: Omit<UnauthorizedUser, 'name'>) => {
   const response = await axios
@@ -12,6 +13,12 @@ export const checkPassword = async (userData: Omit<UnauthorizedUser, 'name'>) =>
 export const updateUser = async (userId: string, newUserData: UnauthorizedUser) => {
   const response = await authAxios
     .put<Omit<AuthorizedUser, 'token'>>(`${URLS.users}/${userId}`, newUserData)
-    .catch((error) => error.response);
+    .catch((error: AxiosError<ServerError>) => {
+      alert(JSON.stringify(error.response));
+      if (error.response) {
+        return error.response;
+      }
+      return { data: { message: 'Something went wrong.' } };
+    });
   return response.data;
 };

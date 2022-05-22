@@ -15,6 +15,7 @@ import {
   StyledForm,
   StyledInputContainer,
 } from './styles';
+import { ServerError } from '../../interfaces/common';
 
 function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
@@ -59,26 +60,31 @@ function ProfileForm() {
           password: values.password || values.confirmationPassword,
         };
 
-        const { id, name, login } = await updateUser(user.id, newUserData);
-        const updatedUserData: AuthorizedUser = {
-          id,
-          name,
-          login,
-          token,
-        };
-
-        setToLocalStorage('user', updatedUserData);
-        dispatch(onSignIn(updatedUserData));
-        resetForm({
-          values: {
+        const updatedDataResponse = await updateUser(user.id, newUserData);
+        if (updatedDataResponse.hasOwnProperty('message')) {
+          alert((updatedDataResponse as ServerError).message);
+        } else {
+          const { id, name, login } = updatedDataResponse as Omit<AuthorizedUser, 'token'>;
+          const updatedUserData: AuthorizedUser = {
+            id,
             name,
             login,
-            password: '',
-            repeatedPassword: '',
-            confirmationPassword: '',
-          },
-        });
-        setStatus({ success: true });
+            token,
+          };
+
+          setToLocalStorage('user', updatedUserData);
+          dispatch(onSignIn(updatedUserData));
+          resetForm({
+            values: {
+              name,
+              login,
+              password: '',
+              repeatedPassword: '',
+              confirmationPassword: '',
+            },
+          });
+          setStatus({ success: true });
+        }
       } else {
         setFieldError('confirmationPassword', 'Wrong password. Try again');
       }

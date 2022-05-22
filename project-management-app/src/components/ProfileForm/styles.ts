@@ -17,11 +17,7 @@ export const StyledForm = styled.form`
   gap: 20px;
   border: 2px solid black;
   border-radius: 10px;
-
-  & > h4 {
-    font-weight: 500;
-    letter-spacing: 1px;
-  }
+  font-size: 0.9rem;
 `;
 
 export const StyledInputContainer = styled.div`
