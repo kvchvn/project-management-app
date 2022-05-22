@@ -1,4 +1,4 @@
-import { Task, TaskFiles } from './task';
+import { TaskWithFiles } from './task';
 
 export interface Column {
   id: string;
@@ -6,10 +6,6 @@ export interface Column {
   order: number;
 }
 
-interface TaskExtended extends Task {
-  files: TaskFiles;
-}
-
 export interface ColumnDetailed extends Column {
-  tasks: TaskExtended;
+  tasks: TaskWithFiles[];
 }
