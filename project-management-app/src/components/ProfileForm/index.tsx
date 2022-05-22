@@ -3,8 +3,7 @@ import { useFormik } from 'formik';
 import { AuthorizedUser, EditableUserData, UnauthorizedUser } from '../../interfaces/user';
 import { onSignIn, useUserSelector } from '../../store/slices/user';
 import validationSchema from './validationSchema';
-import { signIn as checkPassword } from '../../utils/api';
-import { URLS } from '../../constants/api';
+import { checkPassword } from '../../utils/users-api';
 import { updateUser } from '../../utils/users-api';
 import { setToLocalStorage } from '../../utils/common';
 import { useDispatch } from 'react-redux';
@@ -28,50 +27,47 @@ function ProfileForm() {
     confirmationPassword: '',
   };
 
-  const { handleSubmit, handleChange, values, errors, touched, resetForm } = useFormik({
-    initialValues,
-    validationSchema,
-    onSubmit: async (values) => {
-      alert(JSON.stringify(values));
-      const { token } = await checkPassword<
-        Pick<UnauthorizedUser, 'login' | 'password'>,
-        Pick<AuthorizedUser, 'token'>
-      >(URLS.signin, {
-        login: user.login,
-        password: values.confirmationPassword,
-      });
-      alert(token);
-      if (token) {
-        alert('OK');
-        const newUserData: UnauthorizedUser = {
-          name: values.name,
-          login: values.login,
-          password: values.password || values.confirmationPassword,
-        };
-        const { id, name, login } = await updateUser(user.id, newUserData);
-        alert(id);
-        const updatedUserData: AuthorizedUser = {
-          id,
-          name,
-          login,
-          token,
-        };
-        setToLocalStorage('user', updatedUserData);
-        dispatch(onSignIn(updatedUserData));
-        resetForm({
-          values: {
+  const { handleSubmit, handleChange, values, errors, touched, resetForm, setFieldError } =
+    useFormik({
+      initialValues,
+      validationSchema,
+      onSubmit: async (values) => {
+        alert(JSON.stringify(values));
+        const { token } = await checkPassword({
+          login: user.login,
+          password: values.confirmationPassword,
+        });
+        alert(token);
+        if (token) {
+          const newUserData: UnauthorizedUser = {
+            name: values.name,
+            login: values.login,
+            password: values.password || values.confirmationPassword,
+          };
+          const { id, name, login } = await updateUser(user.id, newUserData);
+          const updatedUserData: AuthorizedUser = {
+            id,
             name,
             login,
-            password: '',
-            repeatedPassword: '',
-            confirmationPassword: '',
-          },
-        });
-      } else {
-        alert('BADLY');
-      }
-    },
-  });
+            token,
+          };
+          setToLocalStorage('user', updatedUserData);
+          dispatch(onSignIn(updatedUserData));
+          resetForm({
+            values: {
+              name,
+              login,
+              password: '',
+              repeatedPassword: '',
+              confirmationPassword: '',
+            },
+          });
+        } else {
+          alert('BADLY');
+          setFieldError('confirmationPassword', 'Wrong password!');
+        }
+      },
+    });
 
   return (
     <StyledContainer>

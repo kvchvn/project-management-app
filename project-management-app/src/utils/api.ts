@@ -20,6 +20,6 @@ export const remove = async (url: string, config: AxiosRequestConfig = {}) => {
 };
 
 export const signIn = async <T, P>(url: string, user: T) => {
-  const response = await axios.post<P>(url, user).catch((error) => error.response);
+  const response = await axios.post<P>(url, user);
   return response.data;
 };
