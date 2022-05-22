@@ -1,6 +1,13 @@
 import React from 'react';
 import { useFormik } from 'formik';
-import { AuthorizedUser, UnauthorizedUser } from '../../interfaces/user';
+import { AuthorizedUser, EditableUserData, UnauthorizedUser } from '../../interfaces/user';
+import { onSignIn, useUserSelector } from '../../store/slices/user';
+import validationSchema from './validationSchema';
+import { signIn as checkPassword } from '../../utils/api';
+import { URLS } from '../../constants/api';
+import { updateUser } from '../../utils/users-api';
+import { setToLocalStorage } from '../../utils/common';
+import { useDispatch } from 'react-redux';
 import {
   StyledButton,
   StyledButtonDelete,
@@ -9,23 +16,19 @@ import {
   StyledForm,
   StyledInputContainer,
 } from './styles';
-import { useUserSelector } from '../../store/slices/user';
-import validationSchema from './validationSchema';
-import { signIn as checkPassword } from '../../utils/api';
-import { URLS } from '../../constants/api';
 
 function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
-
-  const initialValues = {
+  const dispatch = useDispatch();
+  const initialValues: EditableUserData = {
     name: user.name,
     login: user.login,
     password: '',
-    repeatPassword: '',
-    confirmPassword: '',
+    repeatedPassword: '',
+    confirmationPassword: '',
   };
 
-  const { handleSubmit, handleChange, values, errors, touched } = useFormik({
+  const { handleSubmit, handleChange, values, errors, touched, resetForm } = useFormik({
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
@@ -34,12 +37,36 @@ function ProfileForm() {
         Pick<UnauthorizedUser, 'login' | 'password'>,
         Pick<AuthorizedUser, 'token'>
       >(URLS.signin, {
-        login: values.login,
-        password: values.confirmPassword,
+        login: user.login,
+        password: values.confirmationPassword,
       });
       alert(token);
       if (token) {
         alert('OK');
+        const newUserData: UnauthorizedUser = {
+          name: values.name,
+          login: values.login,
+          password: values.password || values.confirmationPassword,
+        };
+        const { id, name, login } = await updateUser(user.id, newUserData);
+        alert(id);
+        const updatedUserData: AuthorizedUser = {
+          id,
+          name,
+          login,
+          token,
+        };
+        setToLocalStorage('user', updatedUserData);
+        dispatch(onSignIn(updatedUserData));
+        resetForm({
+          values: {
+            name,
+            login,
+            password: '',
+            repeatedPassword: '',
+            confirmationPassword: '',
+          },
+        });
       } else {
         alert('BADLY');
       }
@@ -75,27 +102,27 @@ function ProfileForm() {
         <StyledInputContainer>
           <label htmlFor="repeatPassword">Repeat password</label>
           <input
-            id="repeatPassword"
-            name="repeatPassword"
+            id="repeatedPassword"
+            name="repeatedPassword"
             type="password"
-            value={values.repeatPassword}
+            value={values.repeatedPassword}
             onChange={handleChange}
           />
-          {touched.repeatPassword && errors.repeatPassword ? (
-            <span>{errors.repeatPassword}</span>
+          {touched.repeatedPassword && errors.repeatedPassword ? (
+            <span>{errors.repeatedPassword}</span>
           ) : null}
         </StyledInputContainer>
         <p>Confirm changes with your current password</p>
         <StyledInputContainer>
           <input
-            id="confirmPassword"
-            name="confirmPassword"
+            id="confirmationPassword"
+            name="confirmationPassword"
             type="password"
-            value={values.confirmPassword}
+            value={values.confirmationPassword}
             onChange={handleChange}
           />
-          {touched.confirmPassword && errors.confirmPassword ? (
-            <span>{errors.confirmPassword}</span>
+          {touched.confirmationPassword && errors.confirmationPassword ? (
+            <span>{errors.confirmationPassword}</span>
           ) : null}
         </StyledInputContainer>
         <StyledButton type="submit">Update form</StyledButton>

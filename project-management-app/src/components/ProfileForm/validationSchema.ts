@@ -6,8 +6,8 @@ const validationSchema = signUpValidationSchema.shape({
   password: yup
     .string()
     .min(MIN_PASSWORD_LENGTH, `Must be at least ${MIN_PASSWORD_LENGTH} characters`),
-  repeatPassword: yup.string().oneOf([yup.ref('password'), null], 'Password should match!'),
-  confirmPassword: yup.string().required('You must enter password'),
+  repeatedPassword: yup.string().oneOf([yup.ref('password'), null], 'Password should match!'),
+  confirmationPassword: yup.string().required('You must enter password'),
 });
 
 export default validationSchema;

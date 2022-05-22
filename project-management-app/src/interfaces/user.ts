@@ -11,6 +11,7 @@ export interface AuthorizedUser {
   token: string;
 }
 
-export interface UserEditableFields extends UnauthorizedUser {
-  confirmPassword: string;
+export interface EditableUserData extends UnauthorizedUser {
+  repeatedPassword: string;
+  confirmationPassword: string;
 }
