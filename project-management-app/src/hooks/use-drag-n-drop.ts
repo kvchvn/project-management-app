@@ -41,10 +41,18 @@ const useColumnDragAndDrop = ({ id }: { id: string }) => {
 
   const [, drop] = useDrop(
     () => ({
+<<<<<<< HEAD:project-management-app/src/hooks/use-column-drag-n-drop.ts
       accept: DND_ITEM_TYPES.column,
       hover: (dragItem: { id: string }) => {
         if (dragItem.id !== id) {
           dispatch(onMoveColumn({ dragId: dragItem.id, hoverId: id }));
+=======
+      accept: itemType,
+      hover: ({ id: draggedId }: { id: string }) => {
+        if (draggedId !== id) {
+          const { index: overIndex } = findColumn(id);
+          moveColumn(draggedId, overIndex);
+>>>>>>> 124bfea (refactor: rename useDragAndDrop hook):project-management-app/src/hooks/use-drag-n-drop.ts
         }
       },
     }),
@@ -54,4 +62,4 @@ const useColumnDragAndDrop = ({ id }: { id: string }) => {
   return { isDragging, drag, dragPreview, drop };
 };
 
-export default useColumnDragAndDrop;
+export default useDragAndDrop;
