@@ -1,13 +1,14 @@
 import { useDrag, useDrop } from 'react-dnd';
-import { DND_ITEM_TYPES } from '../constants/common';
 
-const useColumnDragAndDrop = ({
+const useDragAndDrop = ({
   id,
+  itemType,
   moveColumn,
   findColumn,
   updateColumn,
 }: {
   id: string;
+  itemType: string;
   moveColumn: (id: string, to: number) => void;
   findColumn: (id: string) => { index: number };
   updateColumn: (id: string, to: number) => void;
@@ -17,7 +18,7 @@ const useColumnDragAndDrop = ({
   // REFERENCE: https://react-dnd.github.io/react-dnd/examples/sortable/cancel-on-drop-outside
   const [{ isDragging }, drag] = useDrag(
     () => ({
-      type: DND_ITEM_TYPES.column,
+      type: itemType,
       item: { id, originalIndex },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
@@ -32,7 +33,7 @@ const useColumnDragAndDrop = ({
 
   const [, drop] = useDrop(
     () => ({
-      accept: DND_ITEM_TYPES.column,
+      accept: itemType,
       hover: ({ id: draggedId }: { id: string }) => {
         if (draggedId !== id) {
           const { index: overIndex } = findColumn(id);
@@ -46,4 +47,4 @@ const useColumnDragAndDrop = ({
   return { isDragging, drag, drop };
 };
 
-export default useColumnDragAndDrop;
+export default useDragAndDrop;
