@@ -2,14 +2,14 @@ import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { QUERY_KEYS, URLS } from '../constants/api';
-import { TaskDetailed } from '../interfaces/task';
+import { TaskDetailed, TaskWithFiles } from '../interfaces/task';
 import { TStore } from '../store';
 import { getAll } from '../utils/api';
 
 const getAllTasks = async (token: string, boardId: string, columnId: string) => {
   const url = `${URLS.boards}/${boardId}/columns/${columnId}/tasks`;
 
-  const tasks = await getAll<TaskDetailed>(url, {
+  const tasks = await getAll<TaskWithFiles>(url, {
     headers: { Authorization: `Bearer ${token}` },
   });
   return tasks;
@@ -33,7 +33,11 @@ const useTasksQuery = (
     async () => {
       if (token && boardId) {
         const tasks = await getAllTasks(token, boardId, columnId);
-        return tasks;
+        const tasksWithoutFiles = tasks.map((task) => {
+          const { files: _files, ...rest } = task;
+          return rest;
+        });
+        return tasksWithoutFiles;
       }
     },
     {
