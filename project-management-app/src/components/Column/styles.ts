@@ -3,11 +3,12 @@ import styled from 'styled-components';
 export const StyledColumn = styled.div<{ isDragging: boolean }>`
   min-width: 200px;
   max-width: 200px;
-  height: 200px;
+  /* height: 200px; */
   padding: 5px;
   border: 1px solid black;
   cursor: pointer;
   opacity: ${({ isDragging }) => (isDragging ? 0 : 1)};
+  background-color: rgba(0, 0, 0, 0.2);
 `;
 
 export const StyledColumnHeader = styled.div`

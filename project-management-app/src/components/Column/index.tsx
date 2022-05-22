@@ -2,9 +2,10 @@ import React, { memo, useRef, useState } from 'react';
 
 import ColumnTitle from '../ColumnTitle';
 import Modal from '../Modal';
-import TaskCreator from '../TaskCreator';
-import { useColumnDragAndDrop, useRemoveColumn, useTasksQuery } from '../../hooks';
+import TasksContainer from '../TasksContainer';
+import { useDragAndDrop, useRemoveColumn, useTasksQuery } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
+import { DND_ITEM_TYPES } from '../../constants/common-constants';
 
 import { StyledColumn, StyledColumnHeader, StyledConfirmationModal } from './styles';
 
@@ -22,8 +23,9 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
   const { data: tasks } = useTasksQuery({ columnId: id });
   const { mutateAsync: removeColumn } = useRemoveColumn();
 
-  const { isDragging, drag, drop } = useColumnDragAndDrop({
+  const { isDragging, drag, drop } = useDragAndDrop({
     id,
+    itemType: DND_ITEM_TYPES.column,
     moveColumn,
     findColumn,
     updateColumn,
@@ -47,10 +49,7 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
           setIsEditingTitle={setIsEditingTitle}
         />
       </StyledColumnHeader>
-      {tasks?.map((task) => (
-        <div key={task.id}>{task.title}</div>
-      ))}
-      <TaskCreator columnId={id} lastTaskOrder={tasks && tasks[tasks.length - 1]?.order} />
+      {tasks && <TasksContainer items={tasks} columnId={id} />}
       {isGoingToRemove && (
         <Modal onClose={handleCancelDeletion}>
           <StyledConfirmationModal ref={modalRef}>
