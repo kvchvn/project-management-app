@@ -12,7 +12,6 @@ import GlobalStyles from './styles/global';
 import { baseTheme } from './styles/theme';
 import './styles/index.scss';
 
-
 const queryClient = new QueryClient();
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
