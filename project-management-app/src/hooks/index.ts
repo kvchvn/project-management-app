@@ -5,6 +5,7 @@ import useCreateColumn from './use-create-column';
 import useCreateTask from './use-create-task';
 import useDragAndDrop from './use-drag-n-drop';
 import useForm from './use-form';
+import useMoveItems from './use-move-items';
 import useRemoveColumn from './use-remove-column';
 import useSignIn from './use-sign-in';
 import useSignOut from './use-sign-out';
@@ -24,6 +25,7 @@ export {
   useCreateTask,
   useDragAndDrop,
   useForm,
+  useMoveItems,
   useRemoveColumn,
   useSignIn,
   useSignOut,
