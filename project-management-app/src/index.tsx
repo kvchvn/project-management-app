@@ -4,7 +4,7 @@ import { Provider as StoreProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
-
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 import { store } from './store';
 import App from './App';
 
@@ -21,7 +21,9 @@ root.render(
       <QueryClientProvider client={queryClient}>
         <BrowserRouter>
           <ThemeProvider theme={baseTheme}>
-            <App />
+            <ErrorBoundary>
+              <App />
+            </ErrorBoundary>
             <GlobalStyles />
           </ThemeProvider>
         </BrowserRouter>
