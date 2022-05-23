@@ -23,7 +23,7 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
   const { data: tasks } = useTasksQuery({ columnId: id });
   const { mutateAsync: removeColumn } = useRemoveColumn();
 
-  const { isDragging, drag, drop } = useDragAndDrop({
+  const { isDragging, drag, drop, dragPreview } = useDragAndDrop({
     id,
     itemType: DND_ITEM_TYPES.column,
     moveColumn,
@@ -38,8 +38,8 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
   const handleCancelDeletion = () => setIsGoingToRemove(false);
 
   return (
-    <StyledColumn ref={(node) => !isEditingTitle && drag(drop(node))} isDragging={isDragging}>
-      <StyledColumnHeader>
+    <StyledColumn ref={(node) => dragPreview(node)} isDragging={isDragging}>
+      <StyledColumnHeader ref={(node) => !isEditingTitle && drag(drop(node))}>
         <button onClick={handleDeleteColumn}>x</button>
         <ColumnTitle
           id={id}

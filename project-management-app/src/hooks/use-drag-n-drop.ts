@@ -16,7 +16,7 @@ const useDragAndDrop = ({
   const originalIndex = findColumn(id).index;
 
   // REFERENCE: https://react-dnd.github.io/react-dnd/examples/sortable/cancel-on-drop-outside
-  const [{ isDragging }, drag] = useDrag(
+  const [{ isDragging }, drag, dragPreview] = useDrag(
     () => ({
       type: itemType,
       item: { id, originalIndex },
@@ -28,7 +28,7 @@ const useDragAndDrop = ({
         if (monitor.didDrop()) updateColumn(droppedId, originalIndex);
       },
     }),
-    [id, originalIndex, moveColumn]
+    [id, originalIndex, updateColumn]
   );
 
   const [, drop] = useDrop(
@@ -44,7 +44,7 @@ const useDragAndDrop = ({
     [findColumn, moveColumn]
   );
 
-  return { isDragging, drag, drop };
+  return { isDragging, drag, dragPreview, drop };
 };
 
 export default useDragAndDrop;
