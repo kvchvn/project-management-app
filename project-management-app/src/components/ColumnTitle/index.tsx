@@ -4,7 +4,7 @@ import { useClickOutside, useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 import { TITLE_ROWS } from '../../constants/common';
 
-import { StyledTitle } from './styles';
+import { StyledTextArea, StyledTitle } from './styles';
 
 interface ColumnTitleProps extends IColumn {
   isEditingTitle: boolean;
@@ -38,15 +38,24 @@ function ColumnTitle({ id, title, order, isEditingTitle, setIsEditingTitle }: Co
     setNewTitle(title);
   };
 
+  const handleTitleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+    const value = e.target.value;
+    e.target.value = '';
+    e.target.value = value;
+  };
+
   return (
     <StyledTitle ref={titleRef} isEditing={isEditingTitle}>
-      <h2>{title}</h2>
-      <textarea
-        rows={TITLE_ROWS}
-        value={newTitle}
-        onChange={handleTitleChange}
-        onClick={handleTitleEdit}
-      />
+      <StyledTextArea isEditing={isEditingTitle}>
+        <div onClick={handleTitleEdit} />
+        <textarea
+          ref={(node) => isEditingTitle && node?.focus()}
+          rows={TITLE_ROWS}
+          value={newTitle}
+          onChange={handleTitleChange}
+          onFocus={handleTitleFocus}
+        />
+      </StyledTextArea>
       <button onClick={handleTitleSubmit}>√</button>
       <button onClick={handleTitleEditCancel}>x</button>
     </StyledTitle>
