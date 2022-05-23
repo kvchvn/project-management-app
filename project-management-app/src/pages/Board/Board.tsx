@@ -1,23 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 
-import { useColumnsQuery } from '../../hooks';
+import { useColumnsQuery, useSortByOrder } from '../../hooks';
 
 import ColumnsContainer from '../../components/ColumnsContainer';
-import { Column } from '../../interfaces/column';
 
 function Board() {
-  const [columns, setColumns] = useState<Column[]>([]);
   const { data, ...columnsQueryResult } = useColumnsQuery();
 
-  const sortColumns = useCallback(() => {
-    if (data) setColumns(data.sort((a, b) => a.order - b.order));
-  }, [data]);
-
-  useEffect(() => {
-    sortColumns();
-  }, [sortColumns]);
+  const columns = useSortByOrder(data);
 
   return (
     <DndProvider backend={HTML5Backend}>
@@ -25,7 +17,7 @@ function Board() {
       {columnsQueryResult.isLoading ? (
         <span>Loading...</span>
       ) : (
-        columns && <ColumnsContainer items={columns} />
+        !!columns.length && <ColumnsContainer items={columns} />
       )}
     </DndProvider>
   );

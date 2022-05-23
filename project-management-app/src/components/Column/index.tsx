@@ -3,7 +3,7 @@ import React, { memo, useRef, useState } from 'react';
 import ColumnTitle from '../ColumnTitle';
 import Modal from '../Modal';
 import TasksContainer from '../TasksContainer';
-import { useDragAndDrop, useRemoveColumn, useTasksQuery } from '../../hooks';
+import { useDragAndDrop, useRemoveColumn, useSortByOrder, useTasksQuery } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 import { DND_ITEM_TYPES } from '../../constants/common-constants';
 
@@ -20,8 +20,10 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
-  const { data: tasks } = useTasksQuery({ columnId: id });
+  const { data } = useTasksQuery({ columnId: id });
   const { mutateAsync: removeColumn } = useRemoveColumn();
+
+  const tasks = useSortByOrder(data);
 
   const { isDragging, drag, drop, dragPreview } = useDragAndDrop({
     id,
@@ -49,7 +51,7 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
           setIsEditingTitle={setIsEditingTitle}
         />
       </StyledColumnHeader>
-      {tasks && <TasksContainer items={tasks} columnId={id} />}
+      {!!tasks.length && <TasksContainer items={tasks} columnId={id} />}
       {isGoingToRemove && (
         <Modal onClose={handleCancelDeletion}>
           <StyledConfirmationModal ref={modalRef}>
