@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { authAxios, URLS } from '../constants/api';
+import { authAxios, DEFAULT_SERVER_ERROR, URLS } from '../constants/api';
 import { AuthorizedUser, UnauthorizedUser } from '../interfaces/user';
 import { ServerError } from '../interfaces/common';
 
@@ -18,7 +18,7 @@ export const updateUser = async (userId: string, newUserData: UnauthorizedUser) 
       if (error.response) {
         return error.response;
       }
-      return { data: { message: 'Something went wrong.' } };
+      return DEFAULT_SERVER_ERROR;
     });
   return response.data;
 };
@@ -31,7 +31,7 @@ export const removeUser = async (userId: string) => {
       if (error.response) {
         return error.response;
       }
-      return { data: { message: 'Something went wrong.' } };
+      return DEFAULT_SERVER_ERROR;
     });
 
   return response.data;

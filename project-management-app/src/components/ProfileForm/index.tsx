@@ -3,10 +3,11 @@ import { useFormik } from 'formik';
 import { AuthorizedUser, EditableUserData, UnauthorizedUser } from '../../interfaces/user';
 import { onSignIn, useUserSelector } from '../../store/slices/user';
 import validationSchema from './validationSchema';
-import { checkPassword } from '../../utils/users-api';
+import { checkPassword, removeUser } from '../../utils/users-api';
 import { updateUser } from '../../utils/users-api';
 import { setToLocalStorage } from '../../utils/common';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import {
   StyledButton,
   StyledButtonDelete,
@@ -18,6 +19,7 @@ import {
 
 function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const initialValues: EditableUserData = {
@@ -92,6 +94,11 @@ function ProfileForm() {
     }
   };
 
+  const handleRemove = async () => {
+    const response = await removeUser(user.id);
+    alert(response.message);
+  };
+
   return (
     <StyledContainer>
       <StyledForm onSubmit={handleSubmit}>
@@ -154,7 +161,9 @@ function ProfileForm() {
           Click the button if you want to remove your profile forever.
           <span> Be carefully.</span>
         </p>
-        <StyledButtonDelete type="button">Delete profile</StyledButtonDelete>
+        <StyledButtonDelete type="button" onClick={handleRemove}>
+          Delete profile
+        </StyledButtonDelete>
       </StyledDangerBox>
     </StyledContainer>
   );

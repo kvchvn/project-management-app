@@ -27,3 +27,9 @@ export const authAxios = axios.create({
     Authorization: `Bearer ${TOKEN}`,
   },
 });
+
+export const DEFAULT_SERVER_ERROR = {
+  data: {
+    message: 'Something went wrong. Try again',
+  },
+};
