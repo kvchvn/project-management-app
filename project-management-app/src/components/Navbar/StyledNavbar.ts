@@ -5,4 +5,7 @@ export const StyledNavbar = styled.nav`
   justify-content: flex-end;
   padding: 1rem 2rem;
   background: #ebecf0;
+  a {
+    display: flex;
+  }
 `;
