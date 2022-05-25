@@ -10,7 +10,13 @@
     "hasAccount": "Have an account?",
     "errors": {
       "userExisting": "It seems like user already exists. Try to sign In",
-      "wrongData": "Login or/and password are wrong"
+      "wrongData": "Login or/and password are wrong",
+      "password": {
+        "part1": "Must be at least",
+        "part2": "characters"
+      },
+      "name": "Please, enter a valid name",
+      "required": "It is a required field"
     }
   },
   "authForm": {

@@ -2,7 +2,7 @@ import React from 'react';
 import { FormikConfig } from 'formik';
 import { useForm } from '../../hooks';
 import { UnauthorizedUser } from '../../interfaces/user';
-import { signInValidationSchema, signUpValidationSchema } from './validation-schemas';
+import { getSignInValidationSchema, getSignUpValidationSchema } from './validation-schemas';
 import { StyledForm, StyledInputContainer } from './styles';
 import 'react-toastify/dist/ReactToastify.css';
 import { useTranslation } from 'react-i18next';
@@ -20,7 +20,7 @@ function AuthForm({
 
   const { handleSubmit, handleChange, values, errors, isValid } = useForm({
     initialValues,
-    validationSchema: isSignUpForm ? signUpValidationSchema : signInValidationSchema,
+    validationSchema: isSignUpForm ? getSignUpValidationSchema(t) : getSignInValidationSchema(t),
     onSubmit,
   });
 
