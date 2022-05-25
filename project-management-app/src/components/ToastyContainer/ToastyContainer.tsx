@@ -1,6 +1,6 @@
 import React from 'react';
 import { ToastContainer } from 'react-toastify';
-import { AUTO_CLOSE_DELAY, COUNT_SHOW } from '../../constants/common-constants';
+import { AUTO_CLOSE_DELAY, COUNT_SHOW } from '../../constants/common';
 
 function ToastyContainer() {
   return (
