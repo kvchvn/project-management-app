@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { MIN_PASSWORD_LENGTH, NAME_VALIDATOR } from '../../constants/common-constants';
+import { MIN_PASSWORD_LENGTH, NAME_VALIDATOR } from '../../constants/common';
 
 export const signInValidationSchema = yup.object({
   login: yup.string().required(),

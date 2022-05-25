@@ -7,7 +7,7 @@ import useSignUp from './use-sign-up';
 
 import { UnauthorizedUser } from '../interfaces/user';
 import { TStore } from '../store';
-import { routerPaths } from '../constants/common-constants';
+import { routerPaths } from '../constants/common';
 
 const useAuthorization = () => {
   const navigate = useNavigate();

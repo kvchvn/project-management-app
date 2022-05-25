@@ -1,6 +1,6 @@
 import { Component, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
-import { routerPaths } from '../../constants/common-constants';
+import { routerPaths } from '../../constants/common';
 import ErrorMessage from './ErrorMessage';
 
 interface ErrorProps {

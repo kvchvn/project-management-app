@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { routerPaths } from '../../constants/common-constants';
+import { routerPaths } from '../../constants/common';
 import useRemovingBoard from '../../hooks/use-removing-board';
 import { Board } from '../../interfaces/board';
 import { StyledListItem } from './styles';
