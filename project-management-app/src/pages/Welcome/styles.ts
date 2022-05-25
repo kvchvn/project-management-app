@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { baseTheme } from '../../styles/theme';
 
 export const StyledAbout = styled.div`
   max-width: 30%;
@@ -17,20 +18,15 @@ export const StyledDescription = styled.p`
   padding: 30px 0;
 `;
 
-interface ButtonProps {
-  primary?: boolean;
-  success?: boolean;
-  warning?: boolean;
-}
-export const Button = styled.button<ButtonProps>`
+export const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.button }>`
   min-width: 100px;
   border: none;
   border-radius: 5px;
   padding: 5px 15px;
   margin-right: 10px;
   box-shadow: 0 0 0 1px #039be5;
-  background: ${(props) => (props.primary ? '#4676d7' : '#ffffff')};
-  color: ${(props) => (props.primary ? '#ffffff' : '#039be5')};
+  background: ${(props) => baseTheme.colors.button[props.variant].bg};
+  color: ${(props) => baseTheme.colors.button[props.variant].font};
   font-size: 14px;
   cursor: pointer;
   &: hover {

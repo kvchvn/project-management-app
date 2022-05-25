@@ -8,5 +8,22 @@ export const baseTheme: Theme = {
   colors: {
     bg: 'white',
     font: 'black',
+
+    button: {
+      primary: {
+        bg: 'blue',
+        font: 'white',
+      },
+
+      success: {
+        bg: 'green',
+        font: 'white',
+      },
+
+      warning: {
+        bg: 'red',
+        font: 'white',
+      },
+    },
   },
 };
