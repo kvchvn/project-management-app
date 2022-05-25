@@ -6,7 +6,7 @@ import Header from '../Header';
 
 function Layout() {
   const location = useLocation();
-  console.log(location);
+
   return (
     <>
       {location.pathname !== '/' + routerPaths.welcome ? <Header /> : null}
