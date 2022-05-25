@@ -1,5 +1,21 @@
 {
-  "boardsPage": {
-    "title": "Boards"
+  "mainPage": {
+    "title": "Boards",
+    "noBoards": "You have not any boards."
+  },
+  "authPage": {
+    "title": "Authorization",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "hasAccount": "Have an account?",
+    "errors": {
+      "userExisting": "It seems like user already exists. Try to sign In",
+      "wrongData": "Login or/and password are wrong"
+    }
+  },
+  "authForm": {
+    "name": "Name",
+    "login": "Login",
+    "password": "Password"
   }
 }

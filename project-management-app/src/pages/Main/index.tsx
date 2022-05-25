@@ -30,11 +30,11 @@ function Main() {
   return (
     <main>
       <StyledWrapper>
-        <h2>{t('boardsPage.title')}</h2>
+        <h2>{t('mainPage.title')}</h2>
         <StyledList>
           {boards && boards.length
             ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
-            : 'You haven`t got any board'}
+            : t('mainPage.noBoards')}
         </StyledList>
       </StyledWrapper>
     </main>

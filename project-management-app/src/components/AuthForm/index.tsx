@@ -5,6 +5,7 @@ import { UnauthorizedUser } from '../../interfaces/user';
 import { signInValidationSchema, signUpValidationSchema } from './validation-schemas';
 import { StyledForm, StyledInputContainer } from './styles';
 import 'react-toastify/dist/ReactToastify.css';
+import { useTranslation } from 'react-i18next';
 
 function AuthForm({
   isSignUpForm,
@@ -15,6 +16,7 @@ function AuthForm({
     login: '',
     password: '',
   };
+  const { t } = useTranslation();
 
   const { handleSubmit, handleChange, values, errors, isValid } = useForm({
     initialValues,
@@ -27,7 +29,7 @@ function AuthForm({
       {isSignUpForm && (
         <StyledInputContainer>
           <input id="name" onChange={handleChange} value={values.name} placeholder=" " />
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t('authForm.name')}</label>
           {errors.name && <span>{errors.name}</span>}
         </StyledInputContainer>
       )}
@@ -39,7 +41,7 @@ function AuthForm({
           value={values.login}
           placeholder=" "
         />
-        <label htmlFor="login">Login</label>
+        <label htmlFor="login">{t('authForm.login')}</label>
         {errors.login && <span>{errors.login}</span>}
       </StyledInputContainer>
       <StyledInputContainer>
@@ -51,11 +53,11 @@ function AuthForm({
           placeholder=" "
           type="password"
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">{t('authForm.password')}</label>
         {errors.password && <span>{errors.password}</span>}
       </StyledInputContainer>
       <button type="submit" disabled={!isValid}>
-        {isSignUpForm ? 'Sign up' : 'Sign in'}
+        {isSignUpForm ? t('authPage.signUp') : t('authPage.signIn')}
       </button>
     </StyledForm>
   );
