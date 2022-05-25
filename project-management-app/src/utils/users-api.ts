@@ -14,7 +14,6 @@ export const updateUser = async (userId: string, newUserData: UnauthorizedUser) 
   const response = await authAxios
     .put<Omit<AuthorizedUser, 'token'>>(`${URLS.users}/${userId}`, newUserData)
     .catch((error: AxiosError<ServerError>) => {
-      alert(JSON.stringify(error.response));
       if (error.response) {
         return error.response;
       }
@@ -25,9 +24,8 @@ export const updateUser = async (userId: string, newUserData: UnauthorizedUser) 
 
 export const removeUser = async (userId: string) => {
   const response = await authAxios
-    .delete(`${URLS.users}/${userId}1`)
+    .delete<void>(`${URLS.users}/${userId}`)
     .catch((error: AxiosError<ServerError>) => {
-      alert(JSON.stringify(error.response));
       if (error.response) {
         return error.response;
       }

@@ -1,13 +1,14 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import { AuthorizedUser, EditableUserData, UnauthorizedUser } from '../../interfaces/user';
-import { onSignIn, useUserSelector } from '../../store/slices/user';
+import { onSignIn, onSignOut, useUserSelector } from '../../store/slices/user';
 import validationSchema from './validationSchema';
 import { checkPassword, removeUser } from '../../utils/users-api';
 import { updateUser } from '../../utils/users-api';
 import { setToLocalStorage } from '../../utils/common';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useSignOut } from '../../hooks';
+import { toast } from 'react-toastify';
 import {
   StyledButton,
   StyledButtonDelete,
@@ -19,8 +20,8 @@ import {
 
 function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
-  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const signOut = useSignOut();
 
   const initialValues: EditableUserData = {
     name: user ? user.name : '',
@@ -49,6 +50,11 @@ function ProfileForm() {
     initialStatus,
     validationSchema,
     onSubmit: async (values) => {
+      if (values.password !== values.repeatedPassword) {
+        setFieldError('repeatedPassword', 'Passwords should match');
+        return;
+      }
+
       const { token } = await checkPassword({
         login: user.login,
         password: values.confirmationPassword,
@@ -61,26 +67,32 @@ function ProfileForm() {
           password: values.password || values.confirmationPassword,
         };
 
-        const { id, name, login } = (await updateUser(user.id, newUserData)) as AuthorizedUser;
-        const updatedUserData: AuthorizedUser = {
-          id,
-          name,
-          login,
-          token,
-        };
+        const response = await updateUser(user.id, newUserData);
 
-        setToLocalStorage('user', updatedUserData);
-        dispatch(onSignIn(updatedUserData));
-        resetForm({
-          values: {
+        if ('message' in response) {
+          toast.error(response.message);
+        } else {
+          const { id, name, login } = response;
+          const updatedUserData: AuthorizedUser = {
+            id,
             name,
             login,
-            password: '',
-            repeatedPassword: '',
-            confirmationPassword: '',
-          },
-        });
-        setStatus({ success: true });
+            token,
+          };
+
+          setToLocalStorage('user', updatedUserData);
+          dispatch(onSignIn(updatedUserData));
+          resetForm({
+            values: {
+              name,
+              login,
+              password: '',
+              repeatedPassword: '',
+              confirmationPassword: '',
+            },
+          });
+          setStatus({ success: true });
+        }
       } else {
         setFieldError('confirmationPassword', 'Wrong password. Try again');
       }
@@ -96,7 +108,12 @@ function ProfileForm() {
 
   const handleRemove = async () => {
     const response = await removeUser(user.id);
-    alert(response.message);
+    if (!response) {
+      signOut();
+      dispatch(onSignOut());
+    } else {
+      toast.error(response.message);
+    }
   };
 
   return (
@@ -126,7 +143,7 @@ function ProfileForm() {
           {touched.password && errors.password ? <span>{errors.password}</span> : null}
         </StyledInputContainer>
         <StyledInputContainer>
-          <label htmlFor="repeatPassword">Repeat password</label>
+          <label htmlFor="repeatedPassword">Repeat password</label>
           <input
             id="repeatedPassword"
             name="repeatedPassword"
@@ -152,7 +169,7 @@ function ProfileForm() {
           ) : null}
         </StyledInputContainer>
         <div>
-          <StyledButton type="submit">Update form</StyledButton>
+          <StyledButton type="submit">Update</StyledButton>
           {status.success ? <p>Changes saved!</p> : null}
         </div>
       </StyledForm>
