@@ -1,24 +1,22 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import Select, { MultiValue, SingleValue } from 'react-select';
 import { AVAILABLE_LANGUAGES } from '../../constants/common';
 import { LanguageOption } from '../../interfaces/common';
-import { setLanguage, useLangSelector } from '../../store/slices/lang';
 import { customStyles } from './styles';
 
 function LangDropdown() {
-  const currentLang = useLangSelector();
   const options = AVAILABLE_LANGUAGES;
-  const dispatch = useDispatch();
+  const { i18n } = useTranslation();
 
   const handleChange = (option: MultiValue<LanguageOption> | SingleValue<LanguageOption>) =>
-    dispatch(setLanguage(option as LanguageOption));
+    i18n.changeLanguage((option as LanguageOption).value);
 
   return (
     <Select
       options={options}
       isSearchable={false}
-      defaultValue={currentLang}
+      defaultValue={options.find((lang) => lang.value === i18n.language)}
       styles={customStyles}
       onChange={handleChange}
     />
