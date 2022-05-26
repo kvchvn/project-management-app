@@ -1,17 +1,32 @@
 import React from 'react';
+import { StyledFooterWrapper, StyledGit } from './styles';
 
 function Footer() {
   return (
-  <div>
-    <div>@2022</div>
-    <div><a target='_blank' href="https://rs.school/">The Roling Scope School</a></div>
-    <div>
-      <a target='_blank' href="https://github.com/kvchvn">Anton Kachan</a>
-      <a target='_blank' href="https://github.com/evitla">Dinmukhamed Sailaubek</a>
-      <a target='_blank' href="https://github.com/DilbarAkkaya">Dilbar Akkaya</a>
-    </div>
-
-  </div>);
+    <StyledFooterWrapper>
+      <div>@2022</div>
+      <div>
+        <a target="_blank" href="https://rs.school/" rel="noreferrer">
+          <img src="./rs_school_js.svg" alt="rs-school"></img>
+          The Roling Scope School
+        </a>
+      </div>
+      <StyledGit>
+        <img src="./git.svg" alt="git"></img>
+        <div>
+          <a target="_blank" href="https://github.com/kvchvn" rel="noreferrer">
+            Anton Kachan
+          </a>
+          <a target="_blank" href="https://github.com/evitla" rel="noreferrer">
+            Dinmukhamed Sailaubek
+          </a>
+          <a target="_blank" href="https://github.com/DilbarAkkaya" rel="noreferrer">
+            Dilbar Akkaya
+          </a>
+        </div>
+      </StyledGit>
+    </StyledFooterWrapper>
+  );
 }
 
 export default Footer;
