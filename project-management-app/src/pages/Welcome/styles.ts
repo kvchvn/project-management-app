@@ -19,6 +19,9 @@ export const StyledAbout = styled.div`
   z-index: 1001;
   margin: 0 auto;
   padding: 20px 0px;
+  h2 {
+    color: orange;
+  }
 `;
 export const StyledWrapper = styled.div`
   max-width: 100%;
