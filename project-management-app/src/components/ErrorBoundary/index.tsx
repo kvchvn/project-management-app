@@ -3,8 +3,11 @@ import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import StyledButton from '../../styles/components/StyledButton';
 import { StyledError } from './styles';
+import ErrorMessage from './ErrorMessage';
+import { TFunction, withTranslation } from 'react-i18next';
 
 interface ErrorProps {
+  t: TFunction;
   children: ReactNode;
 }
 
@@ -13,9 +16,17 @@ interface ErrorState {
 }
 
 class ErrorBoundary extends Component<ErrorProps, ErrorState> {
-  state = {
-    hasError: false,
-  };
+  constructor(props: ErrorProps) {
+    super(props);
+    this.state = {
+      hasError: false,
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    document.location.replace('/');
+  }
 
   static getDerivedStateFromError() {
     return { hasError: true };
@@ -26,9 +37,9 @@ class ErrorBoundary extends Component<ErrorProps, ErrorState> {
       <div>
         {this.state.hasError ? (
           <StyledError>
-            <h2>Sorry, something went wrong</h2>
+            <h2>{this.props.t('errorBoundary.title')}</h2>
             <Link to={routerPaths.main}>
-              <StyledButton variant="primary">Go to Main page</StyledButton>
+              <StyledButton variant="primary">{this.props.t('errorBoundary.toMain')}</StyledButton>
             </Link>
           </StyledError>
         ) : (
@@ -38,4 +49,4 @@ class ErrorBoundary extends Component<ErrorProps, ErrorState> {
     );
   }
 }
-export default ErrorBoundary;
+export default withTranslation()(ErrorBoundary);
