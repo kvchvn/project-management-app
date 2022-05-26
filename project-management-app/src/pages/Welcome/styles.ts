@@ -9,8 +9,12 @@ export const StyledAbout = styled.div`
   text-align: center;
   width: 23rem;
   border-radius: 30px;
-  border: 2px solid #24C5DB;
-  background-color: radial-gradient(118.88% 606.86% at 0% 0%, rgba(36, 197, 219, 0.15) 0%, rgba(36, 197, 219, 0) 100%);
+  border: 2px solid #24c5db;
+  background-color: radial-gradient(
+    118.88% 606.86% at 0% 0%,
+    rgba(36, 197, 219, 0.15) 0%,
+    rgba(36, 197, 219, 0) 100%
+  );
   backdrop-filter: blur(5px);
   z-index: 1001;
   margin: 0 auto;
@@ -31,5 +35,5 @@ export const StyledWrapper = styled.div`
 `;
 export const StyledDescription = styled.p`
   padding: 30px 0;
-  font-weight: 500;
+  font-weight: 600;
 `;
