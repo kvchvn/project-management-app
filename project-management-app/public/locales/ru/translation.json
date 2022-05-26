@@ -42,5 +42,20 @@
   "errorBoundary": {
     "title": "Что-то пошло не так...",
     "toMain": "Перейти на главную страницу"
+  },
+  "welcomePage": {
+    "toMainPage": "Перейти на главную страницу",
+    "about": {
+      "titles": {
+        "project": "О проекте",
+        "course": "О курсе",
+        "team": "О команде"
+      },
+      "descriptions": {
+        "project": "Система управления проектами – приложение, помогающее достичь поставленные задачи отдельному человеку в команде или группе разработчиков.",
+        "course": "Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes. Курс предназначен для студентов, которые имеют знания и практический опыт использования следующих технологий и инструментов: JavaScript, TypeScript, Git / GitHub, NPM, Webpack, CSS3 / HTML5, Chrome DevTools, Figma, понимание концепции REST API.",
+        "team": "Данное приложение разработали Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya."
+      }
+    }
   }
 }

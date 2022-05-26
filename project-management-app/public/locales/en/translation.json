@@ -42,5 +42,20 @@
   "errorBoundary": {
     "title": "Something went wrong...",
     "toMain": "Go to Main page"
+  },
+  "welcomePage": {
+    "toMainPage": "Go to Main page",
+    "about": {
+      "titles": {
+        "project": "About project",
+        "course": "About course",
+        "team": "About team"
+      },
+      "descriptions": {
+        "project": "Project management system is an app helping individual person in a team or developers group to achieve assigned tasks.",
+        "course": "The online course `React developing`. It is a cost-free course by The Rolling Scopes community. The course is for students having knowledge and practical experience of using the following tools and technologies: JavaScript, TypeScript, Git / GitHub, NPM, Webpack, CSS3 / HTML5, Chrome DevTools, Figma, REST API.",
+        "team": "The present app is developed by Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya."
+      }
+    }
   }
 }
