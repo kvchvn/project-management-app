@@ -10,12 +10,7 @@ export const StyledAbout = styled.div`
   width: 23rem;
   border-radius: 30px;
   border: 2px solid #24c5db;
-  background-color: radial-gradient(
-    118.88% 606.86% at 0% 0%,
-    rgba(36, 197, 219, 0.15) 0%,
-    rgba(36, 197, 219, 0) 100%
-  );
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(9px);
   z-index: 1001;
   margin: 0 auto;
   padding: 20px 0px;
@@ -25,7 +20,7 @@ export const StyledAbout = styled.div`
 `;
 export const StyledWrapper = styled.div`
   max-width: 100%;
-  min-height: calc(100vh - 150px);
+  min-height: calc(100vh - 125px);
   background-image: url(./bg.png);
   background-repeat: no-repeat;
   background-size: cover;
