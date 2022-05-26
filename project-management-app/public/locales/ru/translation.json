@@ -23,5 +23,24 @@
     "name": "Имя",
     "login": "Логин",
     "password": "Пароль"
+  },
+  "header": {
+    "editProfile": "Профиль",
+    "createBoard": "Создать доску",
+    "signOut": "Выйти"
+  },
+  "boardForm": {
+    "enterName": "Введите имя новой доски",
+    "create": "Создать доску",
+    "errors": {
+      "max": {
+        "part1": "Должно быть меньше",
+        "part2": "символов"
+      }
+    }
+  },
+  "errorBoundary": {
+    "title": "Что-то пошло не так...",
+    "toMain": "Перейти на главную страницу"
   }
 }

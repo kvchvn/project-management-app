@@ -12,7 +12,7 @@
       "userExisting": "It seems like user already exists. Try to sign In",
       "wrongData": "Login or/and password are wrong",
       "password": {
-        "part1": "Must be at least",
+        "part1": "It should be at least",
         "part2": "characters"
       },
       "name": "Please, enter a valid name",
@@ -23,5 +23,24 @@
     "name": "Name",
     "login": "Login",
     "password": "Password"
+  },
+  "header": {
+    "editProfile": "Edit profile",
+    "createBoard": "Create board",
+    "signOut": "Sign Out"
+  },
+  "boardForm": {
+    "enterName": "Enter the name of the new board",
+    "create": "Create board",
+    "errors": {
+      "max": {
+        "part1": "It should be less than",
+        "part2": "characters"
+      }
+    }
+  },
+  "errorBoundary": {
+    "title": "Something went wrong...",
+    "toMain": "Go to Main page"
   }
 }
