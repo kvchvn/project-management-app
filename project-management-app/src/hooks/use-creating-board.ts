@@ -9,8 +9,9 @@ const useCreatingBoard = () => {
   const token = user?.token;
 
   return useMutation(async (boardTitle: string) => {
-    await createNewBoard(boardTitle, token);
+    const newBoard = createNewBoard(boardTitle, token);
     await queryClient.refetchQueries(QUERY_KEYS.allBoards);
+    return newBoard;
   });
 };
 

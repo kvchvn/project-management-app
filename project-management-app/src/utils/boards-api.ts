@@ -1,6 +1,7 @@
 import axios, { AxiosResponse } from 'axios';
 import { Boards } from '../interfaces/board';
 import { URLS } from '../constants/api';
+import { Board } from '../pages/Main/types';
 
 export const getAllBoards = async (token?: string) => {
   if (!token) {
@@ -18,7 +19,8 @@ export const createNewBoard = async (title: string, token?: string) => {
   }
 
   const config = { headers: { Authorization: `Bearer ${token}` } };
-  await axios.post(URLS.boards, { title }, config);
+  const response: AxiosResponse<Board> = await axios.post(URLS.boards, { title }, config);
+  return response.data;
 };
 
 export const deleteBoard = async (boardId: string, token?: string) => {

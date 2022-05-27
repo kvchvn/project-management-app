@@ -1,7 +1,3 @@
-import axios from 'axios';
-import { getFromLocalStorage } from '../utils/common';
-import { AuthorizedUser } from '../interfaces/user';
-
 const BASE_URL = 'https://gentle-fortress-75399.herokuapp.com';
 
 export const URLS = {
@@ -24,3 +20,5 @@ export const DEFAULT_SERVER_ERROR = {
     message: 'Something went wrong. Try again',
   },
 };
+
+export const UNAUTHORIZED_STATUS = 401;

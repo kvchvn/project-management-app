@@ -1,7 +1,8 @@
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
-import { StyledAbout, StyledWrapper, StyledDescription, StyledWelcomeButton } from './styles';
+import { StyledAbout, StyledWrapper, StyledDescription } from './styles';
+import StyledButton from '../../styles/components/StyledButton';
 import { useUserSelector } from '../../store/selectors';
 
 function Welcome() {
@@ -12,10 +13,10 @@ function Welcome() {
         {!user ? (
           <div>
             <Link to={`/${routerPaths.auth}`} state={'signIn'}>
-              <StyledWelcomeButton>Sign In</StyledWelcomeButton>
+              <StyledButton variant="primary">Sign In</StyledButton>
             </Link>
             <Link to={`/${routerPaths.auth}`} state={'signUp'}>
-              <StyledWelcomeButton>Sign Up</StyledWelcomeButton>
+              <StyledButton variant="primary">Sign Up</StyledButton>
             </Link>
           </div>
         ) : (

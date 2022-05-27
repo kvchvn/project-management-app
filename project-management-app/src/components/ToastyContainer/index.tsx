@@ -6,7 +6,7 @@ function ToastyContainer() {
   return (
     <ToastContainer
       limit={COUNT_SHOW}
-      position="top-center"
+      position="bottom-left"
       autoClose={AUTO_CLOSE_DELAY}
       hideProgressBar={false}
       newestOnTop={false}
