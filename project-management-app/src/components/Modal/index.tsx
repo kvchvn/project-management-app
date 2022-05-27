@@ -1,34 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { disableScrolling, enableScrolling } from '../../utils/common';
 import { StyledButtonClose, StyledModalContainer, StyledModalContent } from './styles';
 import './styles.scss';
 
 type ModalProps = {
-  closeModal: () => void;
   children: React.ReactNode;
+  parent?: HTMLElement;
+  className?: string;
+  onClose?: () => void;
 };
 
-function Modal({ closeModal, children }: ModalProps) {
-  const rootModal = document.createElement('div');
-  rootModal.id = 'modal';
+function Modal({ children, parent, className, onClose }: ModalProps) {
+  const rootModal = useMemo(() => document.createElement('div'), []);
+  if (!parent) rootModal.id = 'modal';
+  if (className) rootModal.classList.add(className);
+
+  const handleClose = useCallback(() => onClose && onClose(), [onClose]);
 
   useEffect(() => {
-    document.body.appendChild(rootModal);
-    rootModal.addEventListener('click', closeModal);
+    const target = parent ?? document.body;
+
+    target.appendChild(rootModal);
+    rootModal.addEventListener('click', handleClose);
     disableScrolling();
 
     return () => {
-      document.body.removeChild(rootModal);
-      rootModal.removeEventListener('click', closeModal);
+      target.removeChild(rootModal);
+      rootModal.removeEventListener('click', handleClose);
       enableScrolling();
     };
-  });
+  }, [rootModal, parent, handleClose]);
 
   return ReactDOM.createPortal(
     <StyledModalContainer>
-      <StyledButtonClose onClick={closeModal}>x</StyledButtonClose>
-      <StyledModalContent onClickCapture={(e) => e.stopPropagation()}>
+      {onClose && <StyledButtonClose onClick={onClose}>x</StyledButtonClose>}
+      <StyledModalContent onClickCapture={(e) => onClose && e.stopPropagation()}>
         {children}
       </StyledModalContent>
     </StyledModalContainer>,
@@ -36,4 +43,4 @@ function Modal({ closeModal, children }: ModalProps) {
   );
 }
 
-export default Modal;
+export default memo(Modal);

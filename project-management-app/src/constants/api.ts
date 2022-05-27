@@ -18,6 +18,7 @@ export const mockUser = {
 
 export const QUERY_KEYS = {
   users: 'users',
+  columns: 'columns',
 };
 
 export const token =
