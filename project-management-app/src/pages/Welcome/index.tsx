@@ -1,13 +1,11 @@
 import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
-import { useSelector } from 'react-redux';
-import { TStore } from '../../store/index';
-import { StyledAbout, StyledWrapper, StyledDescription } from './styles';
-import StyledButton from '../../styles/components/StyledButton';
+import { StyledAbout, StyledWrapper, StyledDescription, StyledWelcomeButton } from './styles';
+import { useUserSelector } from '../../store/selectors';
 
 function Welcome() {
-  const { user } = useSelector((store: TStore) => store.userReducer);
+  const user = useUserSelector();
   return (
     <>
       <Navbar>

@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
 import { StyledWrapper } from '../../layouts/containers';
+import { onSignOut } from '../../store/slices/user';
 import BoardForm from '../BoardForm';
 import LangDropdown from '../LangDropdown';
 import Modal from '../Modal';
@@ -12,9 +14,11 @@ function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [isBoardFormOpen, setIsBoardFormOpen] = useState(false);
   const signOut = useSignOut();
+  const dispatch = useDispatch();
 
   const handleSignOut = () => {
     signOut();
+    dispatch(onSignOut());
   };
 
   const openBoardForm = () => {

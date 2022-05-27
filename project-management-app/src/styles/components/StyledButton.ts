@@ -10,7 +10,7 @@ const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.butt
   margin-right: 10px;
   box-shadow: 0 0 0 1px ${({ theme, variant }) => theme.colors.button[variant].hover};
   background: ${({ theme, variant }) => theme.colors.button[variant].bg};
-  color: ${({ theme, variant }) => theme.colors.button[variant].font}};
+  color: ${({ theme, variant }) => theme.colors.button[variant].font};
   font-size: 16px;
   cursor: pointer;
   &:hover {
