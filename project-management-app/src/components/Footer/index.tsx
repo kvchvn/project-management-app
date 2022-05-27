@@ -4,7 +4,6 @@ import { StyledFooterWrapper, StyledGit } from './styles';
 function Footer() {
   return (
     <StyledFooterWrapper>
-      <div>@2022</div>
       <div>
         <a target="_blank" href="https://rs.school/" rel="noreferrer">
           <img src="./rs_school_js.svg" alt="rs-school"></img>
@@ -25,6 +24,7 @@ function Footer() {
           </a>
         </div>
       </StyledGit>
+      <div>@2022</div>
     </StyledFooterWrapper>
   );
 }
