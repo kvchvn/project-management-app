@@ -34,8 +34,8 @@ function Modal({ children, parent, className, onClose }: ModalProps) {
 
   return ReactDOM.createPortal(
     <StyledModalContainer>
-      <StyledButtonClose onClick={onClose}>x</StyledButtonClose>
-      <StyledModalContent onClickCapture={(e) => e.stopPropagation()}>
+      {onClose && <StyledButtonClose onClick={onClose}>x</StyledButtonClose>}
+      <StyledModalContent onClickCapture={(e) => onClose && e.stopPropagation()}>
         {children}
       </StyledModalContent>
     </StyledModalContainer>,
