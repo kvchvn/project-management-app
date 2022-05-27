@@ -6,6 +6,7 @@ export interface Theme {
   colors: {
     bg: string;
     font: string;
+    bgHover: string;
     button: {
       primary: {
         bg: string;

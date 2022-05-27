@@ -6,23 +6,24 @@ export const baseTheme: Theme = {
   },
 
   colors: {
-    bg: 'white',
-    font: 'black',
+    bg: 'ffffff',
+    font: '000000',
+    bgHover: '#637cdf',
 
     button: {
       primary: {
-        bg: 'blue',
-        font: 'white',
+        bg: '#83badb',
+        font: 'ffffff',
       },
 
       success: {
-        bg: 'green',
-        font: 'white',
+        bg: '34603c',
+        font: 'ffffff',
       },
 
       warning: {
-        bg: 'red',
-        font: 'white',
+        bg: '#bb514f',
+        font: 'ffffff',
       },
     },
   },
