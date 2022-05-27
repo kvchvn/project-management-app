@@ -6,10 +6,11 @@ import Header from '../Header';
 
 function Layout() {
   const location = useLocation();
+  const locationsWithoutHeader = [`/${routerPaths.welcome}`, `/${routerPaths.auth}`];
 
   return (
     <>
-      {location.pathname !== '/' + routerPaths.welcome ? <Header /> : null}
+      {locationsWithoutHeader.includes(location.pathname) ? null : <Header />}
       <Outlet />
       <Footer />
     </>

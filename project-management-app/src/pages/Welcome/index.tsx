@@ -1,4 +1,4 @@
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSelector } from 'react-redux';
