@@ -10,3 +10,8 @@ export interface AuthorizedUser {
   login: string;
   token: string;
 }
+
+export interface EditableUserData extends UnauthorizedUser {
+  repeatedPassword: string;
+  confirmationPassword: string;
+}

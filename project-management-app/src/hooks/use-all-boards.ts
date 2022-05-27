@@ -1,10 +1,10 @@
 import { AxiosError } from 'axios';
 import { useQuery } from 'react-query';
-import { queryKeys } from '../constants/queries';
+import { QUERY_KEYS } from '../constants/api';
 import { getAllBoards } from '../utils/boards-api';
 
 const useAllBoards = () =>
-  useQuery(queryKeys.allBoards, getAllBoards, {
+  useQuery(QUERY_KEYS.allBoards, getAllBoards, {
     onError: (error: AxiosError) => error,
   });
 

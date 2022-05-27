@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useSelector } from 'react-redux';
+import { TStore } from '..';
 import { AuthorizedUser } from '../../interfaces/user';
 import { getFromLocalStorage } from '../../utils/common';
 
@@ -19,6 +21,8 @@ const userSlice = createSlice({
     },
   },
 });
+
+export const useUserSelector = () => useSelector((state: TStore) => state.userReducer.user);
 
 export const userReducer = userSlice.reducer;
 
