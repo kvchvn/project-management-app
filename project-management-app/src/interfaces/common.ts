@@ -6,6 +6,7 @@ export interface Theme {
   colors: {
     bg: string;
     font: string;
+<<<<<<< HEAD
     bgHover: string;
     button: {
       primary: {
@@ -26,6 +27,10 @@ export interface Theme {
         hover: string;
       };
     };
+=======
+    bgWelcome: string;
+    bgNavbar: string;
+>>>>>>> f646924 (refactor: change styles in footer, welcome page and navbar)
   };
 }
 

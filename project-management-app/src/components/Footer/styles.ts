@@ -1,23 +1,25 @@
 import styled from 'styled-components';
+import { baseTheme } from '../../styles/theme';
 
 export const StyledFooterWrapper = styled.div`
   display: flex;
-  background: #48d1cc;
+  background: ${baseTheme.colors.bgNavbar};
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-  padding-top: 10px;
+  padding: 10px 10px;
+  font-size: 12px;
   & a {
     padding-left: 10px;
   }
   &a: hover {
-    filter: invert(40%) sepia(100%) saturate(290%) hue-rotate(130deg) brightness(90%) contrast(80%);
+    filter: invert(30%) sepia(100%) saturate(290%) hue-rotate(130deg) brightness(80%) contrast(60%);
   }
   & img {
-    height: 50px;
+    height: 30px;
   }
   & img:hover {
-    filter: invert(40%) sepia(100%) saturate(290%) hue-rotate(130deg) brightness(90%) contrast(80%);
+    filter: invert(40%) sepia(80%) saturate(290%) hue-rotate(120deg) brightness(80%) contrast(80%);
   }
 `;
 export const StyledGit = styled.div`

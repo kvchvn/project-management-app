@@ -6,6 +6,7 @@ export const baseTheme: Theme = {
   },
 
   colors: {
+<<<<<<< HEAD
     bg: '#fffffe',
     font: '#323232',
     bgHover: '#b4e197',
@@ -29,5 +30,11 @@ export const baseTheme: Theme = {
         hover: '#ffd36eb3',
       },
     },
+=======
+    bg: 'white',
+    font: 'black',
+    bgWelcome: '#e4e4e4',
+    bgNavbar: '#bdd6ee',
+>>>>>>> f646924 (refactor: change styles in footer, welcome page and navbar)
   },
 };
