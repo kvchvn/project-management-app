@@ -3,35 +3,20 @@ import React, { memo, useRef, useState } from 'react';
 import ColumnTitle from '../ColumnTitle';
 import Modal from '../Modal';
 import TasksContainer from '../TasksContainer';
-import { useDragAndDrop, useRemoveColumn, useSortByOrder, useTasksQuery } from '../../hooks';
+import { useColumnDragAndDrop, useRemoveColumn, useTasksQuery } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
-import { DND_ITEM_TYPES } from '../../constants/common-constants';
 
 import { StyledColumn, StyledColumnHeader, StyledConfirmationModal } from './styles';
 
-interface ColumnProps extends IColumn {
-  moveColumn: (id: string, to: number) => void;
-  findColumn: (id: string) => { index: number };
-  updateColumn: (id: string, to: number) => void;
-}
-
-function Column({ id, title, order, moveColumn, findColumn, updateColumn }: ColumnProps) {
+function Column({ id, title, order }: IColumn) {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
-  const { data } = useTasksQuery({ columnId: id });
+  useTasksQuery({ columnId: id }, { refetchOnWindowFocus: false });
   const { mutateAsync: removeColumn } = useRemoveColumn();
 
-  const tasks = useSortByOrder(data);
-
-  const { isDragging, drag, drop, dragPreview } = useDragAndDrop({
-    id,
-    itemType: DND_ITEM_TYPES.column,
-    moveColumn,
-    findColumn,
-    updateColumn,
-  });
+  const { isDragging, drag, drop, dragPreview } = useColumnDragAndDrop({ id });
 
   const handleDeleteColumn = () => setIsGoingToRemove(true);
 
@@ -51,7 +36,7 @@ function Column({ id, title, order, moveColumn, findColumn, updateColumn }: Colu
           setIsEditingTitle={setIsEditingTitle}
         />
       </StyledColumnHeader>
-      {!!tasks.length && <TasksContainer items={tasks} columnId={id} />}
+      <TasksContainer columnId={id} />
       {isGoingToRemove && (
         <Modal onClose={handleCancelDeletion}>
           <StyledConfirmationModal ref={modalRef}>
