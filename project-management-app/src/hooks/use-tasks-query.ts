@@ -1,9 +1,10 @@
 import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { QUERY_KEYS, URLS } from '../constants/api';
 import { TaskDetailed, TaskWithFiles } from '../interfaces/task';
 import { TStore } from '../store';
+import { onSaveTasksByColumn } from '../store/slices/task';
 import { getAll } from '../utils/api';
 
 const getAllTasks = async (token: string, boardId: string, columnId: string) => {
@@ -24,6 +25,7 @@ const useTasksQuery = (
     QueryKey
   > = {}
 ) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((store: TStore) => store.userReducer);
   const { id: boardId } = useParams();
   const token = user?.token;
@@ -42,6 +44,7 @@ const useTasksQuery = (
     },
     {
       ...options,
+      onSuccess: (tasks) => tasks && dispatch(onSaveTasksByColumn({ columnId, tasks })),
       enabled: !!token || !!boardId,
     }
   );
