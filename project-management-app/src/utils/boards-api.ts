@@ -1,20 +1,34 @@
-import { AxiosResponse } from 'axios';
-import { BoardDetailed, Boards } from '../interfaces/board';
-import { URLS, authAxios } from '../constants/api';
+import axios, { AxiosResponse } from 'axios';
+import { Boards } from '../interfaces/board';
+import { URLS } from '../constants/api';
 
-export const getAllBoards = async () => {
-  const response: AxiosResponse<Boards> = await authAxios.get(URLS.boards);
+export const getAllBoards = async (token?: string) => {
+  if (!token) {
+    return;
+  }
+
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+  const response: AxiosResponse<Boards> = await axios.get(URLS.boards, config);
   return response.data;
 };
 
-export const getBoardById = async (id: string) => {
-  const response: AxiosResponse<BoardDetailed> = await authAxios.get(`${URLS.boards}/${id}`);
-  return response.data;
+export const createNewBoard = async (title: string, token?: string) => {
+  if (!title || !token) {
+    return;
+  }
+
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+  await axios.post(URLS.boards, { title }, config);
 };
 
-export const createNewBoard = async (title: string) => await authAxios.post(URLS.boards, { title });
+export const deleteBoard = async (boardId: string, token?: string) => {
+  if (!boardId || !token) {
+    return;
+  }
 
-export const deleteBoard = async (id: string) => await authAxios.delete(`${URLS.boards}/${id}`);
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+  await axios.delete(`${URLS.boards}/${boardId}`, config);
+};
 
-export const updateBoard = async (id: string, title: string) =>
-  await authAxios.put(`${URLS.boards}/${id}`, { title });
+/* export const updateBoard = async (id: string, title: string) =>
+  await authAxios.put(`${URLS.boards}/${id}`, { title }); */

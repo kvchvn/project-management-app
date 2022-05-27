@@ -19,16 +19,6 @@ export const QUERY_KEYS = {
   tasks: 'tasks',
 };
 
-const USER: AuthorizedUser | undefined = getFromLocalStorage('user');
-const TOKEN = USER ? USER.token : '';
-
-export const authAxios = axios.create({
-  baseURL: BASE_URL,
-  headers: {
-    Authorization: `Bearer ${TOKEN}`,
-  },
-});
-
 export const DEFAULT_SERVER_ERROR = {
   data: {
     message: 'Something went wrong. Try again',
