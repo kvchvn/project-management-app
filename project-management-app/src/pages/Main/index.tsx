@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import BoardCard from '../../components/BoardCard';
+import { routerPaths } from '../../constants/common';
 import useAllBoards from '../../hooks/use-all-boards';
 import Loading from '../../components/Loading';
 import { StyledWrapper } from '../../layouts/containers';
+import { useUserSelector } from '../../store/selectors';
 import { StyledList } from './styles';
 
 function Main() {
+  const user = useUserSelector();
+  const navigate = useNavigate();
   const { isLoading, isError, data: boards, error } = useAllBoards();
+
+  useEffect(() => {
+    if (!user) {
+      navigate(`/${routerPaths.welcome}`);
+    }
+  }, [user, navigate]);
 
   if (isLoading) {
     return <Loading />;
