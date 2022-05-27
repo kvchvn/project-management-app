@@ -30,11 +30,8 @@ const INITIAL_ORDER_STEP = 2 ** 16;
 export const setOrder = (lastOrder?: number) =>
   lastOrder ? lastOrder + INITIAL_ORDER_STEP : INITIAL_ORDER_STEP - 1;
 
-export const calculateUpdatedOrder = (
-  prevOrder: number,
-  nextOrder: number | undefined,
-  direction: 'backward' | 'forward'
-) => {
+export const calculateUpdatedOrder = (prevOrder = 0, nextOrder?: number) => {
   if (nextOrder) return Math.floor((prevOrder + nextOrder) / 2);
-  return direction === 'forward' ? prevOrder + INITIAL_ORDER_STEP : Math.floor(prevOrder / 2);
+
+  return prevOrder ? prevOrder + INITIAL_ORDER_STEP : INITIAL_ORDER_STEP - 1;
 };
