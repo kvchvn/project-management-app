@@ -4,10 +4,14 @@ import Loading from '../../components/Loading';
 import { useAuthorization } from '../../hooks';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { useLocation } from 'react-router-dom';
+import { AuthMode } from '../../hooks/use-authorization';
 
 function Authorization() {
+  const location = useLocation();
+  const authMode = location.state as AuthMode;
   const { isSignUpForm, handlePageMode, handleSubmit, signUp, signIn, isLoading } =
-    useAuthorization();
+    useAuthorization(authMode);
   useEffect(() => {
     if (signUp.isError) toast.error('It seems like user already exists. Try to sign in');
     if (signIn.isError) toast.error('Login and password do not match');

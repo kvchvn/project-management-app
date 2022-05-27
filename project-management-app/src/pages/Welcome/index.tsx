@@ -13,9 +13,11 @@ function Welcome() {
       <Navbar>
         {!user ? (
           <div>
-            <Link to={`/${routerPaths.auth}`}>
-              <StyledButton variant="primary">Log in</StyledButton>
-              <StyledButton variant="primary">Sign up</StyledButton>
+            <Link to={`/${routerPaths.auth}`} state={'signIn'}>
+              <StyledWelcomeButton>Sign In</StyledWelcomeButton>
+            </Link>
+            <Link to={`/${routerPaths.auth}`} state={'signUp'}>
+              <StyledWelcomeButton>Sign Up</StyledWelcomeButton>
             </Link>
           </div>
         ) : (
