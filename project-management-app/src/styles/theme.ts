@@ -6,7 +6,28 @@ export const baseTheme: Theme = {
   },
 
   colors: {
-    bg: 'white',
-    font: 'black',
+    bg: '#fffffe',
+    font: '#323232',
+    bgHover: '#b4e197',
+
+    button: {
+      primary: {
+        bg: '#4e944f',
+        font: '#fffffe',
+        hover: '#4e944fb3',
+      },
+
+      success: {
+        bg: '#b4e197',
+        font: '#fffffe',
+        hover: '#b4e197b3',
+      },
+
+      warning: {
+        bg: '#ffd36e',
+        font: '#fffffe',
+        hover: '#ffd36eb3',
+      },
+    },
   },
 };

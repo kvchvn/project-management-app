@@ -6,6 +6,26 @@ export interface Theme {
   colors: {
     bg: string;
     font: string;
+    bgHover: string;
+    button: {
+      primary: {
+        bg: string;
+        font: string;
+        hover: string;
+      };
+
+      success: {
+        bg: string;
+        font: string;
+        hover: string;
+      };
+
+      warning: {
+        bg: string;
+        font: string;
+        hover: string;
+      };
+    };
   };
 }
 

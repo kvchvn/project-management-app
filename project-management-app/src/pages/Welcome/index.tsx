@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSelector } from 'react-redux';
 import { TStore } from '../../store/index';
-import { StyledAbout, StyledWrapper, StyledDescription, StyledWelcomeButton } from './styles';
+import { StyledAbout, StyledWrapper, StyledDescription } from './styles';
+import StyledButton from '../../styles/components/StyledButton';
 
 function Welcome() {
   const { user } = useSelector((store: TStore) => store.userReducer);
@@ -13,13 +14,13 @@ function Welcome() {
         {!user ? (
           <div>
             <Link to={`/${routerPaths.auth}`}>
-              <StyledWelcomeButton>Log in</StyledWelcomeButton>
-              <StyledWelcomeButton>Sign up</StyledWelcomeButton>
+              <StyledButton variant="primary">Log in</StyledButton>
+              <StyledButton variant="primary">Sign up</StyledButton>
             </Link>
           </div>
         ) : (
           <Link to={routerPaths.main}>
-            <StyledWelcomeButton>Go to Main page</StyledWelcomeButton>
+            <StyledButton variant="primary">Go to Main page</StyledButton>
           </Link>
         )}
       </Navbar>

@@ -5,7 +5,7 @@ import Column from '../Column';
 import ColumnCreator from '../ColumnCreator';
 import { useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
-import { DND_ITEM_TYPES } from '../../constants/common-constants';
+import { DND_ITEM_TYPES } from '../../constants/common';
 import { calculateUpdatedColumnOrder } from '../../utils/common';
 
 import { StyledColumnsContainer } from './styles';

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 
 import { useClickOutside, useUpdateColumn } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
-import { TITLE_ROWS } from '../../constants/common-constants';
+import { TITLE_ROWS } from '../../constants/common';
 
 import { StyledTitle } from './styles';
 
