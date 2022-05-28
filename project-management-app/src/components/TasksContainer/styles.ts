@@ -3,4 +3,19 @@ import styled from 'styled-components';
 export const StyledTasksContainer = styled.div`
   background-color: white;
   padding: 5px;
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+    box-shadow: inset 0 0 6px ${({ theme }) => theme.colors.bg};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+  }
 `;
