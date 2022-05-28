@@ -1,6 +1,6 @@
 import React from 'react';
 import { ReactNode } from 'react';
-import { StyledNavbar } from './StyledNavbar';
+import { StyledNavbar } from './styles';
 
 export type NavbarProps = {
   children: ReactNode;

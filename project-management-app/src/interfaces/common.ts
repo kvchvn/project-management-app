@@ -4,9 +4,18 @@ export interface Theme {
   };
 
   colors: {
-    bg: string;
+    bg: {
+      primary: string;
+      secondary: string;
+    };
+
+    border: {
+      primary: string;
+      secondary: string;
+    };
+
     font: string;
-    bgHover: string;
+
     button: {
       primary: {
         bg: string;

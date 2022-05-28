@@ -6,9 +6,17 @@ export const baseTheme: Theme = {
   },
 
   colors: {
-    bg: '#fffffe',
+    bg: {
+      primary: '#fffffe',
+      secondary: '#b4e197',
+    },
+
+    border: {
+      primary: '#323232',
+      secondary: '#4e944f',
+    },
+
     font: '#323232',
-    bgHover: '#b4e197',
 
     button: {
       primary: {

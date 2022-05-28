@@ -26,13 +26,6 @@ function Welcome() {
       </Navbar>
       <StyledWrapper>
         <StyledAbout>
-          <h2>О проекте</h2>
-          <StyledDescription>
-            Система управления проектами – приложение помогающее достичь поставленные задачи
-            отдельному человеку в команде или группе разработчиков.
-          </StyledDescription>
-        </StyledAbout>
-        <StyledAbout>
           <h2>О курсе</h2>
           <StyledDescription>
             Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes.
@@ -42,9 +35,19 @@ function Welcome() {
           </StyledDescription>
         </StyledAbout>
         <StyledAbout>
+          <h2>О проекте</h2>
+          <StyledDescription>
+            Система управления проектами – приложение помогающее достичь поставленные задачи
+            отдельному человеку в команде или группе разработчиков.
+          </StyledDescription>
+        </StyledAbout>
+        <StyledAbout>
           <h2>О команде</h2>
           <StyledDescription>
-            Приложение разрабатывают Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya
+            <span>Приложение разработано</span>
+            <span>Anton Kachan</span>
+            <span>Dinmukhamed Sailaubek</span>
+            <span>Dilbar Akkaya</span>
           </StyledDescription>
         </StyledAbout>
       </StyledWrapper>
