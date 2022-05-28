@@ -29,7 +29,7 @@ function Column({ id, title, order }: IColumn) {
 
   const { isDragging, drag, drop, dragPreview } = useColumnDragAndDrop({ id });
 
-  const { drop: taskDrop } = useTaskDragAndDrop({ columnId: id, id: 'no-id' });
+  const { drop: taskDrop } = useTaskDragAndDrop({ columnId: id, dropTarget: 'column' });
 
   const handleDeleteColumn = () => setIsGoingToRemove(true);
 

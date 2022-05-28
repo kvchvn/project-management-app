@@ -7,12 +7,20 @@ import { store } from '../store';
 import { onMoveTask } from '../store/slices/task';
 import { calculateUpdatedOrder } from '../utils/common';
 
-const useTaskDragAndDrop = ({ id, columnId }: { id: string; columnId: string }) => {
+const useTaskDragAndDrop = ({
+  columnId,
+  id,
+  dropTarget,
+}: {
+  columnId: string;
+  id?: string;
+  dropTarget?: 'column' | 'tasks';
+}) => {
   const dispatch = useDispatch();
   const { mutateAsync: update } = useUpdateTask({ columnId });
 
   const updateItemOrder = useCallback(
-    async ({ hoverColumnId, dropId }: { hoverColumnId: string; dropId: string }) => {
+    async ({ hoverColumnId, dropId }: { hoverColumnId: string; dropId?: string }) => {
       const { tasksByColumns } = store.getState().taskReducer;
 
       const tasks = tasksByColumns[hoverColumnId];
@@ -45,11 +53,14 @@ const useTaskDragAndDrop = ({ id, columnId }: { id: string; columnId: string }) 
     () => ({
       accept: DND_ITEM_TYPES.task,
       hover: (dragItem: { id: string; columnId: string }, monitor) => {
+        if (!dropTarget) return;
         const { id: dragId, columnId: dragColumnId } = dragItem;
         const canDrop = dragId !== id && monitor.isOver({ shallow: true }) === monitor.isOver();
 
         if (canDrop) {
-          dispatch(onMoveTask({ dragColumnId, dragId, hoverColumnId: columnId, hoverId: id }));
+          dispatch(
+            onMoveTask({ dragColumnId, dragId, hoverColumnId: columnId, hoverId: id, dropTarget })
+          );
           dragItem.columnId = columnId;
         }
       },

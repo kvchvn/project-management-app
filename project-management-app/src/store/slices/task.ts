@@ -24,14 +24,15 @@ const taskSlice = createSlice({
         dragColumnId: string;
         hoverColumnId: string;
         dragId: string;
-        hoverId: string;
+        hoverId?: string;
+        dropTarget: 'column' | 'tasks';
       }>
     ) => {
-      const { dragColumnId, dragId, hoverColumnId, hoverId } = payload;
+      const { dragColumnId, dragId, hoverColumnId, hoverId, dropTarget } = payload;
 
       const dragIndex = state.tasksByColumns[dragColumnId].findIndex((task) => task.id === dragId);
       const hoverIndex =
-        hoverId !== 'no-id'
+        dropTarget === 'tasks'
           ? state.tasksByColumns[hoverColumnId].findIndex((task) => task.id === hoverId)
           : state.tasksByColumns[hoverColumnId].length;
 
