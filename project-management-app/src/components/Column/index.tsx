@@ -31,9 +31,9 @@ function Column({ id, title, order }: IColumn) {
   const handleCancelDeletion = () => setIsGoingToRemove(false);
 
   return (
-    <StyledColumnWrapper>
+    <StyledColumnWrapper ref={drop}>
       <StyledColumn ref={(node) => dragPreview(node)} isDragging={isDragging}>
-        <StyledColumnHeader ref={(node) => !isEditingTitle && drag(drop(node))}>
+        <StyledColumnHeader ref={(node) => !isEditingTitle && drag(node)}>
           <button onClick={handleDeleteColumn}>x</button>
           <ColumnTitle
             id={id}
