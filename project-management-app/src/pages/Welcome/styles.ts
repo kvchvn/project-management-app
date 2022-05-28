@@ -27,7 +27,7 @@ export const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colo
   margin-right: 10px;
   box-shadow: 0 0 0 1px ${baseTheme.colors.bgHover};
   background: ${(props) => baseTheme.colors.button[props.variant].bg};
-  color: ${(props) => baseTheme.colors.button[props.variant].font};
+  color: ${baseTheme.colors.font}};
   font-size: 14px;
   cursor: pointer;
   &: hover {
