@@ -6,12 +6,12 @@ const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.butt
   min-width: 100px;
   border: none;
   border-radius: 5px;
-  padding: 5px 15px;
+  padding: 0.75em 1em;
   margin-right: 10px;
   box-shadow: 0 0 0 1px ${({ theme, variant }) => theme.colors.button[variant].hover};
   background: ${({ theme, variant }) => theme.colors.button[variant].bg};
   color: ${({ theme, variant }) => theme.colors.button[variant].font}};
-  font-size: 14px;
+  font-size: 16px;
   cursor: pointer;
   &:hover {
     background: ${({ theme, variant }) => theme.colors.button[variant].hover};
@@ -23,7 +23,6 @@ const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.butt
   @media ${device.MOBILE} {
     font-size: 12px;
     min-width: 70px;
-    padding: 5px 0;
     margin-right: 5px;
   }
 `;
