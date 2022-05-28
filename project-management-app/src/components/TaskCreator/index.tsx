@@ -11,7 +11,8 @@ function TaskCreator({ columnId }: { columnId: string }) {
 
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
-  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [taskTitle, setTaskTitle] = useState('');
+  const [taskDescription, setTaskDescription] = useState('');
 
   const { mutateAsync: create } = useCreateTask({ columnId });
 
@@ -19,15 +20,19 @@ function TaskCreator({ columnId }: { columnId: string }) {
     setIsOpenModal(!isOpenModal);
   };
 
-  const handleNewTaskTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setNewTaskTitle(e.target.value);
+  const handleTaskTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskTitle(e.target.value);
+  };
+
+  const handleTaskDescriptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskDescription(e.target.value);
   };
 
   const handleTaskCreate = async () => {
     await create({
-      title: newTaskTitle,
+      title: taskTitle,
       order: setOrder(lastTaskOrder),
-      description: 'some description',
+      description: taskDescription,
     });
     setIsOpenModal(false);
   };
@@ -37,8 +42,11 @@ function TaskCreator({ columnId }: { columnId: string }) {
       {isOpenModal ? (
         modalRef.current && (
           <Modal parent={modalRef.current}>
-            <input placeholder="Enter task title..." onChange={handleNewTaskTitleChange} />
-            <button onClick={handleTaskCreate}>Add task</button>
+            <input placeholder="Enter task title..." onChange={handleTaskTitleChange} />
+            <input placeholder="Enter task description..." onChange={handleTaskDescriptionChange} />
+            <button onClick={handleTaskCreate} disabled={!taskTitle || !taskDescription}>
+              Add task
+            </button>
             <button onClick={handleIsOpenModal}>X</button>
           </Modal>
         )
