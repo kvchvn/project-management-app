@@ -1,9 +1,14 @@
 import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useCreateTask } from '../../hooks';
+import { TStore } from '../../store';
 import { setOrder } from '../../utils/common';
 import Modal from '../Modal';
 
-function TaskCreator({ columnId, lastTaskOrder }: { columnId: string; lastTaskOrder?: number }) {
+function TaskCreator({ columnId }: { columnId: string }) {
+  const { tasksByColumns } = useSelector((store: TStore) => store.taskReducer);
+  const lastTaskOrder = tasksByColumns[columnId]?.at(-1)?.order;
+
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newTaskTitle, setNewTaskTitle] = useState('');
