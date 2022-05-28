@@ -1,7 +1,7 @@
 import React, { memo, useCallback, useEffect, useMemo } from 'react';
 import ReactDOM from 'react-dom';
 import { disableScrolling, enableScrolling } from '../../utils/common';
-import { StyledButtonClose, StyledModalContainer, StyledModalContent } from './styles';
+import { StyledModalContainer } from './styles';
 import './styles.scss';
 
 type ModalProps = {
@@ -16,7 +16,12 @@ function Modal({ children, parent, className, onClose }: ModalProps) {
   if (!parent) rootModal.id = 'modal';
   if (className) rootModal.classList.add(className);
 
-  const handleClose = useCallback(() => onClose && onClose(), [onClose]);
+  const handleClose = useCallback(
+    (e: MouseEvent) => {
+      if (e.target === rootModal && onClose) onClose();
+    },
+    [onClose, rootModal]
+  );
 
   useEffect(() => {
     const target = parent ?? document.body;
@@ -33,12 +38,7 @@ function Modal({ children, parent, className, onClose }: ModalProps) {
   }, [rootModal, parent, handleClose]);
 
   return ReactDOM.createPortal(
-    <StyledModalContainer>
-      {onClose && <StyledButtonClose onClick={onClose}>x</StyledButtonClose>}
-      <StyledModalContent onClickCapture={(e) => onClose && e.stopPropagation()}>
-        {children}
-      </StyledModalContent>
-    </StyledModalContainer>,
+    parent ? children : <StyledModalContainer>{children}</StyledModalContainer>,
     rootModal
   );
 }
