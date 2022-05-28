@@ -30,9 +30,11 @@ const taskSlice = createSlice({
       const { dragColumnId, dragId, hoverColumnId, hoverId } = payload;
 
       const dragIndex = state.tasksByColumns[dragColumnId].findIndex((task) => task.id === dragId);
-      const hoverIndex = state.tasksByColumns[hoverColumnId].findIndex(
-        (task) => task.id === hoverId
-      );
+      const hoverIndex =
+        hoverId !== 'no-id'
+          ? state.tasksByColumns[hoverColumnId].findIndex((task) => task.id === hoverId)
+          : state.tasksByColumns[hoverColumnId].length;
+
       if (dragIndex === -1 || hoverIndex === -1) return;
 
       const dragTask = state.tasksByColumns[dragColumnId].splice(dragIndex, 1)[0];

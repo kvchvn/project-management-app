@@ -44,10 +44,11 @@ const useTaskDragAndDrop = ({ id, columnId }: { id: string; columnId: string }) 
   const [, drop] = useDrop(
     () => ({
       accept: DND_ITEM_TYPES.task,
-      hover: (dragItem: { id: string; columnId: string }) => {
+      hover: (dragItem: { id: string; columnId: string }, monitor) => {
         const { id: dragId, columnId: dragColumnId } = dragItem;
+        const canDrop = dragId !== id && monitor.isOver({ shallow: true }) === monitor.isOver();
 
-        if (dragId !== id) {
+        if (canDrop) {
           dispatch(onMoveTask({ dragColumnId, dragId, hoverColumnId: columnId, hoverId: id }));
           dragItem.columnId = columnId;
         }
