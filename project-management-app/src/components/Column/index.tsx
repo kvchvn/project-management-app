@@ -3,7 +3,13 @@ import React, { memo, useRef, useState } from 'react';
 import ColumnTitle from '../ColumnTitle';
 import Modal from '../Modal';
 import TasksContainer from '../TasksContainer';
-import { useColumnDragAndDrop, useRemoveColumn, useTasksQuery } from '../../hooks';
+import TaskCreator from '../TaskCreator';
+import {
+  useColumnDragAndDrop,
+  useRemoveColumn,
+  useTaskDragAndDrop,
+  useTasksQuery,
+} from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 
 import {
@@ -12,7 +18,6 @@ import {
   StyledColumnWrapper,
   StyledConfirmationModal,
 } from './styles';
-import TaskCreator from '../TaskCreator';
 
 function Column({ id, title, order }: IColumn) {
   const modalRef = useRef<HTMLDivElement>(null);
@@ -24,6 +29,8 @@ function Column({ id, title, order }: IColumn) {
 
   const { isDragging, drag, drop, dragPreview } = useColumnDragAndDrop({ id });
 
+  const { drop: taskDrop } = useTaskDragAndDrop({ columnId: id, id: 'no-id' });
+
   const handleDeleteColumn = () => setIsGoingToRemove(true);
 
   const handleConfirmDeletion = () => removeColumn({ id });
@@ -31,7 +38,7 @@ function Column({ id, title, order }: IColumn) {
   const handleCancelDeletion = () => setIsGoingToRemove(false);
 
   return (
-    <StyledColumnWrapper ref={drop}>
+    <StyledColumnWrapper ref={(node) => drop(taskDrop(node))}>
       <StyledColumn ref={(node) => dragPreview(node)} isDragging={isDragging}>
         <StyledColumnHeader ref={(node) => !isEditingTitle && drag(node)}>
           <button onClick={handleDeleteColumn}>x</button>
