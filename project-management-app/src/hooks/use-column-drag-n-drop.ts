@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
 import { useDispatch } from 'react-redux';
 import { useUpdateColumn } from '.';
-import { DND_ITEM_TYPES } from '../constants/common-constants';
+import { DND_ITEM_TYPES } from '../constants/common';
 import { store } from '../store';
 import { onMoveColumn } from '../store/slices/column';
 import { calculateUpdatedOrder } from '../utils/common';
