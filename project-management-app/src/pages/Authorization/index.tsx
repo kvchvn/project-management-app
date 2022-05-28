@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import AuthForm from '../../components/AuthForm';
+import Loading from '../../components/Loading';
 import { useAuthorization } from '../../hooks';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -16,7 +17,7 @@ function Authorization() {
     <>
       <h2>Authorization page</h2>
       {isLoading ? (
-        'Loading...'
+        <Loading />
       ) : (
         <>
           <AuthForm isSignUpForm={isSignUpForm} onSubmit={handleSubmit} />

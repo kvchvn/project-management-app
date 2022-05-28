@@ -2,6 +2,8 @@ import styled, { keyframes } from 'styled-components';
 
 export const StyledBox = styled.div`
   position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
