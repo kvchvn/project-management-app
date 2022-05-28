@@ -1,7 +1,8 @@
 import { Component, ReactNode } from 'react';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
-import ErrorMessage from './ErrorMessage';
+import StyledButton from '../../styles/components/StyledButton';
+import { StyledError } from './styles';
 
 interface ErrorProps {
   children: ReactNode;
@@ -24,13 +25,12 @@ class ErrorBoundary extends Component<ErrorProps, ErrorState> {
     return (
       <div>
         {this.state.hasError ? (
-          <>
-            <h2>Something went wrong</h2>
-            <Link to={`/${routerPaths.main}`}>
-              <h3>Go to Main page</h3>
+          <StyledError>
+            <h2>Sorry, something went wrong</h2>
+            <Link to={routerPaths.main}>
+              <StyledButton variant="primary">Go to Main page</StyledButton>
             </Link>
-            <ErrorMessage />
-          </>
+          </StyledError>
         ) : (
           this.props.children
         )}
