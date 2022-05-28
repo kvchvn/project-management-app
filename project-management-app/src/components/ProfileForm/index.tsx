@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+
 import { AuthorizedUser, EditableUserData, UnauthorizedUser } from '../../interfaces/user';
+import ConfirmationModal from '../ConfirmationModal';
 import { onSignIn, onSignOut, useUserSelector } from '../../store/slices/user';
 import validationSchema from './validationSchema';
 import { checkPassword, removeUser } from '../../utils/users-api';
 import { updateUser } from '../../utils/users-api';
 import { setToLocalStorage } from '../../utils/common';
-import { useDispatch } from 'react-redux';
 import { useSignOut } from '../../hooks';
-import { toast } from 'react-toastify';
+
 import {
   StyledButton,
   StyledButtonDelete,
@@ -22,6 +25,8 @@ function ProfileForm() {
   const user = useUserSelector() as AuthorizedUser;
   const dispatch = useDispatch();
   const signOut = useSignOut();
+
+  const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
   const initialValues: EditableUserData = {
     name: user ? user.name : '',
@@ -106,7 +111,9 @@ function ProfileForm() {
     }
   };
 
-  const handleRemove = async () => {
+  const handleRemove = () => setIsGoingToRemove(true);
+
+  const handleConfirmDeletion = async () => {
     const response = await removeUser(user.id);
     if (!response) {
       signOut();
@@ -182,6 +189,12 @@ function ProfileForm() {
           Delete profile
         </StyledButtonDelete>
       </StyledDangerBox>
+      {isGoingToRemove && (
+        <ConfirmationModal onConfirm={handleConfirmDeletion} setIsOpen={setIsGoingToRemove}>
+          <p>This operation can not be undone.</p>
+          <p>Do you really want to do this?</p>
+        </ConfirmationModal>
+      )}
     </StyledContainer>
   );
 }
