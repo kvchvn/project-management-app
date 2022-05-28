@@ -11,16 +11,19 @@ export interface Theme {
       primary: {
         bg: string;
         font: string;
+        hover: string;
       };
 
       success: {
         bg: string;
         font: string;
+        hover: string;
       };
 
       warning: {
         bg: string;
         font: string;
+        hover: string;
       };
     };
   };
