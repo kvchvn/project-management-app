@@ -6,10 +6,17 @@ export const baseTheme: Theme = {
   },
 
   colors: {
-<<<<<<< HEAD
-    bg: '#fffffe',
+    bg: {
+      primary: '#fffffe',
+      secondary: '#b4e197',
+    },
+
+    border: {
+      primary: '#323232',
+      secondary: '#4e944f',
+    },
+
     font: '#323232',
-    bgHover: '#b4e197',
 
     button: {
       primary: {
@@ -30,11 +37,5 @@ export const baseTheme: Theme = {
         hover: '#ffd36eb3',
       },
     },
-=======
-    bg: 'white',
-    font: 'black',
-    bgWelcome: '#e4e4e4',
-    bgNavbar: '#bdd6ee',
->>>>>>> f646924 (refactor: change styles in footer, welcome page and navbar)
   },
 };

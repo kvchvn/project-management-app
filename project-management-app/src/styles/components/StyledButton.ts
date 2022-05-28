@@ -20,7 +20,7 @@ const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.butt
     outline: none;
     box-shadow: 0 0 0 3px ${({ theme, variant }) => theme.colors.button[variant].hover};
   }
-  @media ${device.mobile} {
+  @media ${device.MOBILE} {
     font-size: 12px;
     min-width: 70px;
     padding: 5px 0;

@@ -44,7 +44,10 @@ function Welcome() {
         <StyledAbout>
           <h2>О команде</h2>
           <StyledDescription>
-            Приложение разрабатывают Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya
+            <span>Приложение разработано</span>
+            <span>Anton Kachan</span>
+            <span>Dinmukhamed Sailaubek</span>
+            <span>Dilbar Akkaya</span>
           </StyledDescription>
         </StyledAbout>
       </StyledWrapper>

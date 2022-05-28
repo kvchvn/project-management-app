@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import { baseTheme } from '../../styles/theme';
 
 export const StyledFooterWrapper = styled.div`
   display: flex;
-  background: ${baseTheme.colors.bgNavbar};
+  background: ${({ theme }) => theme.colors.bg.secondary}};
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

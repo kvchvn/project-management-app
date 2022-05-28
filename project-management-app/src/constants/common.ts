@@ -38,14 +38,14 @@ export const DND_ITEM_TYPES = {
 
 export const TITLE_ROWS = 1;
 
-const size = {
-  mobile: '320px',
-  tablet: '768px',
-  laptop: '1024px',
+const SIZE = {
+  MOBILE: '320px',
+  TABLET: '768px',
+  LAPTOP: '1024px',
 };
 
 export const device = {
-  mobile: `(min-width: ${size.mobile})`,
-  tablet: `(min-width: ${size.tablet})`,
-  laptop: `(min-width: ${size.laptop})`,
+  MOBILE: `(min-width: ${SIZE.MOBILE})`,
+  TABLET: `(min-width: ${SIZE.TABLET})`,
+  LAPTOP: `(min-width: ${SIZE.LAPTOP})`,
 };
