@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import { MIN_PASSWORD_LENGTH } from '../../constants/common-constants';
+import { MIN_PASSWORD_LENGTH } from '../../constants/common';
 import { signUpValidationSchema } from '../AuthForm/validation-schemas';
 
 const validationSchema = signUpValidationSchema.shape({

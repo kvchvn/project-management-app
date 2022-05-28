@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
-import { routerPaths } from '../../constants/common-constants';
+import { routerPaths } from '../../constants/common';
 import { useUserSelector } from '../../store/slices/user';
 
 function Profile() {

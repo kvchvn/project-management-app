@@ -1,5 +1,5 @@
 import { useDrag, useDrop } from 'react-dnd';
-import { DND_ITEM_TYPES } from '../constants/common-constants';
+import { DND_ITEM_TYPES } from '../constants/common';
 
 const useColumnDragAndDrop = ({
   id,
