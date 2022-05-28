@@ -2,8 +2,10 @@ import styled from 'styled-components';
 
 export const StyledTaskCard = styled.div<{ isDragging: boolean }>`
   height: 30px;
-  border: 1px solid black;
+  // TODO: colors need to be set later
+  border: 1px solid ${({ isDragging }) => (isDragging ? 'grey' : 'black')};
   margin-bottom: 4px;
-  opacity: ${({ isDragging }) => (isDragging ? 0 : 1)};
+  background-color: ${({ isDragging }) => (isDragging ? 'grey' : 'inherit')};
+  color: ${({ isDragging }) => (isDragging ? 'grey' : 'inherit')};
   cursor: pointer;
 `;
