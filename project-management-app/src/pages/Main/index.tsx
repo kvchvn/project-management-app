@@ -1,5 +1,6 @@
 import React from 'react';
 import BoardCard from '../../components/BoardCard';
+import Loading from '../../components/Loading';
 import useAllBoards from '../../hooks/use-all-boards';
 import { StyledWrapper } from '../../layouts/containers';
 import { StyledList } from './styles';
@@ -17,6 +18,7 @@ function Main() {
 
   return (
     <main>
+      <Loading />
       <StyledWrapper>
         <h2>My boards</h2>
         <StyledList>
