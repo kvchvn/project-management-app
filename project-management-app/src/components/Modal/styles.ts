@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 const comingFromLeft = keyframes`
   from {
     opacity: 0;
-    transform: translateX(-100vw);
+    transform: scale(0.6);
   }
   to {
     opacity: 1;
@@ -13,15 +13,29 @@ const comingFromLeft = keyframes`
 
 export const StyledModalContainer = styled.div`
   position: relative;
-<<<<<<< HEAD
   min-width: 300px;
   text-align: center;
   padding: 30px;
   background-color: ${({ theme }) => theme.colors.bg.primary};
-=======
-  background-color: #ffffff;
->>>>>>> 5354687 (feat: create new component Task)
   overflow: hidden;
-  animation: ${comingFromLeft} 0.4s ease-out;
-  border-radius: 6px;
+  animation: ${comingFromLeft} 0.25s ease-out;
+`;
+
+export const StyledButtonClose = styled.button`
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-color: lightgray;
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: gray;
+  }
+`;
+
+export const StyledModalContent = styled.section`
+  width: 100%;
+  height: 100%;
 `;
