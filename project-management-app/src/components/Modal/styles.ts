@@ -13,10 +13,14 @@ const comingFromLeft = keyframes`
 
 export const StyledModalContainer = styled.div`
   position: relative;
+<<<<<<< HEAD
   min-width: 300px;
   text-align: center;
   padding: 30px;
   background-color: ${({ theme }) => theme.colors.bg.primary};
+=======
+  background-color: #ffffff;
+>>>>>>> 5354687 (feat: create new component Task)
   overflow: hidden;
   animation: ${comingFromLeft} 0.4s ease-out;
   border-radius: 6px;

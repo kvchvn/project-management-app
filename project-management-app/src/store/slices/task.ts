@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { TaskDetailed } from '../../interfaces/task';
+import { TaskDetailed, TaskModal } from '../../interfaces/task';
 
-const initialState: { tasksByColumns: Record<string, TaskDetailed[]> } = {
+const initialState: { tasksByColumns: Record<string, TaskDetailed[]>; taskModal: TaskModal } = {
   tasksByColumns: {},
+  taskModal: {
+    isOpen: false,
+    taskId: null,
+    columnId: null,
+  },
 };
 
 const taskSlice = createSlice({
@@ -43,9 +48,16 @@ const taskSlice = createSlice({
       dragTask.columnId = hoverColumnId;
       state.tasksByColumns[hoverColumnId].splice(hoverIndex, 0, dragTask);
     },
+    onOpenTaskModal: (state, { payload }: PayloadAction<Omit<TaskModal, 'isOpen'>>) => {
+      state.taskModal = { isOpen: true, taskId: payload.taskId, columnId: payload.columnId };
+    },
+    onCloseTaskModal: (state) => {
+      state.taskModal = { isOpen: false, taskId: null, columnId: null };
+    },
   },
 });
 
 export const taskReducer = taskSlice.reducer;
 
-export const { onSaveTasksByColumn, onMoveTask } = taskSlice.actions;
+export const { onSaveTasksByColumn, onMoveTask, onOpenTaskModal, onCloseTaskModal } =
+  taskSlice.actions;
