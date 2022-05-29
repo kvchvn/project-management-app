@@ -15,6 +15,7 @@ const getCustomStyles = (sticky: boolean) => {
       },
       [`@media ${device.TABLET}`]: {
         marginLeft: '5px',
+        color: 'inherit',
       },
     }),
     valueContainer: (base) => ({
@@ -35,7 +36,7 @@ const getCustomStyles = (sticky: boolean) => {
       backgroundColor: 'transparent',
       fontSize: '16px',
       color: `${baseTheme.colors.font}`,
-      [`@media ${device.LAPTOP}`]: {
+      [`@media ${device.TABLET}`]: {
         borderBottom: 'none',
         fontSize: '18px',
       },
