@@ -2,20 +2,43 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
-import StyledWrapper from '../../styles/components/StyledWrapper';
+import { TStore } from '../../store';
 import BoardForm from '../BoardForm';
 import LangDropdown from '../LangDropdown';
 import Modal from '../Modal';
-import { StyledHeader, Nav, NavButton, HeaderTitle } from './styles';
+import {
+  StyledHeader,
+  StyledHeaderWrapper,
+  StyledNav,
+  StyledNavButton,
+  StyledHeaderTitle,
+  StyledAside,
+  StyledProfileButton,
+  StyledUserImage,
+  StyledToggler,
+  StyledHiddenInput,
+} from './styles';
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [isBoardFormOpen, setIsBoardFormOpen] = useState(false);
+  const { user } = useSelector((state: TStore) => state.userReducer);
   const signOut = useSignOut();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const moveToMainPage = () => {
+    navigate(routerPaths.main);
+  };
+
+  const moveToProfilePage = () => {
+    navigate(`/${routerPaths.profile}`);
+  };
 
   const handleSignOut = () => {
     signOut();
@@ -48,17 +71,25 @@ function Header() {
   return (
     <>
       <StyledHeader sticky={isSticky}>
-        <StyledWrapper>
-          <HeaderTitle sticky={isSticky}>AppName</HeaderTitle>
-          <Nav sticky={isSticky}>
-            <NavButton as={Link} to={routerPaths.profile}>
-              {t('header.editProfile')}
-            </NavButton>
-            <NavButton onClick={openBoardForm}>{t('header.createBoard')}</NavButton>
-            <NavButton onClick={handleSignOut}>{t('header.signOut')}</NavButton>
-            <LangDropdown />
-          </Nav>
-        </StyledWrapper>
+        <StyledHeaderWrapper>
+          <StyledHeaderTitle sticky={isSticky}>taskify</StyledHeaderTitle>
+          <StyledToggler />
+          <StyledHiddenInput />
+          <section>
+            <StyledNav sticky={isSticky}>
+              <StyledNavButton onClick={moveToMainPage}>{t('header.home')}</StyledNavButton>
+              <StyledNavButton onClick={openBoardForm}>{t('header.createBoard')}</StyledNavButton>
+              <StyledNavButton onClick={handleSignOut}>{t('header.signOut')}</StyledNavButton>
+            </StyledNav>
+            <StyledAside>
+              <LangDropdown />
+              <StyledProfileButton onClick={moveToProfilePage}>
+                <StyledUserImage />
+                <p>{user ? user.login : ''}</p>
+              </StyledProfileButton>
+            </StyledAside>
+          </section>
+        </StyledHeaderWrapper>
       </StyledHeader>
       {isBoardFormOpen ? (
         <Modal onClose={closeBoardFormModal}>
