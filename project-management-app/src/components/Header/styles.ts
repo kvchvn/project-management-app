@@ -8,6 +8,10 @@ export interface StickyDepended {
   theme: Theme;
 }
 
+export interface UserImage {
+  src: string;
+}
+
 export const StyledHeader = styled.header`
   position: sticky;
   top: 0;
@@ -168,7 +172,6 @@ export const StyledHiddenInput = styled.input.attrs({
 })`
   display: none;
 
-  @media ${device.TABLET} {
     &:checked ~ section {
       padding: 20px 0;
       display: flex;
@@ -183,4 +186,3 @@ export const StyledHiddenInput = styled.input.attrs({
       z-index: 1000;
     }
   }
-`;
