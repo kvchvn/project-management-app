@@ -7,8 +7,6 @@ import BoardCard from '../../components/BoardCard';
 import { routerPaths } from '../../constants/common';
 import useAllBoards from '../../hooks/use-all-boards';
 import Loading from '../../components/Loading';
-import { StyledWrapper } from '../../layouts/containers';
-import { useUserSelector } from '../../store/selectors';
 import { StyledList } from './styles';
 
 function Main() {
@@ -29,14 +27,12 @@ function Main() {
 
   return (
     <main>
-      <StyledWrapper>
-        <h2>{t('mainPage.title')}</h2>
-        <StyledList>
-          {boards && boards.length
-            ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
-            : t('mainPage.noBoards')}
-        </StyledList>
-      </StyledWrapper>
+      <h2>{t('mainPage.title')}</h2>
+      <StyledList>
+        {boards && boards.length
+          ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
+          : t('mainPage.noBoards')}
+      </StyledList>
     </main>
   );
 }
