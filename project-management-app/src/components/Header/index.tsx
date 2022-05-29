@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
@@ -26,13 +26,22 @@ function Header() {
   const { user } = useSelector((state: TStore) => state.userReducer);
   const signOut = useSignOut();
   const navigate = useNavigate();
+  const menuToggler = useRef<HTMLInputElement>(null);
+
+  const closeMenu = () => {
+    if (menuToggler.current) {
+      menuToggler.current.checked = false;
+    }
+  };
 
   const moveToMainPage = () => {
     navigate(routerPaths.main);
+    closeMenu();
   };
 
   const moveToProfilePage = () => {
     navigate(`/${routerPaths.profile}`);
+    closeMenu();
   };
 
   const handleSignOut = () => {
@@ -41,6 +50,7 @@ function Header() {
 
   const openBoardForm = () => {
     setIsBoardFormOpen(true);
+    closeMenu();
   };
 
   const closeBoardFormModal = useCallback(() => {
@@ -67,17 +77,23 @@ function Header() {
       <StyledHeader sticky={isSticky}>
         <StyledHeaderWrapper>
           <StyledHeaderTitle sticky={isSticky}>taskify</StyledHeaderTitle>
-          <StyledToggler />
-          <StyledHiddenInput />
+          <StyledToggler sticky={isSticky} />
+          <StyledHiddenInput ref={menuToggler} />
           <section>
             <StyledNav sticky={isSticky}>
-              <StyledNavButton onClick={moveToMainPage}>Home</StyledNavButton>
-              <StyledNavButton onClick={openBoardForm}>Create board</StyledNavButton>
-              <StyledNavButton onClick={handleSignOut}>Sign out</StyledNavButton>
+              <StyledNavButton sticky={isSticky} onClick={moveToMainPage}>
+                Home
+              </StyledNavButton>
+              <StyledNavButton sticky={isSticky} onClick={openBoardForm}>
+                Create board
+              </StyledNavButton>
+              <StyledNavButton sticky={isSticky} onClick={handleSignOut}>
+                Sign out
+              </StyledNavButton>
             </StyledNav>
             <StyledAside>
-              <LangDropdown />
-              <StyledProfileButton onClick={moveToProfilePage}>
+              <LangDropdown sticky={isSticky} />
+              <StyledProfileButton sticky={isSticky} onClick={moveToProfilePage}>
                 <StyledUserImage />
                 <p>{user ? user.login : 'Profile'}</p>
               </StyledProfileButton>
