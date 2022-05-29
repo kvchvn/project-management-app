@@ -18,7 +18,7 @@ const taskSlice = createSlice({
       state,
       { payload }: PayloadAction<{ columnId: string; tasks: TaskDetailed[] }>
     ) => {
-      state.tasksByColumns[payload.columnId] = payload.tasks.sort((a, b) => a.order - b.order);
+      state.tasksByColumns[payload.columnId] = [...payload.tasks].sort((a, b) => a.order - b.order);
     },
 
     onMoveTask: (
