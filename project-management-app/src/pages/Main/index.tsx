@@ -3,6 +3,7 @@ import BoardCard from '../../components/BoardCard';
 import useAllBoards from '../../hooks/use-all-boards';
 import Loading from '../../components/Loading';
 import { StyledList } from './styles';
+import StyledPageTitle from '../../styles/components/StyledPageTitle';
 
 function Main() {
   const { isLoading, isError, data: boards, error } = useAllBoards();
@@ -17,7 +18,7 @@ function Main() {
 
   return (
     <main>
-      <h2>My boards</h2>
+      <StyledPageTitle>Boards</StyledPageTitle>
       <StyledList>
         {boards && boards.length
           ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)

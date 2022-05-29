@@ -16,7 +16,7 @@ function BoardCard({ id, title }: BoardCardProps) {
 
   return (
     <StyledListItem>
-      <button onClick={deleteBoard}>x</button>
+      <button onClick={deleteBoard} />
       <Link to={`${routerPaths.board}${id}/${title}`}>
         <h4>{title}</h4>
       </Link>
