@@ -14,17 +14,18 @@ export const StyledFooterWrapper = styled(StyledWrapper)`
   padding: 10px 0;
   font-size: 14px;
 
-  @media (max-width: 600px) {
+  @media (max-width: 450px) {
     justify-content: center;
     gap: 30px;
   }
 
   & a {
     padding-left: 10px;
+    color: inherit;
   }
 
   & a:hover {
-    filter: invert(30%) sepia(100%) saturate(290%) hue-rotate(130deg) brightness(80%) contrast(60%);
+    color: black;
   }
 
   & img {
