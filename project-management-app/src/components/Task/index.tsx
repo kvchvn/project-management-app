@@ -51,21 +51,19 @@ function Task() {
 
   if (taskData && task.isOpen) {
     return (
-      <div>
-        <StyledForm onSubmit={handleSubmit} onReset={handleRemoveTask}>
-          <StyledInput id="title" name="title" value={values.title} onChange={handleChange} />
-          <StyledTextarea
-            id="description"
-            name="description"
-            value={values.description}
-            onChange={handleChange}
-          />
-          <StyledButtonsContainer>
-            <StyledButton type="reset">Delete</StyledButton>
-            <StyledButtonSubmit type="submit">Update</StyledButtonSubmit>
-          </StyledButtonsContainer>
-        </StyledForm>
-      </div>
+      <StyledForm onSubmit={handleSubmit} onReset={handleRemoveTask}>
+        <StyledInput id="title" name="title" value={values.title} onChange={handleChange} />
+        <StyledTextarea
+          id="description"
+          name="description"
+          value={values.description}
+          onChange={handleChange}
+        />
+        <StyledButtonsContainer>
+          <StyledButton type="reset">Delete</StyledButton>
+          <StyledButtonSubmit type="submit">Update</StyledButtonSubmit>
+        </StyledButtonsContainer>
+      </StyledForm>
     );
   }
   return null;
