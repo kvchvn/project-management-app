@@ -1,7 +1,6 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
@@ -31,13 +30,22 @@ function Header() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const navigate = useNavigate();
+  const menuToggler = useRef<HTMLInputElement>(null);
+
+  const closeMenu = () => {
+    if (menuToggler.current) {
+      menuToggler.current.checked = false;
+    }
+  };
 
   const moveToMainPage = () => {
     navigate(routerPaths.main);
+    closeMenu();
   };
 
   const moveToProfilePage = () => {
     navigate(`/${routerPaths.profile}`);
+    closeMenu();
   };
 
   const handleSignOut = () => {
@@ -47,6 +55,7 @@ function Header() {
 
   const openBoardForm = () => {
     setIsBoardFormOpen(true);
+    closeMenu();
   };
 
   const closeBoardFormModal = useCallback(() => {
@@ -73,8 +82,8 @@ function Header() {
       <StyledHeader sticky={isSticky}>
         <StyledHeaderWrapper>
           <StyledHeaderTitle sticky={isSticky}>taskify</StyledHeaderTitle>
-          <StyledToggler />
-          <StyledHiddenInput />
+          <StyledToggler sticky={isSticky} />
+          <StyledHiddenInput ref={menuToggler} />
           <section>
             <StyledNav sticky={isSticky}>
               <StyledNavButton onClick={moveToMainPage}>{t('header.home')}</StyledNavButton>
@@ -82,8 +91,8 @@ function Header() {
               <StyledNavButton onClick={handleSignOut}>{t('header.signOut')}</StyledNavButton>
             </StyledNav>
             <StyledAside>
-              <LangDropdown />
-              <StyledProfileButton onClick={moveToProfilePage}>
+              <LangDropdown sticky={isSticky} />
+              <StyledProfileButton sticky={isSticky} onClick={moveToProfilePage}>
                 <StyledUserImage />
                 <p>{user ? user.login : ''}</p>
               </StyledProfileButton>

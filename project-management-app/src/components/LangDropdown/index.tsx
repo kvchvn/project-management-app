@@ -3,10 +3,15 @@ import { useTranslation } from 'react-i18next';
 import Select, { MultiValue, SingleValue } from 'react-select';
 import { AVAILABLE_LANGUAGES } from '../../constants/common';
 import { LanguageOption } from '../../interfaces/common';
-import { customStyles } from './styles';
+import getCustomStyles from './styles';
 
-function LangDropdown() {
+interface LangDropdownProps {
+  sticky: boolean;
+}
+
+function LangDropdown({ sticky }: LangDropdownProps) {
   const options = AVAILABLE_LANGUAGES;
+  const styles = getCustomStyles(sticky);
   const { i18n } = useTranslation();
 
   const handleChange = (option: MultiValue<LanguageOption> | SingleValue<LanguageOption>) =>
@@ -17,7 +22,7 @@ function LangDropdown() {
       options={options}
       isSearchable={false}
       defaultValue={options.find((lang) => lang.value === i18n.language)}
-      styles={customStyles}
+      styles={styles}
       onChange={handleChange}
     />
   );
