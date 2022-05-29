@@ -183,3 +183,4 @@ export const StyledHiddenInput = styled.input.attrs({
       z-index: 1000;
     }
   }
+`;
