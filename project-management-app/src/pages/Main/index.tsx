@@ -2,7 +2,6 @@ import React from 'react';
 import BoardCard from '../../components/BoardCard';
 import useAllBoards from '../../hooks/use-all-boards';
 import Loading from '../../components/Loading';
-import { StyledWrapper } from '../../layouts/containers';
 import { StyledList } from './styles';
 
 function Main() {
@@ -18,14 +17,12 @@ function Main() {
 
   return (
     <main>
-      <StyledWrapper>
-        <h2>My boards</h2>
-        <StyledList>
-          {boards && boards.length
-            ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
-            : 'You haven`t got any board'}
-        </StyledList>
-      </StyledWrapper>
+      <h2>My boards</h2>
+      <StyledList>
+        {boards && boards.length
+          ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
+          : 'You haven`t got any board'}
+      </StyledList>
     </main>
   );
 }

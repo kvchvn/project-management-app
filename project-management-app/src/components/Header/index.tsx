@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
-import { StyledWrapper } from '../../layouts/containers';
+import StyledWrapper from '../../styles/components/StyledWrapper';
 import BoardForm from '../BoardForm';
 import LangDropdown from '../LangDropdown';
 import Modal from '../Modal';
