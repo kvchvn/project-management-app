@@ -166,7 +166,7 @@ function ProfileForm() {
             <span>{errors.repeatedPassword}</span>
           ) : null}
         </StyledInputContainer>
-        <p>{t('profilePage.fields.confirmPassword')}</p>
+        <h4>{t('profilePage.fields.confirmPassword')}</h4>
         <StyledInputContainer>
           <input
             id="confirmationPassword"
