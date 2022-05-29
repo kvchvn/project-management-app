@@ -1,31 +1,32 @@
 import React from 'react';
-import { StyledFooterWrapper, StyledGit } from './styles';
+import { StyledFooter, StyledFooterWrapper, StyledGit } from './styles';
 
 function Footer() {
   return (
-    <StyledFooterWrapper>
-      <div>
-        <a target="_blank" href="https://rs.school/" rel="noreferrer">
-          <img src="./rs_school_js.svg" alt="rs-school"></img>
-          The Roling Scope School
-        </a>
-      </div>
-      <StyledGit>
-        <img src="./git.svg" alt="git"></img>
+    <StyledFooter>
+      <StyledFooterWrapper>
         <div>
-          <a target="_blank" href="https://github.com/kvchvn" rel="noreferrer">
-            Anton Kachan
-          </a>
-          <a target="_blank" href="https://github.com/evitla" rel="noreferrer">
-            Dinmukhamed Sailaubek
-          </a>
-          <a target="_blank" href="https://github.com/DilbarAkkaya" rel="noreferrer">
-            Dilbar Akkaya
+          <a target="_blank" href="https://rs.school/" rel="noreferrer">
+            <img src="./rs_school_js.svg" alt="rs-school"></img>
           </a>
         </div>
-      </StyledGit>
-      <div>@2022</div>
-    </StyledFooterWrapper>
+        <h4>2022</h4>
+        <StyledGit>
+          <img src="./git.svg" alt="git"></img>
+          <div>
+            <a target="_blank" href="https://github.com/kvchvn" rel="noreferrer">
+              Anton Kachan
+            </a>
+            <a target="_blank" href="https://github.com/evitla" rel="noreferrer">
+              Dinmukhamed Sailaubek
+            </a>
+            <a target="_blank" href="https://github.com/DilbarAkkaya" rel="noreferrer">
+              Dilbar Akkaya
+            </a>
+          </div>
+        </StyledGit>
+      </StyledFooterWrapper>
+    </StyledFooter>
   );
 }
 
