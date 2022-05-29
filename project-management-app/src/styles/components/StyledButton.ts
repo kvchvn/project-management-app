@@ -11,6 +11,8 @@ const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.butt
   background: ${({ theme, variant }) => theme.colors.button[variant].bg};
   color: ${({ theme, variant }) => theme.colors.button[variant].font};
   font-size: 16px;
+  font-size: inherit;
+  letter-spacing: 1px;
   cursor: pointer;
   &:hover {
     background: ${({ theme, variant }) => theme.colors.button[variant].hover};

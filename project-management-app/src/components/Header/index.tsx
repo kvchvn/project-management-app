@@ -21,6 +21,7 @@ import {
   StyledToggler,
   StyledHiddenInput,
 } from './styles';
+import { onSignOut } from '../../store/slices/user';
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false);

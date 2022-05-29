@@ -2,8 +2,9 @@ import React from 'react';
 import { useFormik } from 'formik';
 import useCreatingBoard from '../../hooks/use-creating-board';
 import getValidationSchema from './validationSchema';
-import { StyledInput, StyledForm, StyledButtonCreate } from './styles';
+import { StyledInput, StyledForm } from './styles';
 import StyledButton from '../../styles/components/StyledButton';
+import { useTranslation } from 'react-i18next';
 
 interface BoardFormProps {
   closeModal: () => void;

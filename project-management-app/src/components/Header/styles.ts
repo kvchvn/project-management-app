@@ -133,6 +133,10 @@ export const StyledProfileButton = styled(StyledNavButton)`
   @media ${device.TABLET} {
     margin-left: 15px;
     justify-content: flex-start;
+
+    & > p {
+      color: ${({ theme }) => theme.colors.font};
+    }
   }
 `;
 

@@ -51,7 +51,6 @@ export const StyledGit = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border: 1px solid white;
 
   & > img {
     &:hover {
