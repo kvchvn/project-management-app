@@ -7,6 +7,7 @@ import BoardCard from '../../components/BoardCard';
 import { routerPaths } from '../../constants/common';
 import useAllBoards from '../../hooks/use-all-boards';
 import Loading from '../../components/Loading';
+import { useUserSelector } from '../../store/selectors';
 import { StyledList } from './styles';
 import StyledPageTitle from '../../styles/components/StyledPageTitle';
 
@@ -28,11 +29,7 @@ function Main() {
 
   return (
     <main>
-<<<<<<< HEAD
-      <h2>{t('mainPage.title')}</h2>
-=======
       <StyledPageTitle>{t('mainPage.title')}</StyledPageTitle>
->>>>>>> 7ad7425 (feat: add styles for Main page)
       <StyledList>
         {boards && boards.length
           ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
