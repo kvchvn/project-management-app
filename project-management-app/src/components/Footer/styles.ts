@@ -39,7 +39,7 @@ export const StyledFooterWrapper = styled(StyledWrapper)`
   & > h4 {
     font-size: 2em;
     letter-spacing: 1px;
-    font-family: 'RubikMonoOne';
+    font-family: ${({ theme }) => theme.fontFamily.title};
 
     @media ${device.LAPTOP} {
       font-size: 1.4em;
