@@ -1,6 +1,6 @@
 import styled, { keyframes } from 'styled-components';
 
-const comingFromLeft = keyframes`
+const scaleIncreasing = keyframes`
   from {
     opacity: 0;
     transform: scale(0.6);
@@ -18,7 +18,7 @@ export const StyledModalContainer = styled.div`
   padding: 30px;
   background-color: ${({ theme }) => theme.colors.bg.primary};
   overflow: hidden;
-  animation: ${comingFromLeft} 0.25s ease-out;
+  animation: ${scaleIncreasing} 0.3s ease-out;
 `;
 
 export const StyledButtonClose = styled.button`
