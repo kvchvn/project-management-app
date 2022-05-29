@@ -17,19 +17,12 @@ function Layout() {
 
   return (
     <>
-<<<<<<< HEAD
       {showHeader && <Header />}
       <StyledMain>
         <StyledWrapper>
           <Outlet />
         </StyledWrapper>
       </StyledMain>
-=======
-      {location.pathname !== '/' + routerPaths.welcome ? <Header /> : null}
-      <StyledWrapper>
-        <Outlet />
-      </StyledWrapper>
->>>>>>> 29e3438 (feat: create StyledWrapper and wrap with it Outlet)
       <Footer />
     </>
   );
