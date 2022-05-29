@@ -2,14 +2,15 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import { routerPaths } from './constants/common';
-import Authorization from './pages/Authorization';
-import Board from './pages/Board';
-import Main from './pages/Main';
-import NotFound from './pages/NotFound';
-import Profile from './pages/Profile';
-import Welcome from './pages/Welcome';
 import ToastyContainer from './components/ToastyContainer/ToastyContainer';
 import 'react-toastify/dist/ReactToastify.css';
+
+const Main = React.lazy(() => import('./pages/Main'));
+const Welcome = React.lazy(() => import('./pages/Welcome'));
+const Authorization = React.lazy(() => import('./pages/Authorization'));
+const Board = React.lazy(() => import('./pages/Board'));
+const Profile = React.lazy(() => import('./pages/Profile'));
+const NotFound = React.lazy(() => import('./pages/NotFound'));
 
 function App() {
   return (

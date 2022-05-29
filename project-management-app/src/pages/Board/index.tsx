@@ -6,6 +6,7 @@ import { useColumnsQuery } from '../../hooks';
 
 import ColumnsContainer from '../../components/ColumnsContainer';
 import { Column } from '../../interfaces/column';
+import Loading from '../../components/Loading';
 
 function Board() {
   const [columns, setColumns] = useState<Column[]>([]);
@@ -22,11 +23,7 @@ function Board() {
   return (
     <DndProvider backend={HTML5Backend}>
       <h2>Board page</h2>
-      {columnsQueryResult.isLoading ? (
-        <span>Loading...</span>
-      ) : (
-        columns && <ColumnsContainer items={columns} />
-      )}
+      {columnsQueryResult.isLoading ? <Loading /> : columns && <ColumnsContainer items={columns} />}
     </DndProvider>
   );
 }

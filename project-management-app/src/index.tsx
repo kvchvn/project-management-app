@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider as StoreProvider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -11,6 +11,7 @@ import App from './App';
 import GlobalStyles from './styles/global';
 import { baseTheme } from './styles/theme';
 import './styles/index.scss';
+import Loading from './components/Loading';
 
 const queryClient = new QueryClient();
 
@@ -22,7 +23,9 @@ root.render(
         <BrowserRouter>
           <ThemeProvider theme={baseTheme}>
             <ErrorBoundary>
-              <App />
+              <Suspense fallback={<Loading />}>
+                <App />
+              </Suspense>
             </ErrorBoundary>
             <GlobalStyles />
           </ThemeProvider>

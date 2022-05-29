@@ -1,6 +1,7 @@
 import React from 'react';
 import BoardCard from '../../components/BoardCard';
 import useAllBoards from '../../hooks/use-all-boards';
+import Loading from '../../components/Loading';
 import { StyledWrapper } from '../../layouts/containers';
 import { StyledList } from './styles';
 
@@ -8,7 +9,7 @@ function Main() {
   const { isLoading, isError, data: boards, error } = useAllBoards();
 
   if (isLoading) {
-    return <h3>Loading...</h3>;
+    return <Loading />;
   }
 
   if (isError) {
