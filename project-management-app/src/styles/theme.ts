@@ -3,12 +3,15 @@ import { Theme } from '../interfaces/common';
 export const baseTheme: Theme = {
   fontFamily: {
     primary: 'GoogleSans',
+    title: 'RubikMonoOne',
   },
 
   colors: {
     bg: {
       primary: '#fffffe',
       secondary: '#b4e197',
+      tertiary: '#4e944f',
+      quaternary: '#323232',
     },
 
     border: {
@@ -17,6 +20,7 @@ export const baseTheme: Theme = {
     },
 
     font: '#323232',
+    fontHover: '#fffffe',
 
     button: {
       primary: {

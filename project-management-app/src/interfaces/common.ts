@@ -1,12 +1,15 @@
 export interface Theme {
   fontFamily: {
     primary: string;
+    title: string;
   };
 
   colors: {
     bg: {
       primary: string;
       secondary: string;
+      tertiary: string;
+      quaternary: string;
     };
 
     border: {
@@ -15,6 +18,7 @@ export interface Theme {
     };
 
     font: string;
+    fontHover: string;
 
     button: {
       primary: {
