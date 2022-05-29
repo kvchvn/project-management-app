@@ -20,7 +20,7 @@ function BoardCard({ id, title }: BoardCardProps) {
   return (
     <StyledListItem>
       <button onClick={handleDeleteColumn}>x</button>
-      <Link to={`${routerPaths.board}${id}/${title}`}>
+      <Link to={`${routerPaths.board}/${id}/${title}`}>
         <h4>{title}</h4>
       </Link>
       {isGoingToRemove && (

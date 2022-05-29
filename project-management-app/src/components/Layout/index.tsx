@@ -1,16 +1,18 @@
 import React from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { matchPath, Outlet, useLocation } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import Footer from '../Footer';
 import Header from '../Header';
 
 function Layout() {
-  const location = useLocation();
-  const locationsWithoutHeader = [`/${routerPaths.welcome}`, `/${routerPaths.auth}`];
+  const { pathname } = useLocation();
+  const routesWithHeader = [routerPaths.main, routerPaths.boardById, routerPaths.profile];
+
+  const showHeader = routesWithHeader.some((route) => matchPath({ path: `/${route}` }, pathname));
 
   return (
     <>
-      {locationsWithoutHeader.includes(location.pathname) ? null : <Header />}
+      {showHeader && <Header />}
       <Outlet />
       <Footer />
     </>

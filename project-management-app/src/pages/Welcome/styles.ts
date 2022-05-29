@@ -18,7 +18,7 @@ export const StyledAbout = styled.div`
 `;
 export const StyledWrapper = styled.div`
   max-width: 100%;
-  min-height: calc(100vh - 117px);
+  min-height: calc(100vh - 120px);
   background: ${({ theme }) => theme.colors.bg.primary};
   display: flex;
   flex-direction: row;
