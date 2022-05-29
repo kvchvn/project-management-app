@@ -3,6 +3,7 @@ import { Theme } from '../interfaces/common';
 export const baseTheme: Theme = {
   fontFamily: {
     primary: 'GoogleSans',
+    title: 'RubikMonoOne',
   },
 
   colors: {
@@ -10,6 +11,7 @@ export const baseTheme: Theme = {
       primary: '#fffffe',
       secondary: '#b4e197',
       tertiary: '#ffde36',
+      quaternary: '#323232',
     },
 
     border: {
@@ -19,6 +21,7 @@ export const baseTheme: Theme = {
     },
 
     font: '#323232',
+    fontHover: '#fffffe',
 
     button: {
       primary: {
