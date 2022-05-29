@@ -5,7 +5,11 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
+<<<<<<< HEAD
 import { TStore } from '../../store';
+=======
+import StyledWrapper from '../../styles/components/StyledWrapper';
+>>>>>>> 29e3438 (feat: create StyledWrapper and wrap with it Outlet)
 import BoardForm from '../BoardForm';
 import LangDropdown from '../LangDropdown';
 import Modal from '../Modal';
