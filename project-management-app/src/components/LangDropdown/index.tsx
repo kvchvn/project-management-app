@@ -3,10 +3,6 @@ import { useTranslation } from 'react-i18next';
 import Select, { MultiValue, SingleValue } from 'react-select';
 import { AVAILABLE_LANGUAGES } from '../../constants/common';
 import { LanguageOption } from '../../interfaces/common';
-<<<<<<< HEAD
-=======
-import { setLanguage, useLangSelector } from '../../store/slices/lang';
->>>>>>> bc3234e (feat: add styles for sticky mode of header)
 import getCustomStyles from './styles';
 
 interface LangDropdownProps {
