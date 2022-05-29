@@ -16,6 +16,7 @@ import useUpdateColumn from './use-update-column';
 import useUpdateTask from './use-update-task';
 import useUsersQuery from './use-users-query';
 import useRemovingBoard from './use-removing-board';
+import useRemoveTask from './use-remove-task';
 
 export {
   useAuthorization,
@@ -36,4 +37,5 @@ export {
   useUpdateTask,
   useUsersQuery,
   useRemovingBoard,
+  useRemoveTask,
 };
