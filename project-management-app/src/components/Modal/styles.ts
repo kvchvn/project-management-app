@@ -15,18 +15,26 @@ export const StyledModalContainer = styled.div`
   position: relative;
   padding: 30px;
   background-color: #ffffff;
+  border-radius: 10px;
   overflow: hidden;
   animation: ${comingFromLeft} 0.5s ease-out;
+  font-size: 18px;
+
+  &:hover > button {
+    transform: none;
+  }
 `;
 
 export const StyledButtonClose = styled.button`
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 50px;
-  height: 50px;
-  background-color: lightgray;
-  transition: background-color 0.25s;
+  top: 5px;
+  right: 5px;
+  width: 30px;
+  height: 30px;
+  background-color: black;
+  border-radius: 50%;
+  transform: translateY(-200px);
+  transition: all 0.25s;
 
   &:hover {
     background-color: gray;

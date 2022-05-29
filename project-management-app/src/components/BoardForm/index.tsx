@@ -2,7 +2,8 @@ import React from 'react';
 import { useFormik } from 'formik';
 import useCreatingBoard from '../../hooks/use-creating-board';
 import validationSchema from './validationSchema';
-import { StyledInput, StyledForm, StyledButtonCreate } from './styles';
+import StyledButton from '../../styles/components/StyledButton';
+import { StyledInput, StyledForm } from './styles';
 
 interface BoardFormProps {
   closeModal: () => void;
@@ -26,14 +27,18 @@ const BoardForm = ({ closeModal }: BoardFormProps) => {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <p>Enter the name of the new board</p>
-      <StyledInput
-        id="boardName"
-        name="boardName"
-        value={values.boardName}
-        onChange={handleChange}
-      />
-      {touched.boardName && errors.boardName ? <span>{errors.boardName}</span> : null}
-      <StyledButtonCreate type="submit">Create</StyledButtonCreate>
+      <section>
+        <StyledInput
+          id="boardName"
+          name="boardName"
+          value={values.boardName}
+          onChange={handleChange}
+        />
+        {touched.boardName && errors.boardName ? <span>{errors.boardName}</span> : null}
+      </section>
+      <StyledButton variant="primary" type="submit">
+        Create
+      </StyledButton>
     </StyledForm>
   );
 };
