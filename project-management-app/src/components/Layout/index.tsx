@@ -9,13 +9,13 @@ function Layout() {
   const location = useLocation();
 
   return (
-    <>
+    <div id="page">
       {location.pathname !== '/' + routerPaths.welcome ? <Header /> : null}
       <StyledWrapper>
         <Outlet />
       </StyledWrapper>
       <Footer />
-    </>
+    </div>
   );
 }
 
