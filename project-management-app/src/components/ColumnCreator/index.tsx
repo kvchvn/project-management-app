@@ -1,12 +1,18 @@
 import { useRef, useState } from 'react';
-import { useCreateColumn } from '../../hooks';
+import { useClickOutside, useCreateColumn } from '../../hooks';
 import { setOrder } from '../../utils/common';
 import Modal from '../Modal';
+import { CloseIcon, ConfirmIcon } from '../../assets/icons';
+
+import { StyledColumnCreateButton, StyledColumnCreator, StyledContainer } from './styles';
+import StyledIconButton from '../../styles/components/StyledIconButton';
 
 function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
+
+  useClickOutside(modalRef, () => setIsOpenModal(false));
 
   const { mutateAsync: create } = useCreateColumn();
 
@@ -24,21 +30,31 @@ function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
   };
 
   return (
-    <div ref={modalRef}>
+    <StyledContainer ref={modalRef}>
       {isOpenModal ? (
         modalRef.current && (
           <Modal parent={modalRef.current}>
-            <input placeholder="Enter list title..." onChange={handleNewColumnTitleChange} />
-            <button onClick={handleColumnCreate}>Add list</button>
-            <button onClick={handleIsOpenModal}>X</button>
+            <StyledColumnCreator>
+              <input placeholder="Enter list title..." onChange={handleNewColumnTitleChange} />
+              <StyledIconButton
+                variant="primary"
+                onClick={handleColumnCreate}
+                disabled={!newColumnTitle}
+              >
+                <ConfirmIcon />
+              </StyledIconButton>
+              <StyledIconButton variant="warning" onClick={handleIsOpenModal}>
+                <CloseIcon />
+              </StyledIconButton>
+            </StyledColumnCreator>
           </Modal>
         )
       ) : (
-        <button onClick={handleIsOpenModal}>
+        <StyledColumnCreateButton variant="primary" onClick={handleIsOpenModal}>
           {lastColumnOrder ? 'Add another list' : 'Add a list'}
-        </button>
+        </StyledColumnCreateButton>
       )}
-    </div>
+    </StyledContainer>
   );
 }
 

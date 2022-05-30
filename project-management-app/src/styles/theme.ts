@@ -33,9 +33,9 @@ export const baseTheme: Theme = {
       },
 
       warning: {
-        bg: '#ffd36e',
+        bg: '#ae2012',
         font: '#fffffe',
-        hover: '#ffd36eb3',
+        hover: '#ae2012b3',
       },
     },
   },

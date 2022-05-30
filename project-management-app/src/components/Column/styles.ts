@@ -12,7 +12,7 @@ export const StyledColumn = styled.div<{ isDragging: boolean }>`
   border: 1px solid black;
   opacity: ${({ isDragging }) => (isDragging ? 0 : 1)};
   background-color: rgba(0, 0, 0, 0.2);
-  max-height: 100%;
+  max-height: calc(100% - 50px);
 `;
 
 export const StyledColumnHeader = styled.div`
