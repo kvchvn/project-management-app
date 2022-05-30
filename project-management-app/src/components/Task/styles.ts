@@ -1,20 +1,19 @@
 import styled from 'styled-components';
 
 export const StyledForm = styled.form`
-  border: 1px solid red;
-  padding: 20px;
+  /* padding: 20px; */
   display: flex;
   flex-direction: column;
   gap: 20px;
   align-items: center;
-  width: 90vw;
+  width: 80vw;
   max-width: 400px;
-  height: 40vh;
+  height: 30vh;
   max-height: 300px;
 `;
 
 export const StyledInput = styled.input`
-  padding: 10px;
+  /* padding: 10px; */
   width: 140px;
   height: 40px;
   border: none;
@@ -23,7 +22,7 @@ export const StyledInput = styled.input`
   transition: background-color 0.25s;
 
   &:hover {
-    background-color: lightgray;
+    background-color: ${({ theme }) => theme.colors.bg.secondary + 'b3'};
   }
 `;
 
@@ -39,24 +38,11 @@ export const StyledTextarea = styled.textarea`
   transition: background-color 0.25s;
 
   &:hover {
-    background-color: lightgray;
+    background-color: ${({ theme }) => theme.colors.bg.secondary + 'b3'};
   }
 `;
 
 export const StyledButtonsContainer = styled.div`
   display: flex;
   gap: 20px;
-`;
-
-export const StyledButton = styled.button`
-  width: 100px;
-  height: 40px;
-  border-radius: 5px;
-  border: 2px solid gray;
-`;
-
-export const StyledButtonSubmit = styled(StyledButton).attrs({
-  type: 'submit',
-})`
-  background-color: gray;
 `;
