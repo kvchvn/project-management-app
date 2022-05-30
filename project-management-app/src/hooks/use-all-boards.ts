@@ -8,13 +8,17 @@ const useAllBoards = () => {
   const user = useUserSelector();
   const token = user?.token;
 
-  return useQuery([QUERY_KEYS.allBoards, token], async () => {
-    const boards = getAllBoards(token);
-    return boards;
-  },  {
-    enabled: !!token,
-    onError: (error: AxiosError) => error,
-  });
-}
+  return useQuery(
+    [QUERY_KEYS.allBoards, token],
+    async () => {
+      const boards = getAllBoards(token);
+      return boards;
+    },
+    {
+      enabled: !!token,
+      onError: (error: AxiosError) => error,
+    }
+  );
+};
 
 export default useAllBoards;
