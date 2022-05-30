@@ -12,6 +12,7 @@ export const StyledAbout = styled.div`
   margin: 0 auto;
   padding: 20px 10px;
   width: 20rem;
+  margin-top: 5em;
   @media ${device.MOBILE} {
     font-size: 12px;
   }
@@ -24,7 +25,7 @@ export const StyledWrapper = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   position: relative;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   @media ${device.MOBILE} {
     padding: 5px 0;
