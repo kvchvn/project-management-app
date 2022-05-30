@@ -13,6 +13,8 @@ import {
 import { Column as IColumn } from '../../interfaces/column';
 
 import { StyledColumn, StyledColumnHeader, StyledColumnWrapper } from './styles';
+import StyledIconButton from '../../styles/components/StyledIconButton';
+import { CloseIcon } from '../../assets/icons';
 
 function Column({ id, title, order }: IColumn) {
   const [isEditingTitle, setIsEditingTitle] = useState(false);
@@ -33,7 +35,6 @@ function Column({ id, title, order }: IColumn) {
     <StyledColumnWrapper ref={(node) => drop(taskDrop(node))}>
       <StyledColumn ref={(node) => dragPreview(node)} isDragging={isDragging}>
         <StyledColumnHeader ref={(node) => !isEditingTitle && drag(node)}>
-          <button onClick={handleDeleteColumn}>x</button>
           <ColumnTitle
             id={id}
             title={title}
@@ -41,6 +42,9 @@ function Column({ id, title, order }: IColumn) {
             isEditingTitle={isEditingTitle}
             setIsEditingTitle={setIsEditingTitle}
           />
+          <StyledIconButton variant="primary" onClick={handleDeleteColumn}>
+            <CloseIcon />
+          </StyledIconButton>
         </StyledColumnHeader>
         <TasksContainer columnId={id} />
         <TaskCreator columnId={id} />

@@ -4,7 +4,8 @@ export const StyledTitle = styled.div<{ isEditing: boolean }>`
   display: flex;
   column-gap: 4px;
   align-items: center;
-  height: 50px;
+  height: 40px;
+  padding-right: 6px;
 
   button {
     display: ${({ isEditing }) => (isEditing ? 'initial' : 'none')};
@@ -15,6 +16,7 @@ export const StyledTextArea = styled.div<{ isEditing: boolean }>`
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 
   div {
     display: ${({ isEditing }) => (isEditing ? 'none' : 'initial')};

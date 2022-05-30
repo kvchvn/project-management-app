@@ -4,6 +4,7 @@ import { useCreateTask } from '../../hooks';
 import { TStore } from '../../store';
 import { setOrder } from '../../utils/common';
 import Modal from '../Modal';
+import { StyledCreateTaskButton } from './styles';
 
 function TaskCreator({ columnId }: { columnId: string }) {
   const { tasksByColumns } = useSelector((store: TStore) => store.taskReducer);
@@ -51,7 +52,9 @@ function TaskCreator({ columnId }: { columnId: string }) {
           </Modal>
         )
       ) : (
-        <button onClick={handleIsOpenModal}>Add a task</button>
+        <StyledCreateTaskButton variant="primary" onClick={handleIsOpenModal}>
+          Add a task
+        </StyledCreateTaskButton>
       )}
     </div>
   );

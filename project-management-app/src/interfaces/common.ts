@@ -7,6 +7,7 @@ export interface Theme {
     bg: {
       primary: string;
       secondary: string;
+      tertiary: string;
     };
 
     border: {
