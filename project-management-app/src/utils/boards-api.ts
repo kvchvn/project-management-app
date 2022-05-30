@@ -31,6 +31,3 @@ export const deleteBoard = async (boardId: string, token?: string) => {
   const config = { headers: { Authorization: `Bearer ${token}` } };
   await axios.delete(`${URLS.boards}/${boardId}`, config);
 };
-
-/* export const updateBoard = async (id: string, title: string) =>
-  await authAxios.put(`${URLS.boards}/${id}`, { title }); */
