@@ -29,6 +29,7 @@
     "password": "Password"
   },
   "header": {
+    "home": "Boards",
     "editProfile": "Edit profile",
     "createBoard": "Create board",
     "signOut": "Sign Out"

@@ -29,6 +29,7 @@
     "password": "Пароль"
   },
   "header": {
+    "home": "Доски",
     "editProfile": "Профиль",
     "createBoard": "Создать доску",
     "signOut": "Выйти"

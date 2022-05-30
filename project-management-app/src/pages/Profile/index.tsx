@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
 import { routerPaths } from '../../constants/common';
 import { useUserSelector } from '../../store/selectors';
+import StyledPageTitle from '../../styles/components/StyledPageTitle';
 
 function Profile() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ function Profile() {
 
   return (
     <>
-      <h2>{t('profilePage.title')}</h2>
+      <StyledPageTitle>{t('profilePage.title')}</StyledPageTitle>
       <ProfileForm />
     </>
   );
