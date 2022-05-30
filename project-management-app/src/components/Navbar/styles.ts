@@ -6,6 +6,9 @@ export const StyledNavbar = styled.nav`
   justify-content: flex-end;
   padding: 5px 2rem;
   background: ${({ theme }) => theme.colors.bg.secondary};
+  & a {
+    display: flex;
+  }
   @media ${device.MOBILE} {
     padding: 5px 3px;
     margin-right: 0;

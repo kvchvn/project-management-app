@@ -28,10 +28,9 @@ function Welcome() {
         <StyledAbout>
           <h2>О курсе</h2>
           <StyledDescription>
-            Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes.
-            Курс для студентов, которые имеют знания и практический опыт использования следующих
-            технологий и инструментов: JavaScript, TypeScript Git, GitHub, NPM, Webpack, CSS3 /
-            HTML5, Chrome DevTools, Figma, Понимание концепции REST API
+            Бесплатный онлайн курс «Разработка на React» от сообщества The Rolling Scopes. Курс для
+            студентов, которые имеют знания и практический опыт использования следующих технологий и
+            инструментов: JavaScript, TypeScript, Git, NPM, Webpack, CSS3 / HTML5.
           </StyledDescription>
         </StyledAbout>
         <StyledAbout>
