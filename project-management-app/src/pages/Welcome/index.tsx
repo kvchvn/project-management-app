@@ -6,7 +6,7 @@ import StyledButton from '../../styles/components/StyledButton';
 import { useUserSelector } from '../../store/selectors';
 
 function Welcome() {
-  const user = useUserSelector();
+  const { user } = useUserSelector();
   return (
     <>
       <Navbar>

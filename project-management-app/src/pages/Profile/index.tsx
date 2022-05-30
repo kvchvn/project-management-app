@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
 import { routerPaths } from '../../constants/common';
-import { useUserSelector } from '../../store/slices/user';
+import { useUserSelector } from '../../store/selectors';
 
 function Profile() {
   const navigate = useNavigate();
-  const user = useUserSelector();
+  const { user } = useUserSelector();
 
   useEffect(() => {
     if (!user) {

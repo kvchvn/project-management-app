@@ -5,7 +5,7 @@ import { deleteBoard } from '../utils/boards-api';
 
 const useRemovingBoard = () => {
   const queryClient = useQueryClient();
-  const user = useUserSelector();
+  const { user } = useUserSelector();
   const token = user?.token;
 
   return useMutation(async (id: string) => {

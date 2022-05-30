@@ -9,7 +9,7 @@ import { useUserSelector } from '../../store/selectors';
 import { StyledList } from './styles';
 
 function Main() {
-  const user = useUserSelector();
+  const { user } = useUserSelector();
   const navigate = useNavigate();
   const { isLoading, data: boards } = useAllBoards();
 

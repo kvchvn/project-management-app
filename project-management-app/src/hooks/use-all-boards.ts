@@ -8,7 +8,7 @@ import { getAllBoards } from '../utils/boards-api';
 import useSignOut from './use-sign-out';
 
 const useAllBoards = () => {
-  const user = useUserSelector();
+  const { user } = useUserSelector();
   const signOut = useSignOut();
   const token = user?.token;
 

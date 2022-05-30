@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 
 import { AuthorizedUser, EditableUserData, UnauthorizedUser } from '../../interfaces/user';
 import ConfirmationModal from '../ConfirmationModal';
-import { onSignIn, onSignOut, useUserSelector } from '../../store/slices/user';
+import { onSignIn, onSignOut } from '../../store/slices/user';
 import validationSchema from './validationSchema';
 import { checkPassword, removeUser } from '../../utils/users-api';
 import { updateUser } from '../../utils/users-api';
 import { setToLocalStorage } from '../../utils/common';
 import { useSignOut } from '../../hooks';
-
+import { useUserSelector } from '../../store/selectors';
 import {
   StyledButton,
   StyledButtonDelete,
@@ -22,7 +22,7 @@ import {
 } from './styles';
 
 function ProfileForm() {
-  const user = useUserSelector() as AuthorizedUser;
+  const { user } = useUserSelector();
   const dispatch = useDispatch();
   const signOut = useSignOut();
 
@@ -61,7 +61,7 @@ function ProfileForm() {
       }
 
       const { token } = await checkPassword({
-        login: user.login,
+        login: initialValues.login,
         password: values.confirmationPassword,
       });
 
@@ -71,8 +71,9 @@ function ProfileForm() {
           login: values.login,
           password: values.password || values.confirmationPassword,
         };
+        const userId = user ? user.id : '';
 
-        const response = await updateUser(user.id, newUserData, token);
+        const response = await updateUser(userId, newUserData, token);
 
         if ('message' in response) {
           toast.error(response.message);

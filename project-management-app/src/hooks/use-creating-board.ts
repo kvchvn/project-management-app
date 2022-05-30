@@ -5,7 +5,7 @@ import { createNewBoard } from '../utils/boards-api';
 
 const useCreatingBoard = () => {
   const queryClient = useQueryClient();
-  const user = useUserSelector();
+  const { user } = useUserSelector();
   const token = user?.token;
 
   return useMutation(async (boardTitle: string) => {
