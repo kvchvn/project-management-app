@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { authAxios, DEFAULT_SERVER_ERROR, URLS } from '../constants/api';
+import { DEFAULT_SERVER_ERROR, URLS } from '../constants/api';
 import { AuthorizedUser, UnauthorizedUser } from '../interfaces/user';
 import { ServerError } from '../interfaces/common';
 
@@ -10,9 +10,11 @@ export const checkPassword = async (userData: Omit<UnauthorizedUser, 'name'>) =>
   return response.data;
 };
 
-export const updateUser = async (userId: string, newUserData: UnauthorizedUser) => {
-  const response = await authAxios
-    .put<Omit<AuthorizedUser, 'token'>>(`${URLS.users}/${userId}`, newUserData)
+export const updateUser = async (userId: string, newUserData: UnauthorizedUser, token: string) => {
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
+  const response = await axios
+    .put<Omit<AuthorizedUser, 'token'>>(`${URLS.users}/${userId}`, newUserData, config)
     .catch((error: AxiosError<ServerError>) => {
       if (error.response) {
         return error.response;
@@ -22,9 +24,11 @@ export const updateUser = async (userId: string, newUserData: UnauthorizedUser) 
   return response.data;
 };
 
-export const removeUser = async (userId: string) => {
-  const response = await authAxios
-    .delete<void>(`${URLS.users}/${userId}`)
+export const removeUser = async (userId: string, token: string) => {
+  const config = { headers: { Authorization: `Bearer ${token}` } };
+
+  const response = await axios
+    .delete<void>(`${URLS.users}/${userId}`, config)
     .catch((error: AxiosError<ServerError>) => {
       if (error.response) {
         return error.response;

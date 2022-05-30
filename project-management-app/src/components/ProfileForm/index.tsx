@@ -72,7 +72,7 @@ function ProfileForm() {
           password: values.password || values.confirmationPassword,
         };
 
-        const response = await updateUser(user.id, newUserData);
+        const response = await updateUser(user.id, newUserData, token);
 
         if ('message' in response) {
           toast.error(response.message);
@@ -114,7 +114,8 @@ function ProfileForm() {
   const handleRemove = () => setIsGoingToRemove(true);
 
   const handleConfirmDeletion = async () => {
-    const response = await removeUser(user.id);
+    if (!user) return;
+    const response = await removeUser(user.id, user.token);
     if (!response) {
       signOut();
       dispatch(onSignOut());

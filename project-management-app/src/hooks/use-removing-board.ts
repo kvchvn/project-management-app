@@ -9,7 +9,7 @@ const useRemovingBoard = () => {
   const token = user?.token;
 
   return useMutation(async (id: string) => {
-    await deleteBoard(id);
+    await deleteBoard(id, token);
     await queryClient.refetchQueries(QUERY_KEYS.allBoards);
   });
 };
