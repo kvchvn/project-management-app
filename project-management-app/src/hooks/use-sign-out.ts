@@ -5,7 +5,6 @@ import { onSignOut } from '../store/slices/user';
 import { removeFromLocalStorage } from '../utils/common';
 
 const useSignOut = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
