@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthorizedUser } from '../../interfaces/user';
 import { getFromLocalStorage } from '../../utils/common';
 
-const initialState: { user?: AuthorizedUser } = {
+const initialState: { user: AuthorizedUser | null } = {
   user: getFromLocalStorage('user'),
 };
 
@@ -15,7 +15,7 @@ const userSlice = createSlice({
     },
 
     onSignOut: (state) => {
-      state.user = undefined;
+      state.user = null;
     },
   },
 });

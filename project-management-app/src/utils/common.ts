@@ -11,7 +11,7 @@ export const getFromLocalStorage = <T>(
   deserializer: (value: string) => T = JSON.parse
 ) => {
   const value = localStorage.getItem(key);
-  return value ? deserializer(value) : undefined;
+  return value ? deserializer(value) : null;
 };
 
 export const removeFromLocalStorage = (key: keyof typeof LOCAL_STORAGE_KEYS) =>
