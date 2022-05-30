@@ -15,9 +15,11 @@ function Layout() {
   return (
     <>
       {showHeader && <Header />}
-      <StyledWrapper>
-        <Outlet />
-      </StyledWrapper>
+      <StyledMain>
+        <StyledWrapper>
+          <Outlet />
+        </StyledWrapper>
+      </StyledMain>
       <Footer />
     </>
   );

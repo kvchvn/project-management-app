@@ -25,7 +25,9 @@ function Authorization() {
           <div>
             <div>
               {isSignUpForm && <span>{t('authPage.hasAccount')}</span>}
-              <button onClick={handlePageMode}>{isSignUpForm ? t('authPage.signIn') : t('authPage.signUp')}</button>
+              <button onClick={handlePageMode}>
+                {isSignUpForm ? t('authPage.signIn') : t('authPage.signUp')}
+              </button>
             </div>
           </div>
         </>
