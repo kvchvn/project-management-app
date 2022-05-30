@@ -1,5 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 
+import { spinnerIcon } from '../../assets/icons';
+
 export const StyledBox = styled.div`
   position: absolute;
   top: 0;
@@ -30,6 +32,6 @@ export const StyledSpinner = styled.span`
   display: block;
   width: 50px;
   height: 50px;
-  background: no-repeat url('./svg/spinner.svg') 50% 50% / contain;
+  background: no-repeat url(${spinnerIcon}) 50% 50% / contain;
   animation: ${spin} linear 2s infinite;
 `;
