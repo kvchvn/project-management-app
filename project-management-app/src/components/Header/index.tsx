@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
-import StyledWrapper from '../../styles/components/StyledWrapper';
 import BoardForm from '../BoardForm';
 import LangDropdown from '../LangDropdown';
 import Modal from '../Modal';
@@ -21,6 +20,8 @@ import {
   StyledToggler,
   StyledHiddenInput,
 } from './styles';
+import { onSignOut } from '../../store/slices/user';
+import { TStore } from '../../store';
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false);
@@ -86,9 +87,15 @@ function Header() {
           <StyledHiddenInput ref={menuToggler} />
           <section>
             <StyledNav sticky={isSticky}>
-              <StyledNavButton onClick={moveToMainPage}>{t('header.home')}</StyledNavButton>
-              <StyledNavButton onClick={openBoardForm}>{t('header.createBoard')}</StyledNavButton>
-              <StyledNavButton onClick={handleSignOut}>{t('header.signOut')}</StyledNavButton>
+              <StyledNavButton sticky={isSticky} onClick={moveToMainPage}>
+                {t('header.home')}
+              </StyledNavButton>
+              <StyledNavButton sticky={isSticky} onClick={openBoardForm}>
+                {t('header.createBoard')}
+              </StyledNavButton>
+              <StyledNavButton sticky={isSticky} onClick={handleSignOut}>
+                {t('header.signOut')}
+              </StyledNavButton>
             </StyledNav>
             <StyledAside>
               <LangDropdown sticky={isSticky} />

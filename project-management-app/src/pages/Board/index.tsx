@@ -12,6 +12,7 @@ import Modal from '../../components/Modal';
 import { onCloseTaskModal } from '../../store/slices/task';
 import { useTaskSelector } from '../../store/selectors';
 import { StyledBoard } from './style';
+import StyledPageTitle from '../../styles/components/StyledPageTitle';
 
 function Board() {
   const { isLoading } = useColumnsQuery();
@@ -31,7 +32,7 @@ function Board() {
   return (
     <DndProvider backend={HTML5Backend}>
       <StyledBoard>
-        <h2>{title}</h2>
+        <StyledPageTitle>{title}</StyledPageTitle>
         <ColumnsContainer />
         {isTaskModalOpen && (
           <Modal onClose={handleCloseTaskModal}>
