@@ -24,16 +24,20 @@ function Board() {
     dispatch(onCloseTaskModal());
   };
 
+  if (isLoading) {
+    return <Loading />;
+  }
+
   return (
     <DndProvider backend={HTML5Backend}>
       <StyledBoard>
         <h2>{title}</h2>
-        {isLoading ? <Loading /> : <ColumnsContainer />}
+        <ColumnsContainer />
         {isTaskModalOpen && (
-        <Modal onClose={handleCloseTaskModal}>
-          <Task />
-        </Modal>
-      )}
+          <Modal onClose={handleCloseTaskModal}>
+            <Task />
+          </Modal>
+        )}
       </StyledBoard>
     </DndProvider>
   );

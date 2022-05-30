@@ -39,6 +39,7 @@ function Task() {
     onSubmit: async ({ title, description }) => {
       const updatedTaskData = { ...(taskData as TaskDetailed), title, description };
       updateTask.mutateAsync(updatedTaskData);
+      dispatch(onCloseTaskModal());
     },
   });
 

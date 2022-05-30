@@ -3,9 +3,8 @@ import useClickOutside from './use-click-outside';
 import useColumnsQuery from './use-columns-query';
 import useCreateColumn from './use-create-column';
 import useCreateTask from './use-create-task';
-import useDragAndDrop from './use-drag-n-drop';
+import useColumnDragAndDrop from './use-column-drag-n-drop';
 import useForm from './use-form';
-import useMoveItems from './use-move-items';
 import useRemoveColumn from './use-remove-column';
 import useSignIn from './use-sign-in';
 import useSignOut from './use-sign-out';
@@ -24,9 +23,8 @@ export {
   useColumnsQuery,
   useCreateColumn,
   useCreateTask,
-  useDragAndDrop,
+  useColumnDragAndDrop,
   useForm,
-  useMoveItems,
   useRemoveColumn,
   useSignIn,
   useSignOut,

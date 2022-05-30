@@ -4,7 +4,7 @@ import { useUserSelector } from '../store/selectors';
 import { remove } from '../utils/api';
 
 const useRemoveTask = ({ boardId, columnId }: { boardId?: string; columnId: string }) => {
-  const user = useUserSelector();
+  const { user } = useUserSelector();
   const queryClient = useQueryClient();
 
   return useMutation(
