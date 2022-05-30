@@ -1,7 +1,11 @@
 {
   "mainPage": {
     "title": "Boards",
-    "noBoards": "You have not any boards."
+    "noBoards": "You have not any boards.",
+    "removingWarning": {
+      "part1": "You will lose all the lists on the board.",
+      "part2": "Do you really want to delete the board?"
+    }
   },
   "authPage": {
     "title": "Authorization",

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import useRemovingBoard from '../../hooks/use-removing-board';
@@ -10,7 +11,7 @@ interface BoardCardProps extends Board {}
 
 function BoardCard({ id, title }: BoardCardProps) {
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
-
+  const { t } = useTranslation();
   const { mutateAsync: removeBoard } = useRemovingBoard();
 
   const handleDeleteColumn = () => setIsGoingToRemove(true);
@@ -25,8 +26,8 @@ function BoardCard({ id, title }: BoardCardProps) {
       </Link>
       {isGoingToRemove && (
         <ConfirmationModal onConfirm={handleConfirmDeletion} setIsOpen={setIsGoingToRemove}>
-          <p>Do you really want to delete the board?</p>
-          <p>You will lose all the lists on the board</p>
+          <p>{t('mainPage.removingWarning.part1')}</p>
+          <p>{t('mainPage.removingWarning.part2')}</p>
         </ConfirmationModal>
       )}
     </StyledListItem>
