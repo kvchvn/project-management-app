@@ -16,7 +16,7 @@ export const StyledModalContainer = styled.div`
   min-width: 300px;
   text-align: center;
   padding: 30px;
-  background-color: ${({ theme }) => theme.colors.bg};
+  background-color: ${({ theme }) => theme.colors.bg.primary};
   overflow: hidden;
   animation: ${comingFromLeft} 0.4s ease-out;
   border-radius: 6px;
