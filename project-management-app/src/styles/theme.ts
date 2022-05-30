@@ -14,6 +14,7 @@ export const baseTheme: Theme = {
     border: {
       primary: '#323232',
       secondary: '#4e944f',
+      error: '#ffd36e',
     },
 
     font: '#323232',

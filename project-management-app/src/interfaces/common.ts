@@ -12,6 +12,7 @@ export interface Theme {
     border: {
       primary: string;
       secondary: string;
+      error: string;
     };
 
     font: string;
