@@ -1,3 +1,8 @@
+interface TaskFile {
+  filename: string;
+  fileSize: number;
+}
+
 export interface Task {
   id: string;
   title: string;
@@ -10,10 +15,6 @@ export interface TaskDetailed extends Task {
   boardId: string;
   columnId: string;
 }
-
-export interface TaskFile {
-  filename: string;
-  fileSize: number;
+export interface TaskWithFiles extends TaskDetailed {
+  files: TaskFile[];
 }
-
-export type TaskFiles = TaskFile[];

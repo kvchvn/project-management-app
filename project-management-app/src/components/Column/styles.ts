@@ -1,15 +1,24 @@
 import styled from 'styled-components';
 
+export const StyledColumnWrapper = styled.div`
+  width: 270px;
+  min-width: 270px;
+  height: 100%;
+`;
+
 export const StyledColumn = styled.div<{ isDragging: boolean }>`
   display: flex;
-  column-gap: 4px;
-  min-width: 200px;
-  max-width: 200px;
-  height: 200px;
-  padding: 5px;
+  flex-direction: column;
   border: 1px solid black;
-  cursor: pointer;
   opacity: ${({ isDragging }) => (isDragging ? 0 : 1)};
+  background-color: rgba(0, 0, 0, 0.2);
+  max-height: 100%;
+`;
+
+export const StyledColumnHeader = styled.div`
+  display: flex;
+  column-gap: 4px;
+  cursor: pointer;
 
   & > button {
     height: fit-content;

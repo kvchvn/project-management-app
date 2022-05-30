@@ -1,49 +1,57 @@
+import { useCallback } from 'react';
 import { useDrag, useDrop } from 'react-dnd';
+import { useDispatch } from 'react-redux';
+import { useUpdateColumn } from '.';
 import { DND_ITEM_TYPES } from '../constants/common';
+import { store } from '../store';
+import { onMoveColumn } from '../store/slices/column';
+import { calculateUpdatedOrder } from '../utils/common';
 
-const useColumnDragAndDrop = ({
-  id,
-  moveColumn,
-  findColumn,
-  updateColumn,
-}: {
-  id: string;
-  moveColumn: (id: string, to: number) => void;
-  findColumn: (id: string) => { index: number };
-  updateColumn: (id: string, to: number) => void;
-}) => {
-  const originalIndex = findColumn(id).index;
+const useColumnDragAndDrop = ({ id }: { id: string }) => {
+  const dispatch = useDispatch();
+  const { mutateAsync: update } = useUpdateColumn();
 
-  // REFERENCE: https://react-dnd.github.io/react-dnd/examples/sortable/cancel-on-drop-outside
-  const [{ isDragging }, drag] = useDrag(
+  const updateItemOrder = useCallback(
+    async ({ dropId }: { dropId: string }) => {
+      const { columns } = store.getState().columnReducer;
+
+      const dropIndex = columns.findIndex((column) => column.id === dropId);
+      if (dropIndex === -1) return;
+
+      const dropItem = columns[dropIndex];
+      const prevItem = columns[dropIndex - 1];
+      const nextItem = columns[dropIndex + 1];
+      const order = calculateUpdatedOrder(prevItem?.order, nextItem?.order);
+      await update({ ...dropItem, order });
+    },
+    [update]
+  );
+
+  const [{ isDragging }, drag, dragPreview] = useDrag(
     () => ({
       type: DND_ITEM_TYPES.column,
-      item: { id, originalIndex },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
-      end: (item, monitor) => {
-        const { id: droppedId, originalIndex } = item;
-        if (monitor.didDrop()) updateColumn(droppedId, originalIndex);
+      item: () => ({ id }),
+      collect: (monitor) => ({ isDragging: monitor.isDragging() }),
+      end: async (item) => {
+        await updateItemOrder({ dropId: item.id });
       },
     }),
-    [id, originalIndex, moveColumn]
+    [id]
   );
 
   const [, drop] = useDrop(
     () => ({
       accept: DND_ITEM_TYPES.column,
-      hover: ({ id: draggedId }: { id: string }) => {
-        if (draggedId !== id) {
-          const { index: overIndex } = findColumn(id);
-          moveColumn(draggedId, overIndex);
+      hover: (dragItem: { id: string }) => {
+        if (dragItem.id !== id) {
+          dispatch(onMoveColumn({ dragId: dragItem.id, hoverId: id }));
         }
       },
     }),
-    [findColumn, moveColumn]
+    [dispatch, onMoveColumn]
   );
 
-  return { isDragging, drag, drop };
+  return { isDragging, drag, dragPreview, drop };
 };
 
 export default useColumnDragAndDrop;

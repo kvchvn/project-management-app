@@ -34,6 +34,7 @@ export const DEFAULT_LANGUAGE = AVAILABLE_LANGUAGES[0];
 
 export const DND_ITEM_TYPES = {
   column: 'column',
+  task: 'task',
 };
 
 export const TITLE_ROWS = 1;

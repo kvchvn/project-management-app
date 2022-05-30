@@ -1,9 +1,11 @@
 import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
+import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { QUERY_KEYS, URLS } from '../constants/api';
 import { Column } from '../interfaces/column';
 import { TStore } from '../store';
+import { onSaveColumns } from '../store/slices/column';
 import { getAll } from '../utils/api';
 
 const getAllColumns = async (token?: string, boardId?: string) => {
@@ -20,6 +22,7 @@ const getAllColumns = async (token?: string, boardId?: string) => {
 const useColumnsQuery = (
   options: UseQueryOptions<Column[] | undefined, unknown, Column[] | undefined, QueryKey> = {}
 ) => {
+  const dispatch = useDispatch();
   const { user } = useSelector((store: TStore) => store.userReducer);
   const { id: boardId } = useParams();
   const token = user?.token;
@@ -32,6 +35,7 @@ const useColumnsQuery = (
     },
     {
       ...options,
+      onSuccess: (columns) => columns && dispatch(onSaveColumns({ columns })),
       enabled: !!token || !!boardId,
     }
   );

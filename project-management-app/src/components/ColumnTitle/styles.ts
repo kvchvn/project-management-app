@@ -5,8 +5,20 @@ export const StyledTitle = styled.div<{ isEditing: boolean }>`
   column-gap: 4px;
   height: fit-content;
 
-  h2 {
-    display: none;
+  button {
+    display: ${({ isEditing }) => (isEditing ? 'initial' : 'none')};
+  }
+`;
+
+export const StyledTextArea = styled.div<{ isEditing: boolean }>`
+  position: relative;
+
+  div {
+    display: ${({ isEditing }) => (isEditing ? 'none' : 'initial')};
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
   }
 
   textarea {
@@ -25,9 +37,5 @@ export const StyledTitle = styled.div<{ isEditing: boolean }>`
       isEditing
         ? '&:focus { cursor: initial; }'
         : '&:focus { outline: none; caret-color: transparent }'}
-  }
-
-  button {
-    display: ${({ isEditing }) => (isEditing ? 'initial' : 'none')};
   }
 `;

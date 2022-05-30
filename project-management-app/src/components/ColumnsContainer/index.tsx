@@ -1,77 +1,23 @@
-import React, { memo, useCallback, useEffect, useState } from 'react';
+import React, { memo } from 'react';
 import { useDrop } from 'react-dnd';
 
 import Column from '../Column';
 import ColumnCreator from '../ColumnCreator';
-import { useUpdateColumn } from '../../hooks';
-import { Column as IColumn } from '../../interfaces/column';
 import { DND_ITEM_TYPES } from '../../constants/common';
-import { calculateUpdatedColumnOrder } from '../../utils/common';
 
 import { StyledColumnsContainer } from './styles';
+import { useSelector } from 'react-redux';
+import { TStore } from '../../store';
 
-function ColumnsContainer({ items }: { items: IColumn[] }) {
-  const [columns, setColumns] = useState(items);
-
-  const { mutateAsync: update } = useUpdateColumn();
-
-  useEffect(() => setColumns(items), [items]);
-
-  const findColumn = useCallback(
-    (id: string) => {
-      const index = columns.findIndex((c) => c.id === id);
-      return { column: columns[index], index };
-    },
-    [columns]
-  );
-
-  const moveColumn = useCallback(
-    (droppedId: string, hoverIndex: number) => {
-      const droppedIndex = findColumn(droppedId).index;
-      const columnsCopy = [...columns];
-      const droppedColumn = columnsCopy.splice(droppedIndex, 1)[0];
-      columnsCopy.splice(hoverIndex, 0, droppedColumn);
-
-      setColumns(columnsCopy);
-    },
-    [findColumn, columns, setColumns]
-  );
-
-  const updateColumnOrder = useCallback(
-    async (droppedId: string, hoverIndex: number) => {
-      const { index: droppedIndex, column: droppedColumn } = findColumn(droppedId);
-      if (droppedIndex === hoverIndex) return;
-
-      const direction = droppedIndex > hoverIndex ? 'forward' : 'backward';
-      const hoverColumn = columns[hoverIndex];
-      const nextToDroppedColumn =
-        columns[droppedIndex > hoverIndex ? droppedIndex + 1 : droppedIndex - 1];
-
-      await update({
-        id: droppedId,
-        title: droppedColumn.title,
-        order: calculateUpdatedColumnOrder(
-          hoverColumn.order,
-          nextToDroppedColumn?.order,
-          direction
-        ),
-      });
-    },
-    [findColumn, columns, update]
-  );
+function ColumnsContainer() {
+  const { columns } = useSelector((store: TStore) => store.columnReducer);
 
   const [, drop] = useDrop(() => ({ accept: DND_ITEM_TYPES.column }));
 
   return (
     <StyledColumnsContainer ref={drop}>
       {columns.map((column) => (
-        <Column
-          key={column.id}
-          {...column}
-          moveColumn={moveColumn}
-          findColumn={findColumn}
-          updateColumn={updateColumnOrder}
-        />
+        <Column key={column.id} {...column} />
       ))}
       <ColumnCreator lastColumnOrder={columns[columns.length - 1]?.order} />
     </StyledColumnsContainer>

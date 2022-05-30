@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react';
 import { useCreateColumn } from '../../hooks';
-import { setColumnOrder } from '../../utils/common';
+import { setOrder } from '../../utils/common';
 import Modal from '../Modal';
 
 function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
@@ -19,7 +19,7 @@ function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
   };
 
   const handleColumnCreate = async () => {
-    await create({ title: newColumnTitle, order: setColumnOrder(lastColumnOrder) });
+    await create({ title: newColumnTitle, order: setOrder(lastColumnOrder) });
     setIsOpenModal(false);
   };
 
