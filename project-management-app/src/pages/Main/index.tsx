@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import '../../i18n';
+
 import BoardCard from '../../components/BoardCard';
 import { routerPaths } from '../../constants/common';
 import useAllBoards from '../../hooks/use-all-boards';
@@ -12,6 +15,7 @@ function Main() {
   const { user } = useUserSelector();
   const navigate = useNavigate();
   const { isLoading, data: boards } = useAllBoards();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!user) {
@@ -26,11 +30,11 @@ function Main() {
   return (
     <main>
       <StyledWrapper>
-        <h2>My boards</h2>
+        <h2>{t('mainPage.title')}</h2>
         <StyledList>
           {boards && boards.length
             ? boards.map((board) => <BoardCard key={board.id} id={board.id} title={board.title} />)
-            : 'You haven`t got any board'}
+            : t('mainPage.noBoards')}
         </StyledList>
       </StyledWrapper>
     </main>

@@ -1,14 +1,25 @@
+import { TFunction } from 'i18next';
 import * as yup from 'yup';
 import { MIN_PASSWORD_LENGTH, NAME_VALIDATOR } from '../../constants/common';
 
-export const signInValidationSchema = yup.object({
-  login: yup.string().required(),
-  password: yup
-    .string()
-    .min(MIN_PASSWORD_LENGTH, `Must be at least ${MIN_PASSWORD_LENGTH} characters`)
-    .required(),
-});
+export const getSignInValidationSchema = (t: TFunction) =>
+  yup.object({
+    login: yup.string().required(t('authPage.errors.required')),
+    password: yup
+      .string()
+      .min(
+        MIN_PASSWORD_LENGTH,
+        `${t('authPage.errors.password.part1')} ${MIN_PASSWORD_LENGTH} ${t(
+          'authPage.errors.password.part2'
+        )}`
+      )
+      .required(t('authPage.errors.required')),
+  });
 
-export const signUpValidationSchema = signInValidationSchema.shape({
-  name: yup.string().matches(NAME_VALIDATOR, 'Please, enter a valid name').required(),
-});
+export const getSignUpValidationSchema = (t: TFunction) =>
+  getSignInValidationSchema(t).shape({
+    name: yup
+      .string()
+      .matches(NAME_VALIDATOR, t('authPage.errors.name'))
+      .required(t('authPage.errors.required')),
+  });

@@ -1,0 +1,129 @@
+{
+  "mainPage": {
+    "title": "Boards",
+    "noBoards": "You have not any boards.",
+    "removingWarning": {
+      "part1": "You will lose all the lists on the board.",
+      "part2": "Do you really want to delete the board?"
+    }
+  },
+  "authPage": {
+    "title": "Authorization",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "hasAccount": "Have an account?",
+    "errors": {
+      "userExisting": "It seems like user already exists. Try to sign In",
+      "wrongData": "Login or/and password are wrong",
+      "password": {
+        "part1": "It should be at least",
+        "part2": "characters"
+      },
+      "name": "Please, enter a valid name",
+      "required": "It is a required field"
+    }
+  },
+  "authForm": {
+    "name": "Name",
+    "login": "Login",
+    "password": "Password"
+  },
+  "header": {
+    "editProfile": "Edit profile",
+    "createBoard": "Create board",
+    "signOut": "Sign Out"
+  },
+  "boardForm": {
+    "enterName": "Enter the name of the new board",
+    "create": "Create board",
+    "errors": {
+      "max": {
+        "part1": "It should be less than",
+        "part2": "characters"
+      }
+    }
+  },
+  "errorBoundary": {
+    "title": "Something went wrong...",
+    "toMain": "Go to Main page"
+  },
+  "welcomePage": {
+    "toMainPage": "Go to Main page",
+    "about": {
+      "titles": {
+        "project": "About project",
+        "course": "About course",
+        "team": "About team"
+      },
+      "descriptions": {
+        "project": "Project management system is an app helping individual person in a team or developers group to achieve assigned tasks.",
+        "course": "The online course `React developing`. It is a cost-free course by The Rolling Scopes community. The course is for students having knowledge and practical experience of using the following tools and technologies: JavaScript, TypeScript, Git / GitHub, NPM, Webpack, CSS3 / HTML5, Chrome DevTools, Figma, REST API.",
+        "team": "The present app is developed by Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya."
+      }
+    }
+  },
+  "notFound": {
+    "title": "404 Page not found",
+    "toMain": "Go to Main page"
+  },
+  "profilePage": {
+    "errors": {
+      "min": {
+        "part1": "It should be at least",
+        "part2": "characters"
+      },
+      "confirmationPassword": "Enter password to confirm the changes",
+      "wrongPassword": "Wrong password. Try again",
+      "passwordMatch": "Password must match"
+    },
+    "title": "Profile editing",
+    "subtitle": "You can change the fields below",
+    "fields": {
+      "name": "Name",
+      "login": "Login",
+      "password": "Password",
+      "repeatPassword": "Repeat password",
+      "passwordDescription": "If you don`t want to change password leave this fields empty",
+      "confirmPassword": "Confirm changes with your current password"
+    },
+    "buttons": {
+      "update": "Update profile",
+      "delete": "Delete profile"
+    },
+    "succeedChanges": "Changes saved!",
+    "deletingWarning": {
+      "part1": "Click the button if you want to remove your profile forever.",
+      "part2": "Be carefully!"
+    },
+    "modalWarning": {
+      "part1": "This operation can not be undone.",
+      "part2": "Do you really want to remove the profile?"
+    }
+  },
+  "boardPage": {
+    "removingColumn": {
+      "part1": "You will lose all the tasks on the list.",
+      "part2": "Do you really want to delete the list?"
+    },
+    "creatingColumn": {
+      "placeholder": "Enter list title",
+      "buttonCreate": "Add list",
+      "first": "Add a list",
+      "another": "Add another list"
+    },
+    "creatingTask": {
+      "buttonCreate": "Add task",
+      "placeholder": {
+        "title": "Enter task title",
+        "description": "Enter task description"
+      }
+    }
+  },
+  "taskModal": {
+    "buttons": {
+      "update": "Update task",
+      "delete": "Delete task"
+    },
+    "removingTask": "Do you really want to delete the task?"
+  }
+}

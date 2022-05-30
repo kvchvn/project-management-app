@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useCreateTask } from '../../hooks';
 import { TStore } from '../../store';
@@ -7,6 +8,7 @@ import Modal from '../Modal';
 import { StyledCreateTaskButton } from './styles';
 
 function TaskCreator({ columnId }: { columnId: string }) {
+  const { t } = useTranslation();
   const { tasksByColumns } = useSelector((store: TStore) => store.taskReducer);
   const lastTaskOrder = tasksByColumns[columnId]?.at(-1)?.order;
 
@@ -43,17 +45,23 @@ function TaskCreator({ columnId }: { columnId: string }) {
       {isOpenModal ? (
         modalRef.current && (
           <Modal parent={modalRef.current}>
-            <input placeholder="Enter task title..." onChange={handleTaskTitleChange} />
-            <input placeholder="Enter task description..." onChange={handleTaskDescriptionChange} />
+            <input
+              placeholder={t('boardPage.creatingTask.placeholder.title')}
+              onChange={handleTaskTitleChange}
+            />
+            <input
+              placeholder={t('boardPage.creatingTask.placeholder.description')}
+              onChange={handleTaskDescriptionChange}
+            />
             <button onClick={handleTaskCreate} disabled={!taskTitle || !taskDescription}>
-              Add task
+              {t('boardPage.creatingTask.buttonCreate')}
             </button>
             <button onClick={handleIsOpenModal}>X</button>
           </Modal>
         )
       ) : (
         <StyledCreateTaskButton variant="primary" onClick={handleIsOpenModal}>
-          Add a task
+          {t('boardPage.creatingTask.buttonCreate')}
         </StyledCreateTaskButton>
       )}
     </div>

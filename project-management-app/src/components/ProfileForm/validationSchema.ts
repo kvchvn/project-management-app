@@ -1,13 +1,23 @@
+import { TFunction } from 'react-i18next';
 import * as yup from 'yup';
 import { MIN_PASSWORD_LENGTH } from '../../constants/common';
-import { signUpValidationSchema } from '../AuthForm/validation-schemas';
+import { getSignUpValidationSchema } from '../AuthForm/validation-schemas';
 
-const validationSchema = signUpValidationSchema.shape({
-  password: yup
-    .string()
-    .min(MIN_PASSWORD_LENGTH, `Must be at least ${MIN_PASSWORD_LENGTH} characters`),
-  repeatedPassword: yup.string(),
-  confirmationPassword: yup.string().required('You must enter password'),
-});
+const getProfileFormValidationSchema = (t: TFunction) => {
+  const signUpValidationSchema = getSignUpValidationSchema(t);
 
-export default validationSchema;
+  signUpValidationSchema.shape({
+    password: yup
+      .string()
+      .min(
+        MIN_PASSWORD_LENGTH,
+        `${t('profilePage.errors.min.part1')} ${MIN_PASSWORD_LENGTH} ${t(
+          'profilePage.errors.min.part2'
+        )}`
+      ),
+    repeatedPassword: yup.string(),
+    confirmationPassword: yup.string().required(t('profilePage.errors.confirmationPassword')),
+  });
+};
+
+export default getProfileFormValidationSchema;

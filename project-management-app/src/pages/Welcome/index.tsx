@@ -1,55 +1,46 @@
-import Navbar from '../../components/Navbar';
+import React from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import { routerPaths } from '../../constants/common';
+import Navbar from '../../components/Navbar';
 import { StyledAbout, StyledWrapper, StyledDescription } from './styles';
 import StyledButton from '../../styles/components/StyledButton';
 import { useUserSelector } from '../../store/selectors';
 
 function Welcome() {
   const { user } = useUserSelector();
+  const { t } = useTranslation();
   return (
     <>
       <Navbar>
         {!user ? (
           <div>
             <Link to={`/${routerPaths.auth}`} state={'signIn'}>
-              <StyledButton variant="primary">Sign In</StyledButton>
+              <StyledButton variant="primary">{t('authPage.signIn')}</StyledButton>
             </Link>
             <Link to={`/${routerPaths.auth}`} state={'signUp'}>
-              <StyledButton variant="primary">Sign Up</StyledButton>
+              <StyledButton variant="primary">{t('authPage.signUp')}</StyledButton>
             </Link>
           </div>
         ) : (
           <Link to={routerPaths.main}>
-            <StyledButton variant="primary">Go to Main page</StyledButton>
+            <StyledButton variant="primary">{t('welcomePage.toMainPage')}</StyledButton>
           </Link>
         )}
       </Navbar>
       <StyledWrapper>
         <StyledAbout>
-          <h2>О курсе</h2>
-          <StyledDescription>
-            Онлайн курс «Разработка на React». Бесплатный курс от сообщества The Rolling Scopes.
-            Курс для студентов, которые имеют знания и практический опыт использования следующих
-            технологий и инструментов: JavaScript, TypeScript Git, GitHub, NPM, Webpack, CSS3 /
-            HTML5, Chrome DevTools, Figma, Понимание концепции REST API
-          </StyledDescription>
+          <h2>{t('welcomePage.about.titles.project')}</h2>
+          <StyledDescription>{t('welcomePage.about.descriptions.project')}</StyledDescription>
         </StyledAbout>
         <StyledAbout>
-          <h2>О проекте</h2>
-          <StyledDescription>
-            Система управления проектами – приложение помогающее достичь поставленные задачи
-            отдельному человеку в команде или группе разработчиков.
-          </StyledDescription>
+          <h2>{t('welcomePage.about.titles.course')}</h2>
+          <StyledDescription>{t('welcomePage.about.descriptions.course')}</StyledDescription>
         </StyledAbout>
         <StyledAbout>
-          <h2>О команде</h2>
-          <StyledDescription>
-            <span>Приложение разработано</span>
-            <span>Anton Kachan</span>
-            <span>Dinmukhamed Sailaubek</span>
-            <span>Dilbar Akkaya</span>
-          </StyledDescription>
+          <h2>{t('welcomePage.about.titles.team')}</h2>
+          <StyledDescription>{t('welcomePage.about.descriptions.team')}</StyledDescription>
         </StyledAbout>
       </StyledWrapper>
     </>

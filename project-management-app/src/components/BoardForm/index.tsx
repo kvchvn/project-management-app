@@ -1,8 +1,9 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import useCreatingBoard from '../../hooks/use-creating-board';
-import validationSchema from './validationSchema';
+import getValidationSchema from './validationSchema';
 import { StyledInput, StyledForm, StyledButtonCreate } from './styles';
+import { useTranslation } from 'react-i18next';
 
 interface BoardFormProps {
   closeModal: () => void;
@@ -13,6 +14,8 @@ const BoardForm = ({ closeModal }: BoardFormProps) => {
   const initialValues = {
     boardName: '',
   };
+  const { t } = useTranslation();
+  const validationSchema = getValidationSchema(t);
 
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
@@ -25,7 +28,7 @@ const BoardForm = ({ closeModal }: BoardFormProps) => {
 
   return (
     <StyledForm onSubmit={handleSubmit}>
-      <p>Enter the name of the new board</p>
+      <p>{t('boardForm.enterName')}</p>
       <StyledInput
         id="boardName"
         name="boardName"
@@ -33,7 +36,7 @@ const BoardForm = ({ closeModal }: BoardFormProps) => {
         onChange={handleChange}
       />
       {touched.boardName && errors.boardName ? <span>{errors.boardName}</span> : null}
-      <StyledButtonCreate type="submit">Create</StyledButtonCreate>
+      <StyledButtonCreate type="submit">{t('boardForm.create')}</StyledButtonCreate>
     </StyledForm>
   );
 };

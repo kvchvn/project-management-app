@@ -6,6 +6,7 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ThemeProvider } from 'styled-components';
 import ErrorBoundary from './components/ErrorBoundary';
 import { store } from './store';
+import './i18n';
 import App from './App';
 
 import GlobalStyles from './styles/global';

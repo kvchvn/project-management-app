@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
@@ -15,6 +16,7 @@ function Header() {
   const [isBoardFormOpen, setIsBoardFormOpen] = useState(false);
   const signOut = useSignOut();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const handleSignOut = () => {
     signOut();
@@ -51,10 +53,10 @@ function Header() {
           <HeaderTitle sticky={isSticky}>AppName</HeaderTitle>
           <Nav sticky={isSticky}>
             <NavButton as={Link} to={routerPaths.profile}>
-              Edit profile
+              {t('header.editProfile')}
             </NavButton>
-            <NavButton onClick={openBoardForm}>Create board</NavButton>
-            <NavButton onClick={handleSignOut}>Sign out</NavButton>
+            <NavButton onClick={openBoardForm}>{t('header.createBoard')}</NavButton>
+            <NavButton onClick={handleSignOut}>{t('header.signOut')}</NavButton>
             <LangDropdown />
           </Nav>
         </StyledWrapper>

@@ -49,3 +49,9 @@ export type LanguageOption = {
   value: string;
   label: string;
 };
+
+export interface Translation {
+  boardsPage: {
+    title: string;
+  };
+}
