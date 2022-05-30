@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useMutation, useQueryClient } from 'react-query';
 import { useSelector } from 'react-redux';
 import { QUERY_KEYS, URLS } from '../constants/api';
@@ -7,7 +6,6 @@ import { TStore } from '../store';
 import { update } from '../utils/api';
 
 const useUpdateTask = ({ columnId }: { columnId: string }) => {
-  const [taskId, setTaskId] = useState('');
   const { user } = useSelector((store: TStore) => store.userReducer);
 
   const queryClient = useQueryClient();
@@ -16,7 +14,6 @@ const useUpdateTask = ({ columnId }: { columnId: string }) => {
     async (task: TaskDetailed) => {
       if (user) {
         const { id: taskId, ...updatedTask } = task;
-        setTaskId(taskId);
         const url = `${URLS.boards}/${task.boardId}/columns/${columnId}/tasks/${taskId}`;
         const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
@@ -24,7 +21,7 @@ const useUpdateTask = ({ columnId }: { columnId: string }) => {
       }
     },
     {
-      onSuccess: () => queryClient.refetchQueries(`${QUERY_KEYS.tasks}/${taskId}`),
+      onSuccess: () => queryClient.refetchQueries(`${QUERY_KEYS.tasks}/${columnId}`),
     }
   );
 

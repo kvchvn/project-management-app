@@ -18,3 +18,9 @@ export interface TaskDetailed extends Task {
 export interface TaskWithFiles extends TaskDetailed {
   files: TaskFile[];
 }
+
+export interface TaskModal {
+  isOpen: boolean;
+  taskId: string | null;
+  columnId: string | null;
+}
