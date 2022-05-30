@@ -5,6 +5,10 @@ export const StyledBoard = styled.div`
   overflow-x: auto;
   overflow-y: hidden;
 
+  & > h2 {
+    margin: 1rem 0;
+  }
+
   &::-webkit-scrollbar {
     height: 4px;
   }
