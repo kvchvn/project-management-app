@@ -1,9 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
-=======
 import { useTranslation } from 'react-i18next';
->>>>>>> 51d92ab (feat: add translation for Header, BoardForm)
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import { useSignOut } from '../../hooks';
@@ -18,11 +15,8 @@ function Header() {
   const [isSticky, setIsSticky] = useState(false);
   const [isBoardFormOpen, setIsBoardFormOpen] = useState(false);
   const signOut = useSignOut();
-<<<<<<< HEAD
   const dispatch = useDispatch();
-=======
   const { t } = useTranslation();
->>>>>>> 51d92ab (feat: add translation for Header, BoardForm)
 
   const handleSignOut = () => {
     signOut();

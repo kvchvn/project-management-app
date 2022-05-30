@@ -20,11 +20,13 @@ import {
   StyledForm,
   StyledInputContainer,
 } from './styles';
+import { useTranslation } from 'react-i18next';
 
 function ProfileForm() {
   const { user } = useUserSelector();
   const dispatch = useDispatch();
   const signOut = useSignOut();
+  const { t } = useTranslation();
 
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
@@ -56,7 +58,7 @@ function ProfileForm() {
     validationSchema,
     onSubmit: async (values) => {
       if (values.password !== values.repeatedPassword) {
-        setFieldError('repeatedPassword', 'Passwords should match');
+        setFieldError('repeatedPassword', t('profilePage.errors.passwordMatch'));
         return;
       }
 
@@ -100,7 +102,7 @@ function ProfileForm() {
           setStatus({ success: true });
         }
       } else {
-        setFieldError('confirmationPassword', 'Wrong password. Try again');
+        setFieldError('confirmationPassword', t('profilePage.errors.wrongPassword'));
       }
     },
   });
@@ -128,20 +130,20 @@ function ProfileForm() {
   return (
     <StyledContainer>
       <StyledForm onSubmit={handleSubmit}>
-        <h4>You can change the fields below</h4>
+        <h4>{t('profilePage.subtitle')}</h4>
         <StyledInputContainer>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t('profilePage.fields.name')}</label>
           <input id="name" name="name" value={values.name} onChange={customHandleChange} />
           {touched.name && errors.name ? <span>{errors.name}</span> : null}
         </StyledInputContainer>
         <StyledInputContainer>
-          <label htmlFor="login">Login</label>
+          <label htmlFor="login">{t('profilePage.fields.login')}</label>
           <input id="login" name="login" value={values.login} onChange={customHandleChange} />
           {touched.login && errors.login ? <span>{errors.login}</span> : null}
         </StyledInputContainer>
-        <p>If you don`t want to change password leave this fields empty</p>
+        <p>{t('profilePage.fields.passwordDescription')}</p>
         <StyledInputContainer>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">{t('profilePage.fields.password')}</label>
           <input
             id="password"
             name="password"
@@ -152,7 +154,7 @@ function ProfileForm() {
           {touched.password && errors.password ? <span>{errors.password}</span> : null}
         </StyledInputContainer>
         <StyledInputContainer>
-          <label htmlFor="repeatedPassword">Repeat password</label>
+          <label htmlFor="repeatedPassword">{t('profilePage.fields.repeatPassword')}</label>
           <input
             id="repeatedPassword"
             name="repeatedPassword"
@@ -164,7 +166,7 @@ function ProfileForm() {
             <span>{errors.repeatedPassword}</span>
           ) : null}
         </StyledInputContainer>
-        <p>Confirm changes with your current password</p>
+        <p>{t('profilePage.fields.confirmPassword')}</p>
         <StyledInputContainer>
           <input
             id="confirmationPassword"
@@ -178,23 +180,23 @@ function ProfileForm() {
           ) : null}
         </StyledInputContainer>
         <div>
-          <StyledButton type="submit">Update</StyledButton>
-          {status.success ? <p>Changes saved!</p> : null}
+          <StyledButton type="submit">{t('profilePage.buttons.update')}</StyledButton>
+          {status.success ? <p>{t('profilePage.succeedChanges')}</p> : null}
         </div>
       </StyledForm>
       <StyledDangerBox>
         <p>
-          Click the button if you want to remove your profile forever.
-          <span> Be carefully.</span>
+          {t('profilePage.deletingWarning.part1')}
+          <span> {t('profilePage.deletingWarning.part2')}</span>
         </p>
         <StyledButtonDelete type="button" onClick={handleRemove}>
-          Delete profile
+          {t('profilePage.buttons.delete')}
         </StyledButtonDelete>
       </StyledDangerBox>
       {isGoingToRemove && (
         <ConfirmationModal onConfirm={handleConfirmDeletion} setIsOpen={setIsGoingToRemove}>
-          <p>This operation can not be undone.</p>
-          <p>Do you really want to do this?</p>
+          <p>{t('profilePage.modalWarning.part1')}</p>
+          <p>{t('profilePage.modalWarning.part2')}</p>
         </ConfirmationModal>
       )}
     </StyledContainer>

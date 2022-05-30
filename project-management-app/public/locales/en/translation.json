@@ -61,5 +61,39 @@
   "notFound": {
     "title": "404 Page not found",
     "toMain": "Go to Main page"
+  },
+  "profilePage": {
+    "errors": {
+      "min": {
+        "part1": "It should be at least",
+        "part2": "characters"
+      },
+      "confirmationPassword": "Enter password to confirm the changes",
+      "wrongPassword": "Wrong password. Try again",
+      "passwordMatch": "Password must match"
+    },
+    "title": "Profile editing",
+    "subtitle": "You can change the fields below",
+    "fields": {
+      "name": "Name",
+      "login": "Login",
+      "password": "Password",
+      "repeatPassword": "Repeat password",
+      "passwordDescription": "If you don`t want to change password leave this fields empty",
+      "confirmPassword": "Confirm changes with your current password"
+    },
+    "buttons": {
+      "update": "Update profile",
+      "delete": "Delete profile"
+    },
+    "succeedChanges": "Changes saved!",
+    "deletingWarning": {
+      "part1": "Click the button if you want to remove your profile forever.",
+      "part2": "Be carefully!"
+    },
+    "modalWarning": {
+      "part1": "This operation can not be undone.",
+      "part2": "Do you really want to remove the profile?"
+    }
   }
 }

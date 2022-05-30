@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ProfileForm from '../../components/ProfileForm';
 import { routerPaths } from '../../constants/common';
@@ -7,6 +8,7 @@ import { useUserSelector } from '../../store/selectors';
 function Profile() {
   const navigate = useNavigate();
   const { user } = useUserSelector();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!user) {
@@ -16,7 +18,7 @@ function Profile() {
 
   return (
     <>
-      <h2>Edit profile</h2>
+      <h2>{t('profilePage.title')}</h2>
       <ProfileForm />
     </>
   );
