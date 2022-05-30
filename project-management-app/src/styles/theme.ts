@@ -9,6 +9,7 @@ export const baseTheme: Theme = {
     bg: {
       primary: '#fffffe',
       secondary: '#b4e197',
+      tertiary: '#ffde36',
     },
 
     border: {
@@ -23,19 +24,19 @@ export const baseTheme: Theme = {
       primary: {
         bg: '#4e944f',
         font: '#fffffe',
-        hover: '#4e944fb3',
+        hover: '#4e944fcc',
       },
 
       success: {
         bg: '#b4e197',
         font: '#fffffe',
-        hover: '#b4e197b3',
+        hover: '#b4e197cc',
       },
 
       warning: {
-        bg: '#ffd36e',
+        bg: '#ae2012',
         font: '#fffffe',
-        hover: '#ffd36eb3',
+        hover: '#ae2012cc',
       },
     },
   },

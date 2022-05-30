@@ -5,6 +5,8 @@ import { Column as IColumn } from '../../interfaces/column';
 import { TITLE_ROWS } from '../../constants/common';
 
 import { StyledTextArea, StyledTitle } from './styles';
+import StyledIconButton from '../../styles/components/StyledIconButton';
+import { CloseIcon, ConfirmIcon } from '../../assets/icons';
 
 interface ColumnTitleProps extends IColumn {
   isEditingTitle: boolean;
@@ -56,8 +58,12 @@ function ColumnTitle({ id, title, order, isEditingTitle, setIsEditingTitle }: Co
           onFocus={handleTitleFocus}
         />
       </StyledTextArea>
-      <button onClick={handleTitleSubmit}>√</button>
-      <button onClick={handleTitleEditCancel}>x</button>
+      <StyledIconButton variant="primary" onClick={handleTitleSubmit} disabled={!newTitle}>
+        <ConfirmIcon />
+      </StyledIconButton>
+      <StyledIconButton variant="warning" onClick={handleTitleEditCancel}>
+        <CloseIcon />
+      </StyledIconButton>
     </StyledTitle>
   );
 }

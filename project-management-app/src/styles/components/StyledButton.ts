@@ -3,7 +3,6 @@ import { device } from '../../constants/common';
 import { baseTheme } from '../theme';
 
 const StyledButton = styled.button<{ variant: keyof typeof baseTheme.colors.button }>`
-  min-width: 100px;
   border: none;
   border-radius: 5px;
   padding: 0.75em 1em;
