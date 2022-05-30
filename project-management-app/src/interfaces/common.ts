@@ -10,6 +10,7 @@ export interface Theme {
       secondary: string;
       tertiary: string;
       quaternary: string;
+      quinary: string;
     };
 
     border: {
