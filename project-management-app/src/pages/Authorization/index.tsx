@@ -6,6 +6,11 @@ import AuthForm from '../../components/AuthForm';
 import Loading from '../../components/Loading';
 import { useAuthorization } from '../../hooks';
 import { AuthMode } from '../../hooks/use-authorization';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import StyledPageTitle from '../../styles/components/StyledPageTitle';
+import StyledWrapper from '../../styles/components/StyledWrapper';
+import { StyledContainer } from './styles';
 
 function Authorization() {
   const location = useLocation();
@@ -20,7 +25,7 @@ function Authorization() {
       {isLoading ? (
         <Loading />
       ) : (
-        <>
+        <StyledWrapper>
           <AuthForm isSignUpForm={isSignUpForm} onSubmit={handleSubmit} />
           <div>
             <div>

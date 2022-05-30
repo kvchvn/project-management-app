@@ -6,6 +6,7 @@ import { routerPaths } from '../../constants/common';
 import { StyledAbout, StyledWelcomeWrapper, StyledDescription } from './styles';
 import StyledButton from '../../styles/components/StyledButton';
 import { useUserSelector } from '../../store/selectors';
+import Navbar from '../../components/Navbar';
 
 function Welcome() {
   const { user } = useUserSelector();
