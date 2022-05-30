@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMutation } from 'react-query';
+import { useMutation, UseMutationOptions } from 'react-query';
 import { useDispatch } from 'react-redux';
 
 import { onSignIn } from '../store/slices/user';
@@ -11,7 +11,7 @@ import useUsersQuery from './use-users-query';
 
 type UserSignIn = Pick<UnauthorizedUser, 'login' | 'password'>;
 
-const useSignIn = () => {
+const useSignIn = (options?: UseMutationOptions<string, unknown, UnauthorizedUser, unknown>) => {
   const [token, setToken] = useState('');
   const dispatch = useDispatch();
 
@@ -34,6 +34,7 @@ const useSignIn = () => {
       return token;
     },
     {
+      ...options,
       onSuccess: (token) => {
         setToken(token);
         usersQueryResult.refetch();

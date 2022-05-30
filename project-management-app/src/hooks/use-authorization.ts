@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import useSignIn from './use-sign-in';
 import useSignUp from './use-sign-up';
@@ -22,8 +23,16 @@ const useAuthorization = (mode: AuthMode) => {
     if (user) navigate(routerPaths.main);
   }, [user, navigate]);
 
-  const signUp = useSignUp();
-  const { signIn, usersQueryResult } = useSignIn();
+  const signUp = useSignUp({
+    onError: () => {
+      toast.error('It seems like user already exists. Try to sign in');
+    },
+  });
+  const { signIn, usersQueryResult } = useSignIn({
+    onError: () => {
+      toast.error('Login and password do not match');
+    },
+  });
 
   const handleSubmit = async (values: UnauthorizedUser) => {
     if (isSignUpForm) await signUp.mutateAsync(values);
