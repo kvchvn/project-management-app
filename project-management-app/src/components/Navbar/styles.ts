@@ -4,6 +4,7 @@ import { device } from '../../constants/common';
 export const StyledNavbar = styled.nav`
   display: flex;
   justify-content: flex-end;
+  gap: 20px;
   padding: 5px 2rem;
   background: ${({ theme }) => theme.colors.bg.secondary};
   & div {
