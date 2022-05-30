@@ -1,13 +1,9 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import BoardCard from '../../components/BoardCard';
-import { UNAUTHORIZED_STATUS } from '../../constants/api';
 import { routerPaths } from '../../constants/common';
-import { useSignOut } from '../../hooks';
 import useAllBoards from '../../hooks/use-all-boards';
 import Loading from '../../components/Loading';
-import { ServerError } from '../../interfaces/common';
 import { StyledWrapper } from '../../layouts/containers';
 import { useUserSelector } from '../../store/selectors';
 import { StyledList } from './styles';
@@ -15,8 +11,7 @@ import { StyledList } from './styles';
 function Main() {
   const user = useUserSelector();
   const navigate = useNavigate();
-  const signOut = useSignOut();
-  const { isLoading, isError, data: boards, error } = useAllBoards();
+  const { isLoading, data: boards } = useAllBoards();
 
   useEffect(() => {
     if (!user) {
@@ -26,16 +21,6 @@ function Main() {
 
   if (isLoading) {
     return <Loading />;
-  }
-
-  if (isError) {
-    if (error.response) {
-      if (error.response.status === UNAUTHORIZED_STATUS) {
-        signOut();
-      }
-      toast.error((error.response.data as ServerError).message);
-    }
-    toast.error('Something went wrong');
   }
 
   return (
