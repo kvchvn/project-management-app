@@ -57,5 +57,9 @@
         "team": "Данное приложение разработали Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya."
       }
     }
+  },
+  "notFound": {
+    "title": "404 Страница не найдена",
+    "toMain": "Перейти на главную страницу"
   }
 }

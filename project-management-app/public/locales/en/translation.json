@@ -57,5 +57,9 @@
         "team": "The present app is developed by Anton Kachan, Dinmukhamed Sailaubek, Dilbar Akkaya."
       }
     }
+  },
+  "notFound": {
+    "title": "404 Page not found",
+    "toMain": "Go to Main page"
   }
 }
