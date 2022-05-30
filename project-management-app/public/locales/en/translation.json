@@ -122,8 +122,10 @@
   },
   "taskModal": {
     "buttons": {
+      "create": "Create",
       "update": "Update task",
-      "delete": "Delete task"
+      "delete": "Delete task",
+      "cancel": "Cancel"
     },
     "removingTask": "Do you really want to delete the task?"
   }

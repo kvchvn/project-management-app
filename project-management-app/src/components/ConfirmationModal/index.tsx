@@ -1,4 +1,5 @@
 import React, { ReactNode } from 'react';
+import StyledButton from '../../styles/components/StyledButton';
 import Modal from '../Modal';
 import { StyledButtonsContainer } from './styles';
 
@@ -27,8 +28,12 @@ function ConfirmationModal({
     <Modal onClose={handleCancel}>
       {children}
       <StyledButtonsContainer>
-        <button onClick={handleConfirm}>Yes</button>
-        <button onClick={handleCancel}>No</button>
+        <StyledButton variant="warning" onClick={handleConfirm}>
+          Delete
+        </StyledButton>
+        <StyledButton variant="primary" onClick={handleCancel}>
+          Cancel
+        </StyledButton>
       </StyledButtonsContainer>
     </Modal>
   );
