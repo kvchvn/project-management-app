@@ -1,19 +1,20 @@
 import styled from 'styled-components';
 
 export const StyledForm = styled.form`
-  /* padding: 20px; */
   display: flex;
   flex-direction: column;
-  gap: 20px;
   align-items: center;
   width: 80vw;
   max-width: 400px;
   height: 30vh;
   max-height: 300px;
+
+  & > span {
+    color: ${({ theme }) => theme.colors.button.warning.bg};
+  }
 `;
 
 export const StyledInput = styled.input`
-  /* padding: 10px; */
   width: 140px;
   height: 40px;
   border: none;
@@ -36,6 +37,7 @@ export const StyledTextarea = styled.textarea`
   resize: none;
   cursor: pointer;
   transition: background-color 0.25s;
+  margin-top: 20px;
 
   &:hover {
     background-color: ${({ theme }) => theme.colors.bg.secondary + 'b3'};
@@ -45,4 +47,5 @@ export const StyledTextarea = styled.textarea`
 export const StyledButtonsContainer = styled.div`
   display: flex;
   gap: 20px;
+  margin-top: 20px;
 `;
