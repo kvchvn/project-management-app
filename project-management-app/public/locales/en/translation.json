@@ -99,5 +99,31 @@
       "part1": "This operation can not be undone.",
       "part2": "Do you really want to remove the profile?"
     }
+  },
+  "boardPage": {
+    "removingColumn": {
+      "part1": "You will lose all the tasks on the list.",
+      "part2": "Do you really want to delete the list?"
+    },
+    "creatingColumn": {
+      "placeholder": "Enter list title",
+      "buttonCreate": "Add list",
+      "first": "Add a list",
+      "another": "Add another list"
+    },
+    "creatingTask": {
+      "buttonCreate": "Add task",
+      "placeholder": {
+        "title": "Enter task title",
+        "description": "Enter task description"
+      }
+    }
+  },
+  "taskModal": {
+    "buttons": {
+      "update": "Update task",
+      "delete": "Delete task"
+    },
+    "removingTask": "Do you really want to delete the task?"
   }
 }

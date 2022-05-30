@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -15,8 +15,12 @@ import {
   StyledButton,
   StyledButtonSubmit,
 } from './styles';
+import { useTranslation } from 'react-i18next';
+import ConfirmationModal from '../ConfirmationModal';
 
 function Task() {
+  const { t } = useTranslation();
+  const [isGoingToRemove, setIsGoingToRemove] = useState(false);
   const { id: boardId } = useParams();
   const { taskModal, tasksByColumns: allColumns } = useTaskSelector();
   const { taskId, ...task } = taskModal;
@@ -43,6 +47,10 @@ function Task() {
     },
   });
 
+  const openConfirmationModal = () => {
+    setIsGoingToRemove(true);
+  };
+
   const handleRemoveTask = () => {
     if (taskId) {
       removeTask.mutateAsync(taskId as string);
@@ -52,19 +60,26 @@ function Task() {
 
   if (taskData && task.isOpen) {
     return (
-      <StyledForm onSubmit={handleSubmit} onReset={handleRemoveTask}>
-        <StyledInput id="title" name="title" value={values.title} onChange={handleChange} />
-        <StyledTextarea
-          id="description"
-          name="description"
-          value={values.description}
-          onChange={handleChange}
-        />
-        <StyledButtonsContainer>
-          <StyledButton type="reset">Delete</StyledButton>
-          <StyledButtonSubmit type="submit">Update</StyledButtonSubmit>
-        </StyledButtonsContainer>
-      </StyledForm>
+      <>
+        <StyledForm onSubmit={handleSubmit} onReset={openConfirmationModal}>
+          <StyledInput id="title" name="title" value={values.title} onChange={handleChange} />
+          <StyledTextarea
+            id="description"
+            name="description"
+            value={values.description}
+            onChange={handleChange}
+          />
+          <StyledButtonsContainer>
+            <StyledButton type="reset">{t('taskModal.buttons.delete')}</StyledButton>
+            <StyledButtonSubmit type="submit">{t('taskModal.buttons.update')}</StyledButtonSubmit>
+          </StyledButtonsContainer>
+        </StyledForm>
+        {isGoingToRemove && (
+          <ConfirmationModal onConfirm={handleRemoveTask} setIsOpen={setIsGoingToRemove}>
+            <p>{t('taskModal.removingTask')}</p>
+          </ConfirmationModal>
+        )}
+      </>
     );
   }
   return null;

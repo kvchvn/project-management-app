@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 import { useClickOutside, useCreateColumn } from '../../hooks';
+import { useTranslation } from 'react-i18next';
 import { setOrder } from '../../utils/common';
 import Modal from '../Modal';
 import { CloseIcon, ConfirmIcon } from '../../assets/icons';
@@ -8,6 +9,7 @@ import { StyledColumnCreateButton, StyledColumnCreator, StyledContainer } from '
 import StyledIconButton from '../../styles/components/StyledIconButton';
 
 function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
+  const { t } = useTranslation();
   const modalRef = useRef<HTMLDivElement>(null);
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [newColumnTitle, setNewColumnTitle] = useState('');
@@ -35,7 +37,10 @@ function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
         modalRef.current && (
           <Modal parent={modalRef.current}>
             <StyledColumnCreator>
-              <input placeholder="Enter list title..." onChange={handleNewColumnTitleChange} />
+              <input
+                placeholder={t('boardPage.creatingColumn.placeholder')}
+                onChange={handleNewColumnTitleChange}
+              />
               <StyledIconButton
                 variant="primary"
                 onClick={handleColumnCreate}
@@ -51,7 +56,9 @@ function ColumnCreator({ lastColumnOrder }: { lastColumnOrder?: number }) {
         )
       ) : (
         <StyledColumnCreateButton variant="primary" onClick={handleIsOpenModal}>
-          {lastColumnOrder ? 'Add another list' : 'Add a list'}
+          {lastColumnOrder
+            ? t('boardPage.creatingColumn.another')
+            : t('boardPage.creatingColumn.first')}
         </StyledColumnCreateButton>
       )}
     </StyledContainer>

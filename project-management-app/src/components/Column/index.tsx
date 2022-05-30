@@ -15,8 +15,10 @@ import { Column as IColumn } from '../../interfaces/column';
 import { StyledColumn, StyledColumnHeader, StyledColumnWrapper } from './styles';
 import StyledIconButton from '../../styles/components/StyledIconButton';
 import { CloseIcon } from '../../assets/icons';
+import { useTranslation } from 'react-i18next';
 
 function Column({ id, title, order }: IColumn) {
+  const { t } = useTranslation();
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
@@ -50,8 +52,8 @@ function Column({ id, title, order }: IColumn) {
         <TaskCreator columnId={id} />
         {isGoingToRemove && (
           <ConfirmationModal onConfirm={handleConfirmDeletion} setIsOpen={setIsGoingToRemove}>
-            <p>Do you really want to delete the list?</p>
-            <p>You will lose all the tasks on the list</p>
+            <p>{t('boardPage.removingColumn.part1')}</p>
+            <p>{t('boardPage.removingColumn.part2')}</p>
           </ConfirmationModal>
         )}
       </StyledColumn>
