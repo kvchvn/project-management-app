@@ -1,6 +1,20 @@
 import styled from 'styled-components';
 
 export const StyledBoard = styled.div`
-  // TODO: height depends on header and footer heights, so may need to fix it later
-  height: calc(100vh - 151.5px);
+  height: calc(100vh - 196px);
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    border-radius: 4px;
+    box-shadow: inset 0 0 6px ${({ theme }) => theme.colors.bg.primary};
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+  }
 `;
