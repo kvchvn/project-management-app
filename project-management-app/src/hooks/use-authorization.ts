@@ -9,10 +9,12 @@ import { UnauthorizedUser } from '../interfaces/user';
 import { TStore } from '../store';
 import { routerPaths } from '../constants/common';
 
-const useAuthorization = () => {
+export type AuthMode = 'signIn' | 'signUp';
+
+const useAuthorization = (mode: AuthMode) => {
   const navigate = useNavigate();
 
-  const [isSignUpForm, setIsSignUpForm] = useState(true);
+  const [isSignUpForm, setIsSignUpForm] = useState(() => mode === 'signUp');
 
   const { user } = useSelector((store: TStore) => store.userReducer);
 

@@ -17,8 +17,8 @@ const BoardForm = ({ closeModal }: BoardFormProps) => {
   const { handleSubmit, handleChange, values, errors, touched } = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: ({ boardName }) => {
-      createBoard.mutateAsync(boardName);
+    onSubmit: async ({ boardName }) => {
+      await createBoard.mutateAsync(boardName);
       closeModal();
     },
   });

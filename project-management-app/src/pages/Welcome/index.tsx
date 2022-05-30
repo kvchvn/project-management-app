@@ -1,21 +1,22 @@
-import Navbar from '../../components/Navbar/Navbar';
+import Navbar from '../../components/Navbar';
 import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
-import { useSelector } from 'react-redux';
-import { TStore } from '../../store/index';
 import { StyledAbout, StyledWrapper, StyledDescription } from './styles';
 import StyledButton from '../../styles/components/StyledButton';
+import { useUserSelector } from '../../store/selectors';
 
 function Welcome() {
-  const { user } = useSelector((store: TStore) => store.userReducer);
+  const { user } = useUserSelector();
   return (
     <>
       <Navbar>
         {!user ? (
           <div>
-            <Link to={`/${routerPaths.auth}`}>
-              <StyledButton variant="primary">Log in</StyledButton>
-              <StyledButton variant="primary">Sign up</StyledButton>
+            <Link to={`/${routerPaths.auth}`} state={'signIn'}>
+              <StyledButton variant="primary">Sign In</StyledButton>
+            </Link>
+            <Link to={`/${routerPaths.auth}`} state={'signUp'}>
+              <StyledButton variant="primary">Sign Up</StyledButton>
             </Link>
           </div>
         ) : (

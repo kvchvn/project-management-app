@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import { routerPaths } from './constants/common';
-import ToastyContainer from './components/ToastyContainer/ToastyContainer';
+import ToastyContainer from './components/ToastyContainer';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Main = React.lazy(() => import('./pages/Main'));
