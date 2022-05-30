@@ -1,7 +1,7 @@
-import React, { memo, useRef, useState } from 'react';
+import React, { memo, useState } from 'react';
 
 import ColumnTitle from '../ColumnTitle';
-import Modal from '../Modal';
+import ConfirmationModal from '../ConfirmationModal';
 import TasksContainer from '../TasksContainer';
 import TaskCreator from '../TaskCreator';
 import {
@@ -12,15 +12,9 @@ import {
 } from '../../hooks';
 import { Column as IColumn } from '../../interfaces/column';
 
-import {
-  StyledColumn,
-  StyledColumnHeader,
-  StyledColumnWrapper,
-  StyledConfirmationModal,
-} from './styles';
+import { StyledColumn, StyledColumnHeader, StyledColumnWrapper } from './styles';
 
 function Column({ id, title, order }: IColumn) {
-  const modalRef = useRef<HTMLDivElement>(null);
   const [isEditingTitle, setIsEditingTitle] = useState(false);
   const [isGoingToRemove, setIsGoingToRemove] = useState(false);
 
@@ -34,8 +28,6 @@ function Column({ id, title, order }: IColumn) {
   const handleDeleteColumn = () => setIsGoingToRemove(true);
 
   const handleConfirmDeletion = () => removeColumn({ id });
-
-  const handleCancelDeletion = () => setIsGoingToRemove(false);
 
   return (
     <StyledColumnWrapper ref={(node) => drop(taskDrop(node))}>
@@ -53,16 +45,10 @@ function Column({ id, title, order }: IColumn) {
         <TasksContainer columnId={id} />
         <TaskCreator columnId={id} />
         {isGoingToRemove && (
-          <Modal onClose={handleCancelDeletion}>
-            <StyledConfirmationModal ref={modalRef}>
-              <p>Do you really want to delete the list?</p>
-              <p>You will lose all the tasks on the list</p>
-              <div>
-                <button onClick={handleConfirmDeletion}>Yes</button>
-                <button onClick={handleCancelDeletion}>No</button>
-              </div>
-            </StyledConfirmationModal>
-          </Modal>
+          <ConfirmationModal onConfirm={handleConfirmDeletion} setIsOpen={setIsGoingToRemove}>
+            <p>Do you really want to delete the list?</p>
+            <p>You will lose all the tasks on the list</p>
+          </ConfirmationModal>
         )}
       </StyledColumn>
     </StyledColumnWrapper>
