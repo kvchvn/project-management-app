@@ -6,6 +6,8 @@ import AuthForm from '../../components/AuthForm';
 import Loading from '../../components/Loading';
 import { useAuthorization } from '../../hooks';
 import { AuthMode } from '../../hooks/use-authorization';
+import StyledPageTitle from '../../styles/components/StyledPageTitle';
+import StyledWrapper from '../../styles/components/StyledWrapper';
 
 function Authorization() {
   const location = useLocation();
@@ -16,11 +18,11 @@ function Authorization() {
 
   return (
     <>
-      <h2>{t('authPage.title')}</h2>
+      <StyledPageTitle>{t('authPage.title')}</StyledPageTitle>
       {isLoading ? (
         <Loading />
       ) : (
-        <>
+        <StyledWrapper>
           <AuthForm isSignUpForm={isSignUpForm} onSubmit={handleSubmit} />
           <div>
             <div>
@@ -30,7 +32,7 @@ function Authorization() {
               </button>
             </div>
           </div>
-        </>
+        </StyledWrapper>
       )}
     </>
   );

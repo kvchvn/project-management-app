@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const StyledMain = styled.main`
-  padding: 20px 0;
+  padding-bottom: 20px;
   flex: 1 0 auto;
   overflow: scroll;
 `;

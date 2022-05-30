@@ -3,13 +3,14 @@ import styled from 'styled-components';
 export const StyledListItem = styled.li`
   position: relative;
   height: 100px;
-  border: 3px solid ${({ theme }) => theme.colors.border.primary};
+  border: 1px solid ${({ theme }) => theme.colors.border.primary};
   border-radius: 5px;
   cursor: pointer;
   overflow: hidden;
+  transition: all 0.25s;
 
   &:hover {
-    background-color: #8080801a;
+    background-color: ${({ theme }) => theme.colors.bg.quinary};
   }
 
   & > a {

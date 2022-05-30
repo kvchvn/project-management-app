@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { routerPaths } from '../../constants/common';
-import Navbar from '../../components/Navbar';
-import { StyledAbout, StyledWrapper, StyledDescription } from './styles';
+import { StyledAbout, StyledWelcomeWrapper, StyledDescription } from './styles';
 import StyledButton from '../../styles/components/StyledButton';
 import { useUserSelector } from '../../store/selectors';
+import Navbar from '../../components/Navbar';
 
 function Welcome() {
   const { user } = useUserSelector();
@@ -29,7 +29,7 @@ function Welcome() {
           </Link>
         )}
       </Navbar>
-      <StyledWrapper>
+      <StyledWelcomeWrapper>
         <StyledAbout>
           <h2>{t('welcomePage.about.titles.project')}</h2>
           <StyledDescription>{t('welcomePage.about.descriptions.project')}</StyledDescription>
@@ -42,7 +42,7 @@ function Welcome() {
           <h2>{t('welcomePage.about.titles.team')}</h2>
           <StyledDescription>{t('welcomePage.about.descriptions.team')}</StyledDescription>
         </StyledAbout>
-      </StyledWrapper>
+      </StyledWelcomeWrapper>
     </>
   );
 }

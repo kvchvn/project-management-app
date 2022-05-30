@@ -12,6 +12,7 @@ export const baseTheme: Theme = {
       secondary: '#b4e197',
       tertiary: '#ffde36',
       quaternary: '#323232',
+      quinary: '#ffd36e',
     },
 
     border: {

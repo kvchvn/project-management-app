@@ -96,7 +96,7 @@ export const StyledAside = styled.aside`
 `;
 
 export const StyledNavButton = styled.button`
-  padding: ${({ sticky }) => (sticky ? '0' : '5px 10px')};
+  padding: ${({ sticky }: StickyDepended) => (sticky ? '0' : '5px 10px')};
   text-align: center;
   background-color: transparent;
   border-bottom: 2px solid transparent;

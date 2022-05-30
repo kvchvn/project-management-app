@@ -1,8 +1,11 @@
+import { AxiosError } from 'axios';
 import { QueryKey, useQuery, UseQueryOptions } from 'react-query';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
-import { QUERY_KEYS, URLS } from '../constants/api';
+import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { DEFAULT_SERVER_ERROR, QUERY_KEYS, STATUS_BAD_REQUEST, URLS } from '../constants/api';
+import { routerPaths } from '../constants/common';
 import { Column } from '../interfaces/column';
 import { TStore } from '../store';
 import { onSaveColumns } from '../store/slices/column';
@@ -24,6 +27,7 @@ const useColumnsQuery = (
 ) => {
   const dispatch = useDispatch();
   const { user } = useSelector((store: TStore) => store.userReducer);
+  const navigate = useNavigate();
   const { id: boardId } = useParams();
   const token = user?.token;
 
@@ -37,6 +41,17 @@ const useColumnsQuery = (
       ...options,
       onSuccess: (columns) => columns && dispatch(onSaveColumns({ columns })),
       enabled: !!token || !!boardId,
+      onError: (error) => {
+        const axiosError = error as AxiosError;
+        if (axiosError.response) {
+          if (axiosError.response.status === STATUS_BAD_REQUEST) {
+            toast.error('Board is not found');
+            navigate(routerPaths.default);
+          }
+        } else {
+          toast.error(DEFAULT_SERVER_ERROR.data.message);
+        }
+      },
     }
   );
 

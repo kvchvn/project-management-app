@@ -22,3 +22,4 @@ export const DEFAULT_SERVER_ERROR = {
 };
 
 export const UNAUTHORIZED_STATUS = 401;
+export const STATUS_BAD_REQUEST = 400;
