@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { routerPaths } from '../../constants/common';
 import StyledButton from '../../styles/components/StyledButton';
 import { StyledError } from './styles';
-import ErrorMessage from './ErrorMessage';
 import { TFunction, withTranslation } from 'react-i18next';
 
 interface ErrorProps {
