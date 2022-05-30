@@ -19,6 +19,7 @@ export const StyledModalContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.bg.primary};
   overflow: hidden;
   animation: ${scaleIncreasing} 0.3s ease-out;
+  border-radius: 6px;
 `;
 
 export const StyledButtonClose = styled.button`

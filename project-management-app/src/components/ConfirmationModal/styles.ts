@@ -2,8 +2,12 @@ import styled from 'styled-components';
 
 export const StyledButtonsContainer = styled.div`
   display: flex;
-  column-gap: 10px;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100px;
-  margin: 10px auto 0;
+  margin: 1rem auto 0;
+  text-align: center;
+
+  & > button {
+    padding: 0.5em 0.75em;
+  }
 `;
