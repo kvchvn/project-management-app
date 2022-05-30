@@ -12,6 +12,7 @@ import ConfirmationModal from '../ConfirmationModal';
 
 import { StyledForm, StyledInput, StyledTextarea, StyledButtonsContainer } from './styles';
 import StyledButton from '../../styles/components/StyledButton';
+import { taskValidationSchema } from './validation-schema';
 
 function Task() {
   const { t } = useTranslation();
@@ -33,8 +34,9 @@ function Task() {
     description: taskData ? taskData.description : '',
   };
 
-  const { handleSubmit, handleChange, values } = useFormik({
+  const { handleSubmit, handleChange, values, errors } = useFormik({
     initialValues,
+    validationSchema: taskValidationSchema,
     onSubmit: async ({ title, description }) => {
       const updatedTaskData = { ...(taskData as TaskDetailed), title, description };
       updateTask.mutateAsync(updatedTaskData);
@@ -55,12 +57,14 @@ function Task() {
     return (
       <StyledForm onSubmit={handleSubmit} onReset={openConfirmationModal}>
         <StyledInput id="title" name="title" value={values.title} onChange={handleChange} />
+        {errors.title && <span>{errors.title}</span>}
         <StyledTextarea
           id="description"
           name="description"
           value={values.description}
           onChange={handleChange}
         />
+        {errors.description && <span>{errors.description}</span>}
         <StyledButtonsContainer>
           <StyledButton variant="warning" type="reset">
             {t('taskModal.buttons.delete')}
